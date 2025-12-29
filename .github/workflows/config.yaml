@@ -26,17 +26,14 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "latest"
           extended: true
 
-      - name: Build site (use hugo.toml, include drafts)
+      - name: Build (use hugo.toml, include drafts)
         run: |
-          hugo \
-            --config hugo.toml \
-            -D \
-            --minify
+          hugo --config hugo.toml -D --cleanDestinationDir --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

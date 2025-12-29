@@ -1,0 +1,109 @@
+{{ define "main" }}
+
+<div class="home-layout">
+
+  <!-- ================= Sidebar ================= -->
+  {{ partial "home-sidebar.html" . }}
+
+  <!-- ================= Main ================= -->
+  <main class="home-main">
+    <h2>Welcome to CHW World</h2>
+
+    <!-- Welcome Terminal -->
+    <section class="welcome terminal">
+      <pre class="terminal-frame">
+<span id="terminal"></span><span class="cursor">█</span>
+      </pre>
+    </section>
+
+    <section class="intro">
+      <p>
+        A party engineer named <strong>CHW</strong> (ID: <code>chw41</code>) specializing in
+        <strong>Web Security</strong>, <strong>Penetration Testing</strong>, and
+        <strong>Red Teaming</strong>.
+      </p>
+    
+      <p>
+        Currently an active member of the CTF teams
+        <a href="https://ctftime.org/team/280959" target="_blank" rel="noopener">
+          <strong>竹狐 (TakeKitsune)</strong>
+        </a>
+        and
+        <a href="https://ctftime.org/team/195564" target="_blank" rel="noopener">
+          <strong>i'm downQQ</strong>
+        </a>,
+        and a second-cohort Master’s graduate of
+        <a href="https://is1ab.com/" target="_blank" rel="noopener">
+          <strong>is1ab</strong>
+        </a>
+        (<span class="muted">Information Security Laboratory</span>).
+      </p>
+    
+      <p>
+        Holds an <strong>OSCP+</strong> certification.
+      </p>
+    </section>
+    
+    
+    
+    <section class="github-snake">
+    <img
+      src="https://raw.githubusercontent.com/Chw41/Chw41/output/github-contribution-grid-snake-dark.svg?palette=github-dark"
+      alt="GitHub Contribution Snake"
+      loading="lazy"
+    />
+    </section>
+   
+    
+      <!-- ================= Working Experiences ================= -->
+<section class="work-exp">
+    <h2 class="section-title">Work Experience</h2>
+
+    <div class="work-row">
+        <div class="work-org">ABP Securite</div>
+        <div class="work-role">Solution Engineer</div>
+        <div class="work-time">Dec. 2025  – Current</div>
+      </div>
+
+      <div class="work-row">
+        <div class="work-org">Cymetrics</div>
+        <div class="work-role">Security Research Engineer Intern</div>
+        <div class="work-time">Sep. 2024 – Jan. 2025</div>
+      </div>
+  
+      <div class="work-row">
+        <div class="work-org">TSMC</div>
+        <div class="work-role">Information Technology Security Engineer Intern</div>
+        <div class="work-time">Jul. 2024 – Aug. 2024</div>
+      </div>
+  
+      <div class="work-row">
+        <div class="work-org">Yougood tech.</div>
+        <div class="work-role">Full-stack Developer (Project)</div>
+        <div class="work-time">Sep. 2023 – Mar. 2024</div>
+      </div>
+  
+      <div class="work-row">
+        <div class="work-org">Dynasafe</div>
+        <div class="work-role">Cyber Security Engineer</div>
+        <div class="work-time">Aug. 2024 – Aug. 2023</div>
+      </div>
+  
+      <div class="work-row">
+        <div class="work-org">Artjoin Gallery</div>
+        <div class="work-role">Full-stack Developer (Project)</div>
+        <div class="work-time">Feb. 2022 – Jul. 2022</div>
+      </div>
+    </div>
+  </section>
+  
+
+
+    <!-- Blog posts -->
+    {{ partial "home-posts.html" . }}
+
+  </main>
+
+</div>
+
+{{ end }}

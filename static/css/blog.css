@@ -1,0 +1,112 @@
+/* Counter stays clean */
+.blog-counter {
+  display: flex;
+  justify-content: center;
+}
+
+/* Layout */
+.page-blog {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.blog-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+}
+
+/* Counter */
+.blog-counter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.blog-counter img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Sidebar */
+.blog-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tag-item {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  text-align: center;
+  color: #bdbdbd;
+  background: rgba(255,255,255,0.04);
+  transition: all .2s ease;
+}
+
+.tag-item:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Active */
+.tag-item.active {
+  color: #000;
+  background: #bdbdbd;
+}
+
+/* Tag colors */
+.tag-item.htb.active    { background:#9fef00; }
+.tag-item.offsec.active { background:#0078d4; color:#fff; }
+.tag-item.talks.active  { background:#e53935; color:#fff; }
+.tag-item.infra.active  { background:#7c83ff; color:#fff; }
+.tag-item.notes.active  { background:#3ddc84; color:#000; }
+
+/* Blog list */
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Card */
+.blog-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 28px 32px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.045);
+  backdrop-filter: blur(8px);
+  transition: background .25s ease, transform .25s ease;
+}
+
+.blog-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateY(-2px);
+}
+
+.blog-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #f5f5f7;
+}
+
+.blog-card .desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #bdbdbd;
+  max-width: 720px;
+}
+
+.blog-card .meta {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #8e8e93;
+}

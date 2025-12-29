@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/css/blog.css">
+
+<div class="page-blog">
+  <section class="blog-list">
+
+    {{ range first 5 (sort (where .Site.RegularPages "Section" "b1og") ".Date" "desc") }}
+
+      {{ $tags := slice }}
+      {{ with .Params.tags }}{{ $tags = . }}{{ end }}
+
+      <a
+        href="{{ .RelPermalink }}"
+        class="blog-card"
+        data-tags="{{ delimit $tags "," | lower }}"
+      >
+        <h2>{{ .Title }}</h2>
+
+        {{ with .Params.description }}
+          <p class="desc">{{ . }}</p>
+        {{ end }}
+
+        <div class="meta">
+          {{ .Date.Format "2006-01-02" }}
+          · {{ .ReadingTime }} min
+          · {{ .WordCount }} words
+          · {{ .Params.author | default "CHW" }}
+        </div>
+      </a>
+
+    {{ end }}
+
+    <!-- Read more -->
+    <div class="blog-more">
+      <a href="/b1og/" class="read-more-btn">
+        Read more →
+      </a>
+    </div>
+
+  </section>
+</div>

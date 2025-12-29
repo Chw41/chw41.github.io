@@ -1,0 +1,672 @@
+{{ define "main" }}
+<div class="about-page">
+
+  <!-- ================= HERO (CENTERED WIDE CARD) ================= -->
+  <section class="about-hero">
+    <!-- LEFT -->
+    <div class="about-left">
+      {{ $av := .Site.Params.avatar }}
+      {{ if not $av }}{{ $av = "/img/avatar.png" }}{{ end }}
+      <img src="{{ $av }}" class="about-avatar" alt="CHW avatar" loading="lazy" />
+      <div class="about-user">CHW</div>
+      <div class="about-id">chw41</div>
+    </div>
+
+    <div class="about-right">
+      <div class="about-grid">
+        <div class="about-cell">＠CHW / Chang Chia-Wei</div>
+        <div class="about-cell">CTF Web / Pentest / Red Team</div>
+
+        <div class="about-cell">OSCP+</div>
+        <div class="about-cell">Google Cybersecurity Cert.</div>
+
+        <div class="about-cell">行政院網路攻防攻擊手</div>
+        <div class="about-cell">第九屆臺灣好厲駭 高階培訓 &amp; 導師輔導</div>
+
+        <div class="about-cell">Cymetrics Security Researcher</div>
+        <div class="about-cell">TSMC IT Security Engineer</div>
+
+        <div class="about-cell">Full-stack Developer</div>
+        <div class="about-cell">Pentera / WAF / F5 </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- ================= WORKING EXPERIENCES ================= -->
+<section class="about-work">
+  <section class="work-exp">
+    <h2 class="section-title">Work Experience</h2>
+
+    <div class="work-row">
+      <div class="work-org">ABP Securite</div>
+      <div class="work-role">Solution Engineer</div>
+      <div class="work-time">Dec. 2025 – Current</div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-org">Cymetrics</div>
+      <div class="work-role">Security Research Engineer Intern</div>
+      <div class="work-time">Sep. 2024 – Jan. 2025</div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-org">TSMC</div>
+      <div class="work-role">Information Technology Security Engineer Intern</div>
+      <div class="work-time">Jul. 2024 – Aug. 2024</div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-org">Yougood tech.</div>
+      <div class="work-role">Full-stack Developer (Project)</div>
+      <div class="work-time">Sep. 2023 – Mar. 2024</div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-org">Dynasafe</div>
+      <div class="work-role">Cyber Security Engineer</div>
+      <div class="work-time">Aug. 2023 – Aug. 2024</div>
+    </div>
+
+    <div class="work-row">
+      <div class="work-org">Artjoin Gallery</div>
+      <div class="work-role">Full-stack Developer (Project)</div>
+      <div class="work-time">Feb. 2022 – Jul. 2022</div>
+    </div>
+  </section>
+</section>
+
+
+
+  <!-- ================= EXPERIENCE (FIG-3 STYLE) ================= -->
+<section class="about-exp">
+  <h2 class="exp-title">History</h2>
+
+  <div class="exp-card">
+    <div class="timeline">
+
+
+      <div class="tl-gap"></div>
+      <!-- ===== 2025 ===== -->
+      <div class="tl-year">
+        <div class="tl-year-left">
+          <span class="tl-year-text">2025</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/01</span>
+            <a class="tl-link" rel="noopener">
+              📄 Pentera Security Validation Associate Certification
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/01</span>
+            <a class="tl-link" rel="noopener">
+              📄 Pentera Security Validation Sales Associate Certification
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">09/09</span>
+            <a class="tl-link" rel="noopener">
+              📄 OffSec Certified Professional Plus (OSCP+)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">08/22-24</span>
+            <a class="tl-link" rel="noopener">
+              🏁 HITCON CTF 2025 Quals || Rank: 13/717 (竹狐) TW No.1  
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">08/16-18</span>
+            <a class="tl-link" rel="noopener">
+              🏁 SekaiCTF 2025 || Rank : 81/1060 (竹狐 TakeKitsune) 
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">08/09-12</span>
+            <a class="tl-link" rel="noopener">
+              🏁 WHY2025 CTF || Rank : 188/1806 (NTUT_Is1ab)  
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">07/19</span>
+            <a class="tl-link" rel="noopener">
+              第九屆資安實務導師制度 AIS3 好厲駭培訓 || 表現優異獎 (Mentor: Allen Own)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">05/17</span>
+            <a class="tl-link" rel="noopener">
+              第九屆臺灣好厲駭: 你逆: Reverse CTF 仔的 Malware 逆向指南 - asef18766
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">05/03</span>
+            <a class="tl-link" rel="noopener">
+              第九屆臺灣好厲駭: 應用密碼學與 CTF 解題實務 - 李安傑
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">04/15-17</span>
+            <a class="tl-link" rel="noopener">
+              CYBERSEC 2024 臺灣資安大會
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">04/12-14</span>
+            <a class="tl-link" rel="noopener">
+              🏁 DEF CON CTF Qualifier 2025 || Rank : 31 (Starburst Beef Stir-Fried BambooFox)  
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/21-26</span>
+            <a class="tl-link" rel="noopener">
+              🏁 Cyber Apocalypse CTF 2025: Tales from Eldoria || Rank : 752/8129 (竹狐 TakeKitsune) 
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/20</span>
+            <a class="tl-link" rel="noopener">
+              114年行政院國家資通安全網路攻防演練攻擊手
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/15</span>
+            <a class="tl-link" rel="noopener">
+              DEVCORE CONFERENCE 2025
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/08</span>
+            <a class="tl-link" rel="noopener">
+              教育部資安人才培育計畫總期程期末成果展
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">02/22-23</span>
+            <a class="tl-link" rel="noopener">
+              🏁 Kashi CTF 2025 || Rank : 48/1174 (竹狐 TakeKitsune)
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">02/15</span>
+            <a class="tl-link" rel="noopener">
+              第九屆臺灣好厲駭: Web仔的CTF筆記 - t510599 石頭 
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">02/07-08</span>
+            <a class="tl-link" rel="noopener">
+              🏁 AIS3 EOF CTF Final 2025 || Rank : 6 (I'm down QQ)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-gap"></div>
+
+      <!-- ===== 2024 ===== -->
+      <div class="tl-year">
+        <div class="tl-year-left">
+          <span class="tl-year-text">2024</span>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/28</span>
+            <a class="tl-link" rel="noopener">
+              第九屆臺灣好厲駭: Web Security 輕鬆談 - Orange
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/28</span>
+            <a class="tl-link" rel="noopener">
+              114年電商產業外網資安檢測服務攻擊手
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/09</span>
+            <a class="tl-link" rel="noopener">
+              2024 HITCON CTF Ｘ 菁英人才交流活動
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">10/12</span>
+            <a class="tl-link" rel="noopener">
+              🏁 113年度資安技能金盾獎 || Rank : Lost (不懂 WIFI 別說懂資安 By. CHW, Adb2) 
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">10/26</span>
+            <a class="tl-link" rel="noopener">
+              第九屆臺灣好厲駭: Reverse Engineering 101 - TwinkleStar03
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">09/16</span>
+            <a class="tl-link" rel="noopener">
+              📄 Google Cybersecurity Certification
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">09/14</span>
+            <a class="tl-link" rel="noopener">
+              🏁 2024 AEGIS 神盾盃 Qual || Rank : 3 (I'm down QQ)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">08/30</span>
+            <a class="tl-link" rel="noopener">
+              2024 TSMC DNA Internship Final Competition || Honorable Mention of the Supporting - IT Group 
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">08/23-24</span>
+            <a class="tl-link" rel="noopener">
+              HITCON CMT 2024
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">07/29</span>
+            <a class="tl-link" rel="noopener">
+              2024 AIS3新型態資安實務暑期課程
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">07/01</span>
+            <a class="tl-link" rel="noopener">
+              Google 資安人才培育計畫
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">05/25-27</span>
+            <a class="tl-link" rel="noopener">
+              🏁 AIS3 Pre-exam CTF 2024 || Rank : 31/493 (CHW)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">07-14</span>
+            <a class="tl-link" rel="noopener">
+              台科資安社 - 開箱！紅隊演練專家的職涯經驗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">05/14-16</span>
+            <a class="tl-link" rel="noopener">
+              CYBERSEC 2024 臺灣資安大會
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/30-31</span>
+            <a class="tl-link" rel="noopener">
+              🏁 Asian Cyber Security Challenge 2024
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/16</span>
+            <a class="tl-link" rel="noopener">
+              DEVCORE CONFERENCE 2024
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/13-27</span>
+            <a class="tl-link" rel="noopener">
+              🏁 picoCTF 2024 || Rank : 461/69574 (ISLAB#NTUT)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">03/09-13</span>
+            <a class="tl-link" rel="noopener">
+              🏁 Cyber Apocalypse 2024: Hacker Royale || Rank : 1443/5693 (ISLAB@NTUT)
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">02/03-04</span>
+            <a class="tl-link" rel="noopener">
+              🏁 AIS3 EOF CTF Final 2024 || Rank : 7 (請隊長在30秒內回覆)
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tl-gap"></div>
+
+      <!-- ===== 2023 ===== -->
+      <div class="tl-year">
+        <div class="tl-year-left">
+          <span class="tl-year-text">2023</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/08-10</span>
+            <a class="tl-link" rel="noopener">
+              🏁 HackTheBox: University CTF 2023: Brains & Bytes || Rank : 364/955 (NTUT)
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/02</span>
+            <a class="tl-link" rel="noopener">
+              線上資安創新講座 - 以攻擊策略演練角度協助企業評估、強化與呈現資安投資成效
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/01-15</span>
+            <a class="tl-link" rel="noopener">
+              [EDU-CTF] Computer Security 2023 Fall Course: WEB
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">12/01-02</span>
+            <a class="tl-link" rel="noopener">
+              🏁 2023 CGGC 網路守護者挑戰賽 – Cyber Guardian Grand Challenge
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/25</span>
+            <a class="tl-link cert" rel="noopener">
+              📄 iPAS資訊安全工程師證照 初級
+            </a>            
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/23</span>
+            <a class="tl-link" rel="noopener">
+              🏁 2023 T貓盃全國資安基礎實務能力競賽 佳作
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/14</span>
+            <a class="tl-link" rel="noopener">
+              HITCON Carnival 2023 攻防演練論壇 & 賽況導覽
+            </a>
+          </div>
+        </div>
+      </div> 
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/04</span>
+            <a class="tl-link" rel="noopener">
+              台科資安社 - 滲透測試工作坊
+            </a>
+          </div>
+        </div>
+      </div>  
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-row">
+            <span class="tl-date">11/02</span>
+            <a class="tl-link" rel="noopener">
+              2023 AEGIS 神盾盃資安論壇
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+</div>
+{{ end }}

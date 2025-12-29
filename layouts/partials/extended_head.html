@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="{{ "css/main.css" | relURL }}"/>
+
+{{ if eq .Section "4b0u7" }}
+<link rel="stylesheet" href="/css/about.css">
+{{ end }}
+
+{{ if eq .Section "B1og" }}
+<link rel="stylesheet" href="/css/blog.css">
+{{ end }}
+
+{{ if eq .Section "1nd1v1du4l-c7f" }}
+<link rel="stylesheet" href="/css/individual-ctf.css">
+{{ end }}
+
+{{ if .IsPage }}
+<link rel="stylesheet" href="/css/article.css">
+{{ end }}

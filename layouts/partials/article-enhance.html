@@ -1,0 +1,54 @@
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      document.querySelectorAll("details.collapsable-code").forEach(d => {
+        d.open = true;
+      });
+
+    
+      document.querySelectorAll(".chw-article pre").forEach(pre => {
+        const code = pre.querySelector("code");
+        if (!code) return;
+
+        /* ---------- Avoid duplicate enhancements ---------- */
+        if (pre.querySelector(".copy-btn")) return;
+    
+        /* ---------- Header title ---------- */
+        const wrapper = pre.closest("details.collapsable-code");
+        const shortcodeTitle = wrapper?.querySelector(".collapsable-code__title")?.textContent?.trim();
+
+        if (!pre.dataset.title) {
+          pre.dataset.title = shortcodeTitle || "chw㉿world — zsh";
+        }
+    
+        /* ---------- Copy button ---------- */
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "copy-btn";
+        copyBtn.textContent = "Copy";
+    
+        copyBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(code.innerText).then(() => {
+            copyBtn.textContent = "Copied";
+            setTimeout(() => {
+              copyBtn.textContent = "Copy";
+            }, 1200);
+          });
+        });
+    
+        pre.appendChild(copyBtn);
+    
+        const lines = code.innerHTML.split("\n").map(line => {
+          if (line.startsWith("$ ")) {
+            return `<span class="chw-prompt">$</span> ${line.slice(2)}`;
+          }
+          if (line.startsWith("# ")) {
+            return `<span class="chw-prompt">#</span> ${line.slice(2)}`;
+          }
+          return line;
+        });
+    
+        code.innerHTML = lines.join("\n");
+      });
+    
+    });
+    </script>

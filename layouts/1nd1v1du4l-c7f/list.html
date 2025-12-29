@@ -1,0 +1,134 @@
+{{ define "main" }}
+<div class="ictf-page">
+
+  <!-- ================= LEFT : GitHub Profile ================= -->
+  <aside class="ictf-left">
+    <div class="gh-card">
+      <img src="/img/github.ico" alt="CHW avatar" class="gh-avatar" />
+
+      <div class="gh-name">CHW</div>
+      <div class="gh-id">Chw41</div>
+      <a
+      class="gh-follow"
+      href="https://github.com/Chw41"
+      target="_blank"
+      rel="noopener"
+    >
+      Follow
+    </a>
+    
+      <div class="gh-bio">
+        🚧 The greener your Github, the yellower your eyes and the redder your health report.
+        <br />🔴🟡🟢
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= RIGHT : Individual CTF ================= -->
+  <main class="ictf-right">
+    <h1 class="ictf-title">Individual CTF</h1>
+
+    <div class="ictf-grid">
+    
+     <!-- aby File Inclusion -->
+      <a
+        class="ctf-card"
+        href="https://github.com/Chw41/Individual-CTF-Topic/tree/main/Baby File Inclusion"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="ctf-header">README.md</div>
+        <div class="ctf-body">
+          <h2>Baby File Inclusion [BlackBox]</h2>
+          <p>
+            This is an old-school PHP trick "nothing fancy", "nothing new".</br>
+            Error messages are fully enabled.</br>
+            If you are a CTF player, don’t rely on throwing everything into an LLM and hoping for an answer. Understand the behavior.</br>
+            Reminder⚠️: Black box challenge
+          </p>
+        </div>
+      </a> 
+
+     <!-- BabyPentest -->
+      <a
+        class="ctf-card"
+        href="https://github.com/Chw41/Individual-CTF-Topic/tree/main/BabyPentest"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="ctf-header">README.md</div>
+        <div class="ctf-body">
+          <h2>BabyPentest [BlackBox]</h2>
+          <p>
+            Previously, you learned web shell techniques through the BabyShell challenge. But these two challenges are unrelated XDD. 
+            In this one, you’ll attempt to use penetration testing skills and privilege escalation to become a “BabyPentest”. 
+            Your mission is to hack, not to read articles.</br>
+            Reminder⚠️: Black box challenge
+          </p>
+        </div>
+      </a> 
+
+     <!-- Try Harder -->
+      <a
+        class="ctf-card"
+        href="https://github.com/Chw41/Individual-CTF-Topic/tree/main/Try Harder"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="ctf-header">README.md</div>
+        <div class="ctf-body">
+          <h2>Try Harder</h2>
+          <p>
+            In penetration testing or internal security assessments, Active Directory (AD) enumeration is a critical step. 
+            Many security professionals choose PowerShell Remoting (WinRM) to execute remote commands during AD enumeration, 
+            but this can lead to the Kerberos Double-Hop issue, affecting the functionality of certain AD enumeration tools.</br>
+            If you've completed OSCP, you might not necessarily know why RDP (Remote Desktop Protocol) is a better choice, 
+            but you'll definitely find a clue for the flag. </br>
+            BTW, GenericAll is a special AD permission that can be used for privilege escalation. Ex.<code>stephanie</code></br>
+            💡 Try Harder: GitHub - Chw41/OffSec-Certification
+          </p>
+        </div>
+      </a> 
+
+      <!-- BabyShell -->
+      <a
+        class="ctf-card"
+        href="https://github.com/Chw41/Individual-CTF-Topic/tree/main/BabyShell"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="ctf-header">README.md</div>
+        <div class="ctf-body">
+          <h2>BabyShell</h2>
+          <p>
+            BabyShell is a Capture The Flag (CTF) challenge designed to test your skills in exploiting a simple web shell technique. 
+            The challenge involves leveraging the getTime() function to retrieve the current time, which is crucial for solving the puzzle.
+          </p>
+        </div>
+      </a>
+
+      <!-- Finding Toyz -->
+      <a
+        class="ctf-card"
+        href="https://github.com/Chw41/Individual-CTF-Topic/tree/main/Finding Toyz"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="ctf-header">README.md</div>
+        <div class="ctf-body">
+          <h2>Finding Toyz</h2>
+          <p>
+            Embark on a easy virtual journey through a Taichung prison maze inspired by recent events involving Toyz, 
+            a prominent esports figure sentenced to over four years for cannabis trafficking in Taiwan. 
+            Navigate the challenges of this CTF web challenge and locate Toyz within the intricate confines of the prison.
+            Proceed to "Find Toyz" now to obtain the flag.
+          </p>
+        </div>
+      </a>
+
+      
+    </div>
+  </main>
+
+</div>
+{{ end }}

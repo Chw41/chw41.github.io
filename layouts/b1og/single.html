@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<main class="article-content">
+  <article class="chw-article">
+
+    <!-- ===== Article Header ===== -->
+    <header class="article-header">
+
+      <h1 class="post-title">
+        {{ .Title }}
+      </h1>
+
+      <!-- Meta -->
+      <div class="article-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">
+          {{ .Date.Format "2006-01-02" }}
+        </time>
+        · {{ .ReadingTime }} min
+        · {{ .WordCount }} words
+        · {{ .Params.author | default "CHW" }}
+      </div>
+
+    </header>
+
+    <!-- ===== Article Content ===== -->
+    <section class="article-body">
+      {{ .Content }}
+    </section>
+
+  </article>
+</main>
+
+<!-- ===== Article Enhancements (JS) ===== -->
+{{ partial "article-enhance.html" . }}
+
+{{ end }}

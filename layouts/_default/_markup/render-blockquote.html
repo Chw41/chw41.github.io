@@ -1,0 +1,18 @@
+{{- $raw := .Text | safeHTML -}}
+{{- $plain := .Text | plainify -}}
+
+{{- $m := findRE `(?m)^\[!(note|tip|warning|info)\]\s*` $plain 1 -}}
+
+{{- if gt (len $m) 0 -}}
+  {{- $kind := lower (replaceRE `(?m)^\[!([A-Za-z]+)\].*` "$1" (index $m 0)) -}}
+  {{- $body := replaceRE `(?m)^\[!(note|tip|warning|info)\]\s*` "" $raw -}}
+
+  <div class="admonition {{ $kind }}">
+    <div class="admonition-title">{{ upper $kind }}</div>
+    <div class="admonition-body">
+      {{ $body }}
+    </div>
+  </div>
+{{- else -}}
+  <blockquote>{{ $raw }}</blockquote>
+{{- end -}}

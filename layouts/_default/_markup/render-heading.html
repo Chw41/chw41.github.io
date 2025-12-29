@@ -1,0 +1,11 @@
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">
+  {{ .Text | safeHTML }}
+</h{{ .Level }}>
+
+{{- if eq (lower (.Text | plainify)) "table of contents" -}}
+  <nav class="chw-toc">
+    <details open>
+        {{ .Page.TableOfContents }}
+    </details>
+  </nav>
+{{- end -}}

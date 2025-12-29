@@ -1,0 +1,9 @@
+{{- $t := .Text | plainify | strings.TrimSpace -}}
+
+{{- if eq $t "[TOC]" -}}
+  <div class="chw-toc">
+    {{ .Page.TableOfContents }}
+  </div>
+{{- else -}}
+  <p>{{ .Text | safeHTML }}</p>
+{{- end -}}

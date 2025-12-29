@@ -1,0 +1,79 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/css/blog.css">
+
+<div class="page-blog"> 
+  <!-- Counter -->
+  <div class="blog-counter">
+    <img
+      src="https://chw-counter.frank-chw41.workers.dev/?id=Blog.Chw41&min=6&color=39ff14&bg=000000&size=55&gap=6&radius=6"
+      alt="Blog Counter">
+  </div>
+
+  <div class="blog-layout">
+
+    <aside class="blog-sidebar">
+      <button class="tag-item active" data-tag="all">ALL</button>
+      <button class="tag-item htb" data-tag="hackthebox">Hack The Box</button>
+      <button class="tag-item offsec" data-tag="offsec">Offsec</button>
+      <button class="tag-item talks" data-tag="techtalks">Tech Talks</button>
+      <button class="tag-item infra" data-tag="infra">Infra</button>
+      <button class="tag-item notes" data-tag="notes">Notes</button>
+    </aside>
+
+    <!-- Content -->
+    <section class="blog-list">
+
+      {{ range sort .Pages ".Date" "desc" }}
+
+      {{ $tags := slice }}
+      {{ with .Params.tags }}{{ $tags = . }}{{ end }}
+
+      <a
+        href="{{ .RelPermalink }}"
+        class="blog-card"
+        data-tags="{{ delimit $tags "," | lower }}"
+      >
+        <h2>{{ .Title }}</h2>
+
+        {{ with .Params.description }}
+        <p class="desc">{{ . }}</p>
+        {{ end }}
+
+        <div class="meta">
+          {{ .Date.Format "2006-01-02" }}
+          · {{ .ReadingTime }} min
+          · {{ .WordCount }} words
+          · {{ .Params.author | default "CHW" }}
+        </div>
+      </a>
+
+      {{ end }}
+
+    </section>
+  </div>
+</div>
+
+<script>
+const tags = document.querySelectorAll('.tag-item');
+const cards = document.querySelectorAll('.blog-card');
+
+tags.forEach(tag => {
+  tag.addEventListener('click', () => {
+    tags.forEach(t => t.classList.remove('active'));
+    tag.classList.add('active');
+
+    const selected = tag.dataset.tag;
+
+    cards.forEach(card => {
+      if (selected === 'all') {
+        card.style.display = '';
+        return;
+      }
+      const t = card.dataset.tags || '';
+      card.style.display = t.split(',').includes(selected) ? '' : 'none';
+    });
+  });
+});
+</script>
+
+{{ end }}

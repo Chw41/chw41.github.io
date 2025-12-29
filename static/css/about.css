@@ -1,0 +1,352 @@
+   .about-page{
+    width: 100%;
+    padding: 4.5rem 6vw 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-hero{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 4.8rem;
+  
+    display: flex;
+    align-items: center;
+    gap: 3.6rem;
+  
+    padding: 3.0rem 3.4rem;
+    border-radius: 26px;
+  
+    background: linear-gradient(180deg, #0b1220, #05070d);
+    border: 1px solid rgba(0,255,156,0.16);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+  }
+  
+  .about-left{
+    flex: 0 0 300px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    text-align: center;
+    padding-right: 2.2rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  
+  .about-avatar{
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  
+    border: 3px solid #00ff9c;
+    box-shadow:
+      0 0 0 2px rgba(0,0,0,0.35),
+      0 14px 40px rgba(0,0,0,0.45);
+  }
+  
+  .about-user{
+    margin-top: 1.25rem;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+  
+  .about-id{
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    color: rgba(229,231,235,0.72);
+    line-height: 1.1;
+  }
+  
+  .about-right{
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.2rem;
+    row-gap: 1.05rem;
+  }
+  
+  .about-cell{
+    position: relative;
+    padding-left: 1.55rem;
+  
+    font-size: 1.06rem;
+    line-height: 1.6;
+    color: rgba(229,231,235,0.92);
+  
+    text-wrap: pretty;
+    word-break: keep-all;
+  }
+  
+  .about-cell::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+  
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #00ff9c;
+    box-shadow: 0 0 12px rgba(0,255,156,0.32);
+  }
+
+  .about-work{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 4.5rem;
+  
+    padding: 0;
+  }
+  
+  .about-work .work-exp{
+    width: 100%;
+    margin: 0;
+    padding: 0; 
+  }
+  
+  .about-work .section-title{
+    margin: 0 0 2.0rem 0;
+    padding: 0; 
+    line-height: 1.05;
+  
+    font-size: 2.6rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  
+    color: rgba(229,231,235,0.96);
+  }
+  
+  .about-work .work-row{
+    display: grid;
+    grid-template-columns: 260px 1fr 220px;
+    align-items: center;
+  
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .about-work .work-org{
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  .about-work .work-role{
+    color: rgba(229,231,235,0.85);
+  }
+  
+  .about-work .work-time{
+    text-align: right;
+    color: rgba(229,231,235,0.55);
+    font-size: 0.95rem;
+  }
+  
+  .about-exp{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .exp-title{
+    margin: 0 0 2.0rem 0;
+    padding: 0; 
+    line-height: 1.05;
+  
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: rgba(229,231,235,0.96);
+    letter-spacing: 0.02em;
+  }
+  
+  .exp-card{
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    padding: 2.2rem 2.2rem 2.4rem;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+  }
+  
+  .timeline{
+    position: relative;
+    padding-left: 2.6rem;
+  }
+  
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left: 16px;
+    top: 1.0rem;
+    bottom: 1.0rem;
+    width: 2px;
+    background: rgba(255,255,255,0.10);
+  }
+  
+  /* Year header */
+  .tl-year{
+    margin: 0.8rem 0 1.1rem;
+  }
+  
+  .tl-year-left{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .tl-year-text{
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: rgba(229,231,235,0.95);
+  }
+  
+  .tl-year-count{
+    font-size: 0.9rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    color: rgba(229,231,235,0.88);
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.05);
+  }
+  
+  /* Item */
+  .tl-item{
+    display: flex;
+    gap: 1.2rem;
+    margin: 0 0 1.25rem;
+  }
+  
+  .tl-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(229,231,235,0.68);
+    border: 2px solid rgba(0,0,0,0.55);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.10);
+    margin-top: 0.55rem;
+    flex: 0 0 10px;
+  }
+  
+  .tl-body{
+    min-width: 0;
+    width: 100%;
+  }
+  
+  .tl-row{
+    display: flex;
+    align-items: baseline;
+    gap: 1.1rem;
+    min-width: 0;
+  }
+  
+  .tl-date{
+    flex: 0 0 92px;
+    font-size: 0.95rem;
+    color: rgba(229,231,235,0.62);
+    letter-spacing: 0.01em;
+  }
+  
+  .tl-link{
+    flex: 1;
+    min-width: 0;
+  
+    font-size: 1.15rem;
+    line-height: 1.55;
+  
+    color: rgba(229,231,235,0.92);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+    text-decoration-color: rgba(229,231,235,0.35);
+  
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+  
+  .tl-item:hover .tl-dot{
+    background: #00ff9c;
+    box-shadow: 0 0 14px rgba(0,255,156,0.30);
+  }
+  
+  .tl-item:hover .tl-link{
+    color: #ffffff;
+    text-decoration-color: rgba(0,255,156,0.55);
+  }
+
+.tl-gap{
+    height: 2.8rem; 
+  }
+  
+  @media (max-width: 1100px){
+    .about-page{ padding: 4rem 5vw 6rem; }
+    .about-hero{ padding: 2.7rem 2.5rem; }
+  }
+  
+  @media (max-width: 900px){
+    .about-hero{
+      flex-direction: column;
+      gap: 2.2rem;
+      padding: 2.4rem 2rem;
+    }
+  
+    .about-left{
+      width: 100%;
+      border-right: none;
+      padding-right: 0;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+  
+    .about-grid{
+      grid-template-columns: 1fr;
+      row-gap: 0.85rem;
+    }
+  
+    .about-work .section-title,
+    .exp-title{
+      font-size: 2.4rem;
+    }
+  
+    .exp-card{ padding: 1.8rem 1.6rem 2rem; }
+  
+    .timeline{ padding-left: 2.2rem; }
+    .timeline::before{ left: 13px; }
+    .tl-date{ flex-basis: 78px; }
+  }
+
+.about-work .work-exp{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-work .work-row{
+    grid-template-columns: 240px minmax(0, 1fr) 240px;
+  }
+  
+  .about-work .work-org{
+    text-align: left;
+    padding-left: 0.2rem;
+  }
+  
+  .about-work .work-role{
+    text-align: left;
+  }
+  
+  .about-work .work-time{
+    text-align: right;
+    padding-right: 0.2rem;
+  }
+
+  
+  
+  

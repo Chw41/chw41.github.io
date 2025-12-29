@@ -1,0 +1,22 @@
+<div id="progress-bar"></div>
+
+<header class="custom-navbar" role="banner">
+  <div class="nav-left">
+    {{/* Navbar avatar (set params.avatar in hugo.toml if you want) */}}
+    {{ $av := .Site.Params.avatar }}
+    {{ if not $av }}{{ $av = "/img/avatar.png" }}{{ end }}
+
+    <a href="{{ .Site.BaseURL }}" aria-label="Home">
+      <img class="nav-avatar" src="{{ $av }}" alt="avatar" loading="lazy">
+    </a>
+
+    <a class="site-title" href="{{ .Site.BaseURL }}">CHW's World</a>
+  </div>
+
+  <nav class="nav-right" aria-label="Primary">
+    <a href="{{ .Site.BaseURL }}">Home</a>
+    <a href="{{ "4b0u7/" | relURL }}">About</a>
+    <a href="{{ "b1og/" | relURL }}">Blogs</a>
+    <a href="{{ "1nd1v1du4l-c7f/" | relURL }}">Individual CTF</a>
+  </nav>
+</header>

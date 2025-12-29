@@ -3,7 +3,6 @@ languageCode = "zh-tw"
 title = "chw㉿world:~$"
 theme = "terminal"
 
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

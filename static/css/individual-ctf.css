@@ -133,4 +133,59 @@
       margin-left: 0;
     }
   }
+ 
+    /* ==================================================
+  Mobile
+   ================================================== */
+   @media (max-width: 768px) {
+
+    /* ---------- Page layout ---------- */
+    .ictf-page{
+      grid-template-columns: 1fr;
+      padding: 3.2rem 1.2rem 4.5rem; 
+    }
+  
+    /* ---------- GitHub card ---------- */
+    .gh-card{
+      margin-left: 0; 
+    }
+  
+    .gh-avatar{
+      width: 140px;
+      height: 140px;
+    }
+  
+    .gh-name{
+      font-size: 1.5rem;
+    }
+  
+    .gh-id{
+      font-size: 0.95rem;
+    }
+  
+    /* ---------- Page title ---------- */
+    .ictf-title{
+      font-size: 2.1rem;
+      line-height: 1.25;
+      text-align: center;
+    }
+  
+    /* ---------- CTF cards grid ---------- */
+    .ictf-grid{
+      grid-template-columns: 1fr; 
+      gap: 2rem;
+    }
+  
+    /* ---------- Card content ---------- */
+    .ctf-body h2{
+      font-size: 1.4rem;
+      line-height: 1.35;
+      word-break: break-word;
+      white-space: normal;
+    }
+  
+    .ctf-body p{
+      font-size: 0.95rem;
+    }
+  }
   

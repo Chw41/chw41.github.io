@@ -1,0 +1,64 @@
+baseURL = "https://chw41.github.io/"
+languageCode = "zh-tw"
+title = "chw㉿world:~$"
+theme = "terminal"
+
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = false
+
+    [markup.tableOfContents]
+      startLevel = 1
+      endLevel = 3
+      ordered = false
+
+
+[pagination]
+  pagerSize = 6
+
+[params]
+  themeColor = "green"
+  showMenuItems = 5
+  fullWidthTheme = true
+  centerTheme = false
+
+  # Navbar avatar (fallback used by layouts/partials/header.html)
+  avatar = "/img/avatar.png"
+
+[languages]
+  [languages.zh]
+    languageName = "中文"
+    title = "chw㉿world:~$"
+
+[menu]
+
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/4b0u7/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Blogs"
+    url = "/b1og/"
+    weight = 3
+
+  [[menu.main]]
+    name = "Individual CTF"
+    url = "/1nd1v1du4l-c7f/"
+    weight = 4

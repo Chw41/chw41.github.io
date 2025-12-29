@@ -348,5 +348,37 @@
   }
 
   
-  
+  /* ==================================================
+  Mobile
+   ================================================== */
+@media (max-width: 768px) {
+
+  .about-work .work-row{
+    display: block; 
+    padding: 1.2rem 0;
+  }
+
+  .about-work .work-org{
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    padding-left: 0;
+  }
+
+  .about-work .work-role{
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin-bottom: 0.25rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .about-work .work-time{
+    font-size: 0.85rem;
+    text-align: left;
+    padding-right: 0;
+    opacity: 0.7;
+  }
+}
+
   

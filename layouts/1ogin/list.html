@@ -1,0 +1,124 @@
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "css/login.css" | relURL }}">
+
+<div class="login-center">
+  <div class="login-card">
+    <div class="login-title">Secure Portal</div>
+    <div class="login-sub">Administrative Access</div>
+
+    <form id="loginForm" autocomplete="off">
+      <label class="field">
+        <span>Username</span>
+        <input id="username" type="text" placeholder="chw41">
+      </label>
+
+      <label class="field">
+        <span>Password</span>
+        <input id="password" type="password" placeholder="••••••••">
+      </label>
+
+      <button class="login-btn" type="submit">Login</button>
+      <div class="login-status" id="loginStatus"></div>
+    </form>
+  </div>
+</div>
+
+<div class="bh" id="bh">
+  <div class="bh-card">
+    <div class="bh-title">Bad Hacker Detected</div>
+
+    <img class="bh-gif" src="{{ "img/bad-hacker.gif" | relURL }}" alt="Bad Hacker">
+
+    <div class="bh-msg">
+      Malicious payload identified.<br>
+      Request blocked by WAF.
+    </div>
+
+    <div class="bh-actions">
+      <button class="bh-ok" id="bhOk">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+    (() => {
+      const form   = document.getElementById("loginForm");
+      const status = document.getElementById("loginStatus");
+      const bh     = document.getElementById("bh");
+      const bhOk   = document.getElementById("bhOk");
+    
+      const normalize = (input) => {
+        if (!input) return "";
+        let s = input;
+        try {
+          s = decodeURIComponent(s);
+          s = decodeURIComponent(s);
+        } catch (_) {}
+        s = s
+          .replace(/&lt;/gi, "<")
+          .replace(/&gt;/gi, ">")
+          .replace(/&quot;/gi, "\"")
+          .replace(/&#x27;/gi, "'")
+          .replace(/&#x2f;/gi, "/");
+        return s;
+      };
+    
+      const ILLEGAL_CHAR_REGEX = /[\0\x08\x09\x1a\n\r"'\\%]/;
+    
+      const ATTACK_PATTERNS = [
+        /<\s*script\b/i,
+        /<\s*img\b/i,
+        /<\s*svg\b/i,
+        /\bon\w+\s*=/i,
+        /\bjavascript\s*:/i,
+        /\balert\s*\(/i,
+        /\bdocument\.cookie\b/i,
+    
+        /\bunion\b\s+select\b/i,
+        /\bselect\b.+\bfrom\b/i,
+        /\binsert\b.+\binto\b/i,
+        /\bupdate\b.+\bset\b/i,
+        /\bdelete\b.+\bfrom\b/i,
+        /\bor\s+1\s*=\s*1\b/i,
+        /\band\s+1\s*=\s*1\b/i,
+        /--/,
+        /\/\*/,
+        /\bbenchmark\s*\(/i,
+        /\bsleep\s*\(/i,
+        /\bwaitfor\s+delay\b/i,
+        /\bxp_cmdshell\b/i,
+    
+        /[;&|`$()]/,
+        /\b(cat|ls|id|whoami|curl|wget)\b/i
+      ];
+    
+      const isMalicious = (raw) => {
+        const normalized = normalize(raw);
+        if (ILLEGAL_CHAR_REGEX.test(normalized)) return true;
+        return ATTACK_PATTERNS.some(re => re.test(normalized));
+      };
+    
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    
+        const u = document.getElementById("username").value;
+        const p = document.getElementById("password").value;
+    
+        if (isMalicious(u) || isMalicious(p)) {
+          bh.classList.add("show");
+          status.textContent = "";
+          return;
+        }
+    
+        status.textContent = "Authentication failed.";
+      });
+    
+      /* ✅ 關鍵就在這 */
+      bhOk.addEventListener("click", () => {
+        bh.classList.remove("show");
+      });
+    
+    })();
+    </script>
+
+{{ end }}

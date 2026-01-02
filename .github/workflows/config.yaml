@@ -33,7 +33,7 @@ jobs:
 
       - name: Build (use hugo.toml, include drafts)
         run: |
-          hugo --config hugo.toml -D --cleanDestinationDir
+          hugo --config hugo.toml --minify --cleanDestinationDir
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

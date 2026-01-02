@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chw41.github.io/sitemap.xml

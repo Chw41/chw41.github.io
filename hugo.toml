@@ -3,6 +3,14 @@ languageCode = "zh-tw"
 title = "chw㉿world:~$"
 theme = "terminal"
 
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -31,9 +39,10 @@ theme = "terminal"
   showMenuItems = 5
   fullWidthTheme = true
   centerTheme = false
-
-  # Navbar avatar (fallback used by layouts/partials/header.html)
   avatar = "/img/avatar.png"
+
+  Subtitle = "CHW (chw41) Cybersecurity Blog：Web Security、Penetration Testing、Red Team、CTF Writeups。"
+  Keywords = "CHW, chw41, Web Security, Penetration Testing, Red Team, CTF, HackTheBox, is1ab, BambooFox, imdownQQ"
 
 [languages]
   [languages.zh]

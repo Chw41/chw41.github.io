@@ -1,5 +1,5 @@
 ---
-title: "CYBERSEC 2025 臺灣資安大會 「Operations Security (OPSEC) — 紅隊不被抓到的秘密！」 (Steven Meow)"
+title: "CYBERSEC 2024 臺灣資安大會 「AD 已經防不完了，怎麼還有個 Azure AD？」(Steven Meow)"
 date: 2025-02-10
 author: "CHW"
 tags:

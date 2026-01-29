@@ -426,7 +426,7 @@ Payload 沒有被 server 放進 HTML，而是被前端 JavaScript 從 URL 讀出
 ![image](https://hackmd.io/_uploads/HJbFMwASbg.png)
 
 
-但為什麼注入 <script> 不會成功觸發 XSS ?!
+但為什麼注入 `<script>` 不會成功觸發 XSS ?!
 >[!Important]
 > HTML5 規定 innerHTML 會**解析 HTML 結構**，但不會**啟動 JavaScript 執行引擎** ([innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML))
 > 會透過以下結構將 HTML Parser 解析成 DOM 節點

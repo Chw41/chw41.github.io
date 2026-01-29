@@ -438,7 +438,7 @@ Payload 沒有被 server 放進 HTML，而是被前端 JavaScript 從 URL 讀出
 > ⚠️ 若 `<script>` 在 innerHTML 會執行，會造成 `element.innerHTML = userInput;`\
 > 任何前端程式都自動變 RCE 等級弱點
                                                                             
-既然 <script> 無法執行，可以使用其他方法:
+既然 `<script>` 無法執行，可以使用其他方法:
 ![image](https://hackmd.io/_uploads/H1zTVDCSbl.png)
 
 [環境範例]\

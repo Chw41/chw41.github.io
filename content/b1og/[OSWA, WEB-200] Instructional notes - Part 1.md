@@ -122,7 +122,7 @@ ffuf -w /usr/share/wordlists/seclists/Usernames/Names/names.txt -u http://enum-s
 
 ### Components with Vulnerabilities
 前端 Components（Ex. JavaScript framework / library）本身可能是漏洞來源，而且通常直接關聯到 XSS 攻擊
--  Burp Suite extension: [Retire.js](https://portswigger.net/bappstore/36238b534a78494db9bf2d03f112265c)
+-  Burp Suite extension: [Retire.js](https://portswigger.net/bappstore/36238b534a78494db9bf2d03f112265c)\
 前端元件漏洞掃描工具，識別使用哪些 JS library、版本、已知漏洞
 
 ## Sourcing Wordlists
@@ -198,7 +198,7 @@ NAT / Reverse Proxy 可能會擋，且任何人都能連
 高機率可穿過 NAT / 防火牆，只有你能接到
 - Web Shell
 不需要額外 port、很隱蔽
-Kali : `/usr/share/webshells`
+Kali : `/usr/share/webshells`\
 ![image](https://hackmd.io/_uploads/ByP2gpiS-e.png)
 
 # Introduction to Burp Suite
@@ -412,7 +412,7 @@ POST 也可能導致 Reflected XSS 。🥚 攻擊者無法透過連結來誘騙�
 ![image](https://hackmd.io/_uploads/BycEHECB-x.png)
 > 可以發現 Server 將 HTML encode 過，無法注入 XSS
 
-選擇其他欄位，將 number 改成 text 測試
+選擇其他欄位，將 number 改成 text 測試\
 ![image](https://hackmd.io/_uploads/r1KnOECSZx.png)
 
 ### Reflected Client XSS
@@ -446,10 +446,10 @@ Pretty Print 的頁面
 ![image](https://hackmd.io/_uploads/S1v2tvAH-l.png)
 
 尋找 XSS 注入點：
-1. 查看 HTML
+1. 查看 HTML\
 ![image](https://hackmd.io/_uploads/rJVmqPRBZg.png)
 
-2. 查看 JS
+2. 查看 JS\
 ![image](https://hackmd.io/_uploads/B1oJswCHZl.png)
 > innerHTML 解析字串
 
@@ -724,8 +724,8 @@ fetch("https://chw41.github.io/1ogin")
 `/shop/category/handbags.html/ref=c:2`有 query string 但沒有參數 `/?pam=`\
 ![image](https://hackmd.io/_uploads/HymGwqlUbx.png)
 
-多處引用到且在 Line:746 server 生成頁面時把 ref=... 塞進 inline JS
-![image](https://hackmd.io/_uploads/ByGQYceLWx.png)
+多處引用到且在 Line:746 server 生成頁面時把 ref=... 塞進 inline JS\
+![image](https://hackmd.io/_uploads/ByGQYceLWx.png)\
 ![image](https://hackmd.io/_uploads/HynsqceI-g.png)
 
 #### 2. 嘗試注入
@@ -865,7 +865,7 @@ fetch('http://shopizer:8080/shop/customer/updateAddress.html',{
   body:'customerId=&billingAddress=false&firstName=CHW&lastName=41&company=&address=address&city=city&country=AL&stateProvince=TW&postalCode=55688&phone=0909&submitAddress=Change+address'
 })
 ```
-> `mode: 'same-origin'`: 代表不是跨站請求，是同一個網站。這讓瀏覽器不啟動 CORS 防禦\
+> - `mode: 'same-origin'`: 代表不是跨站請求，是同一個網站。這讓瀏覽器不啟動 CORS 防禦
 > - `credentials: 'same-origin'`: 將 cookie 一起送出
 
 ![image](https://hackmd.io/_uploads/rJzw3bWUZx.png)

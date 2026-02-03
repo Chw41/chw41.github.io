@@ -392,7 +392,7 @@ Client XSS 不容易被偵測：
     - payload ：location.hash, location.search, localStorage, postMessage
     - JS : innerHTML, document.write, eval, setTimeout(string), new Function
 
-根據類型可以細分為：`stored server XSS`, `stored client XSS`, `reflected server XS`S, or `reflected client XSS`.
+根據類型可以細分為：`stored server XSS`, `stored client XSS`, `reflected server XSS`, or `reflected client XSS`.
 
 ### Reflected Server XSS
 通常出現在 User 透過 GET 發送，攻擊者會向 User 發送帶有惡意 Payload 的連結，點擊連結觸發攻擊\

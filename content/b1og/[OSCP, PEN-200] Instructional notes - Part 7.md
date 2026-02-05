@@ -14,15 +14,15 @@ description: "[OSCP, PEN-200] Instructional notes - Part 7 (Lateral Movement, Pt
 # Table of Contents
 [TOC]
 
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://hackmd.io/@CHW/BJ0sNztaR)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://hackmd.io/@CHW/ryj8tW4UJl)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://hackmd.io/@CHW/H1F8rLl5kg)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://hackmd.io/@CHW/rkjNgyi51x)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://hackmd.io/@CHW/r1pmIQEjJl)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://hackmd.io/@CHW/rkeM3T_skx)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-1/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-3/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-4/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-5/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-6/)
 
 >[!Caution]
-> 接續 [[OSCP, PEN-200] Instructional notes - Part 6](https://hackmd.io/@CHW/rkeM3T_skx) 內容
+> 接續 [[OSCP, PEN-200] Instructional notes - Part 6](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-6/) 內容
 
 # Lateral Movement in Active Directory
 前章節收集了密碼 Hash 值，並利用現有 ticket 進行 Kerberos 驗證。
@@ -2342,6 +2342,6 @@ Tag 可能會影響權限控制 (ABAC, Attribute-Based Access Control)，也就�
 
 # Attacking AWS Cloud Infrastructure
 >[!Caution]
-> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 8](https://hackmd.io/@CHW/BJn-s4E2Jl)
+> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 8](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://hackmd.io/@CHW/BJn-s4E2Jl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)

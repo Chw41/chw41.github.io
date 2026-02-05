@@ -2087,9 +2087,9 @@ XXE = 控制 XML Parser 強迫去讀不該讀的東西
 # Server-side Template Injection - Discovery and Exploitation
 
 >[!Caution]
-> HackMD 筆記長度限制，接續 [OSWA: Self Note - Part 2](https://hackmd.io/@CHW/rk6oG1K8bx)
+> HackMD 筆記長度限制，接續 [OSWA: Self Note - Part 2](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-2/)
     
-# [Link to: "[OSWA, WEB-200] Instructional notes - Part 2"](https://hackmd.io/@CHW/rk6oG1K8bx)
+# [Link to: "[OSWA, WEB-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-2/)
 
 
 

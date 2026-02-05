@@ -13,11 +13,11 @@ description: "[OSCP, PEN-200] Instructional notes - Part 3 (Windows Privilege Es
 # Table of Contents
 [TOC]
 
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://hackmd.io/@CHW/BJ0sNztaR)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://hackmd.io/@CHW/ryj8tW4UJl)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-1/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/)
 
 >[!Caution]
-> 接續 [[OSCP, PEN-200] Instructional notes - Part 2](https://hackmd.io/@CHW/ryj8tW4UJl) 內容
+> 接續 [[OSCP, PEN-200] Instructional notes - Part 2](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/) 內容
 
 
 # Password Attacks
@@ -2201,14 +2201,14 @@ The command completed successfully.
 
 # Linux Privilege Escalation
 >[!Caution]
-> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 4](https://hackmd.io/@CHW/rkjNgyi51x)
+> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 4](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-4/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://hackmd.io/@CHW/rkjNgyi51x)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-4/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://hackmd.io/@CHW/r1pmIQEjJl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-5/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://hackmd.io/@CHW/rkeM3T_skx)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-6/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://hackmd.io/@CHW/SJaCeV1n1e)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-7/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://hackmd.io/@CHW/BJn-s4E2Jl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)

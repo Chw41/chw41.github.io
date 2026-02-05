@@ -14,14 +14,14 @@ description: "[OSCP, PEN-200] Instructional notes - Part 6 (AD Enumeration, Powe
 # Table of Contents
 [TOC]
 
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://hackmd.io/@CHW/BJ0sNztaR)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://hackmd.io/@CHW/ryj8tW4UJl)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://hackmd.io/@CHW/H1F8rLl5kg)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://hackmd.io/@CHW/rkjNgyi51x)
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://hackmd.io/@CHW/r1pmIQEjJl)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-1/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-3/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-4/)
+# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-5/)
 
 >[!Caution]
-> 接續 [[OSCP, PEN-200] Instructional notes - Part 5](https://hackmd.io/@CHW/r1pmIQEjJl) 內容
+> 接續 [[OSCP, PEN-200] Instructional notes - Part 5](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-5/) 內容
 
 # Active Directory Introduction and Enumeration
 [Active Directory Domain Services](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview) 通常稱為 Active Directory (AD) 允許 System Administrators 大規模更新和管理作業系統、應用程式、使用者和資料存取的服務。
@@ -2439,8 +2439,8 @@ NTLM mode: 1000
 ```
 # Lateral Movement in Active Directory
 >[!Caution]
-> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 7](https://hackmd.io/@CHW/SJaCeV1n1e)
+> HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 7](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-7/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://hackmd.io/@CHW/SJaCeV1n1e)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-7/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://hackmd.io/@CHW/BJn-s4E2Jl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)

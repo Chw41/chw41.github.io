@@ -2246,18 +2246,18 @@ hr137\hsmith
 ```
 
 >[!Caution]
-> HackMD 筆記長度限制，接續 [OSCP: Self Note - Part 2](https://hackmd.io/@CHW/ryj8tW4UJl)
+> HackMD 筆記長度限制，接續 [OSCP: Self Note - Part 2](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/)
     
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://hackmd.io/@CHW/ryj8tW4UJl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-2/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://hackmd.io/@CHW/H1F8rLl5kg)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 3"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-3/)
             
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://hackmd.io/@CHW/rkjNgyi51x)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 4"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-4/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://hackmd.io/@CHW/r1pmIQEjJl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 5"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-5/)
             
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://hackmd.io/@CHW/rkeM3T_skx)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 6"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-6/)
             
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://hackmd.io/@CHW/SJaCeV1n1e)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-7/)
 
-# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://hackmd.io/@CHW/BJn-s4E2Jl)
+# [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)

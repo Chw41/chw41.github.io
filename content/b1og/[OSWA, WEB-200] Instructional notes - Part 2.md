@@ -14,9 +14,9 @@ description: "[OSWA, WEB-200] Instructional notes - Part 2 (Server-side template
 # Table of Contents
 [TOC]
 
-# [Link back to: "[OSCP, PEN-200] Instructional notes - Part 1"](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-1/)
+# [Link back to: "[OSWA, WEB-200] Instructional notes - Part 1"](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-1/)
 >[!Caution]
-> 接續 [[OSCP, PEN-200] Instructional notes - Part 1](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-1/) 內容
+> 接續 [[OSWA, WEB-200] Instructional notes - Part 1](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-1/) 內容
 
 # Server-side Template Injection - Discovery and Exploitation
 

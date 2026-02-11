@@ -383,4 +383,4 @@ root
 ![image](https://hackmd.io/_uploads/r11gwA1kll.png)
 
 
-###### tags: `HTB` `Web` `CTF` `CMS`
+###### tags: `hackthebox` `htb` `web` `linux` `cms` `writeup`

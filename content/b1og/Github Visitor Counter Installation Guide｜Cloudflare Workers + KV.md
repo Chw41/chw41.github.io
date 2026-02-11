@@ -116,3 +116,5 @@ GitHub’s Camo caches images. Changing the v parameter invalidates the cache, c
 
 ## Embeded complete ✅
 ![image](https://hackmd.io/_uploads/Sy0FCC40ll.png)
+
+###### tags: `github` `visitor` `counter` `Cloudflare`

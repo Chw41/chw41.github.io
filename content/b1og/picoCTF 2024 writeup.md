@@ -970,3 +970,5 @@ Enter your choice: 4
 ![image](https://hackmd.io/_uploads/HJhLRley0.png)
 ![image](https://hackmd.io/_uploads/rkWqRxeJC.png)
 ![image](https://hackmd.io/_uploads/BJSoCelJ0.png)
+
+###### tags: `picoctf` `ctf` `2024` `writeup`

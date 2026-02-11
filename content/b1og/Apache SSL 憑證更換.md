@@ -329,9 +329,4 @@ openssl x509 -in server.cer -inform DER -out server.pem
 ![image](https://hackmd.io/_uploads/ryPLhbL5kl.png)
 
 
-
-
-
-
-
-###### tags: `Apache` `SSL` `TLS`
+###### tags: `Apache` `SSL` `TLS` `HTTPS`

@@ -923,5 +923,4 @@ int __fastcall main(int argc, const char **argv, const char **envp)
 ![image](https://hackmd.io/_uploads/rJE8_6-E0.png)
 
 
-
-
+##### tags: `ais3` `Pre-exam` `ctf` `web security`

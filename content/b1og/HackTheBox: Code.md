@@ -340,6 +340,4 @@ root/root.txt
 ```
 ![image](https://hackmd.io/_uploads/SJ5DkEbJlg.png)
 
-
-
-###### tags: `HTB` `Web` `CTF` 
+###### tags: `hackthebox` `htb` `web` `linux` `code` `writeup`

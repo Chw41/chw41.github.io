@@ -807,6 +807,4 @@ Mode                 LastWriteTime         Length Name
 ### ✅ Get Root FLAG
 ![image](https://hackmd.io/_uploads/SyhQ5ckcle.png)
 
-
-
-###### tags: `HTB` `Web` `CTF` `CMS`
+###### tags: `hackthebox` `htb` `web` `windows` `writeup` `active directory`

@@ -460,5 +460,4 @@ Content:
 ![image](https://hackmd.io/_uploads/r1N9VoLAyl.png)
 
 
-
-###### tags: `HTB` `Web` `CTF` 
+###### tags: `hackthebox` `htb` `web` `linux` `writeup`

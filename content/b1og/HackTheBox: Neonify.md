@@ -153,4 +153,4 @@ neon=chw%0A%3C%25%3D%20File.read%28%27flag.txt%27%29%20%25%3E
 
 > **FLAG: HTB{r3pl4c3m3n7_s3cur1ty}**
     
-###### tags: `Web` `CTF` `SSTI`
+###### tags: `hackthebox` `htb` `web` `linux` `writeup` `ssti`

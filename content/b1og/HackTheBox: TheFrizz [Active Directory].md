@@ -825,5 +825,4 @@ nt authority\system
 ### ✅ Get Root FLAG
 ![image](https://hackmd.io/_uploads/HJCocksKxl.png)
 
-
-###### tags: `HTB` `Web` `CTF` `Windows` `GPO Abuse`
+###### tags: `hackthebox` `htb` `web` `windows` `writeup` `active directory` `gpo abuse`

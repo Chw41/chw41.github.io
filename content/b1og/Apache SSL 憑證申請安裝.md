@@ -336,4 +336,4 @@ openssl rsa -inform DER -outform PEM -in C:/xampp/apache/conf/ssl.key/server.key
 
 # [Apache SSL 憑證更換](https://hackmd.io/@CHW/BydUIe5Fke)
 
-###### tags: `Apache` `SSL` `TLS`
+###### tags: `Apache` `SSL` `TLS` `HTTPS`

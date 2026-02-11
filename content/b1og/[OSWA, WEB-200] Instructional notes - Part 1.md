@@ -2091,6 +2091,4 @@ XXE = 控制 XML Parser 強迫去讀不該讀的東西
     
 # [Link to: "[OSWA, WEB-200] Instructional notes - Part 2"](https://chw41.github.io/b1og/oswa-web-200-instructional-notes---part-2/)
 
-
-
-
+##### tags: `offsec` `oswa` `web security`

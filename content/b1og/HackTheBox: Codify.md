@@ -313,4 +313,4 @@ root@codify:~# cat root.txt
 
 ![image](https://hackmd.io/_uploads/ByW2QIsV6.png)
 
-###### tags: `CTF` `Web` `nmap` `dirsearch` `ncat` `Reverse shell` `John-the-Ripper` `Privilege Escalation` `bcrypt`
+###### tags: `hackthebox` `htb` `linux` `code` `writeup` `ncat` `Reverse shell` `John-the-Ripper` `Privilege Escalation` `bcrypt`

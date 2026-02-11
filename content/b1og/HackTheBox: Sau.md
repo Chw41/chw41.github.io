@@ -175,5 +175,4 @@ user flag:
 root flag:
 > **d87bc7e22d1ea5b307**************
 
-
-###### tags: `Web` `CTF` `ncat` `Privilege Escalation` `exploit.py`
+###### tags: `hackthebox` `htb` `web` `linux` `writeup` `nc`

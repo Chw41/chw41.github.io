@@ -750,5 +750,4 @@ uid=0(root) gid=0(root) groups=0(root)
 ![image](https://hackmd.io/_uploads/BydoCAIJxg.png)
 
 
-
-###### tags: `HTB` `Web` `CTF` `Ruby on Rails App` `Sqlite3`
+###### tags: `hackthebox` `htb` `web` `linux` `writeup` `ruby` `sqlite`

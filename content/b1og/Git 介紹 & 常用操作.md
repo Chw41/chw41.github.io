@@ -411,3 +411,5 @@ vscode debug script.py
 python3 script.py
 ```
 ![image](https://hackmd.io/_uploads/r1mfK4OJR.png)
+
+###### tags: `git` `github`

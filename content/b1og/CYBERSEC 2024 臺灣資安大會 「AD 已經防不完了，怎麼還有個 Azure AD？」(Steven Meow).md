@@ -363,4 +363,4 @@ Cookie 值： 可用於認證
 ![image](https://hackmd.io/_uploads/ryXfe_gSye.png)
 
 
-
+###### tags: `CYBERSEC` `2024` `AAD` `Active Directory`

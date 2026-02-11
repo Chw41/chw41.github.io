@@ -1086,4 +1086,4 @@ C:\Windows\system32>
 ### ✅ Get Root FLAG
 ![image](https://hackmd.io/_uploads/Hy_CB0Kxxl.png)
 
-###### tags: `HTB` `Web` `CTF` `Windows`
+###### tags: `hackthebox` `htb` `web` `windows` `writeup` `active directory`

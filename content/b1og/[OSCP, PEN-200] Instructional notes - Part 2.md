@@ -2422,3 +2422,5 @@ Ethernet adapter Ethernet0:
 # [Link to: "[OSCP, PEN-200] Instructional notes - Part 7"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-7/)
 
 # [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)
+
+##### tags: `offsec` `oscp` `oscp+` `web security` `pentesting` `red team`

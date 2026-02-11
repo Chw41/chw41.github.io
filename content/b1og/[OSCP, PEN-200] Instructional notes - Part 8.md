@@ -2108,3 +2108,4 @@ Ethernet adapter Ethernet0:
 >([𝄞 BGM 🎵](https://youtu.be/t-bgRQfeW64?si=vW85In80qfVBfStn))\
 >![image](https://hackmd.io/_uploads/By6nJpvhJx.png)
 
+##### tags: `offsec` `oscp` `oscp+` `web security` `pentesting` `red team`

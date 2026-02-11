@@ -2345,3 +2345,5 @@ Tag 可能會影響權限控制 (ABAC, Attribute-Based Access Control)，也就�
 > HackMD 筆記長度限制，接續 [[OSCP, PEN-200] Instructional notes - Part 8](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)
 
 # [Link to: "[OSCP, PEN-200] Instructional notes - Part 8"](https://chw41.github.io/b1og/oscp-pen-200-instructional-notes---part-8/)
+
+##### tags: `offsec` `oscp` `oscp+` `web security` `pentesting` `red team`

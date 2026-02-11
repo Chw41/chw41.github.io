@@ -545,6 +545,6 @@ Process Explorer：`CreateRemoteThread`, `NtQueueApcThread`, `SetWindowsHookEx`,
 
 ![image](https://hackmd.io/_uploads/SJmj2eslbl.png)
 
+其他 Bypass EDR/AV 技巧可參考：[Red Team - Bypass EDR/AV](https://hackmd.io/@jonafk555/HklDLZsVJg)###### tags: `CYBERSEC` `2024` `AAD` `Active Directory`
 
-
-其他 Bypass EDR/AV 技巧可參考：[Red Team - Bypass EDR/AV](https://hackmd.io/@jonafk555/HklDLZsVJg)
+###### tags: `CYBERSEC` `2025` `red team` `offensive security`

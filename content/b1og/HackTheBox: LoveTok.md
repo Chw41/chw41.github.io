@@ -89,5 +89,4 @@ http://206.189.28.180:30492/
 ![](https://hackmd.io/_uploads/Byy5xk2-a.png)
 > **FLAG: HTB{wh3n_l0v3_g3ts_eval3d_sh3lls_st4rt_p0pp1ng}**
 
-
-###### tags: `Web` `CTF` `Webshell` 
+###### tags: `hackthebox` `htb` `web` `linux` `writeup` `webshell`

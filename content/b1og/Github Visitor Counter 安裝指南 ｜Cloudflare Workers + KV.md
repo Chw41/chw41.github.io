@@ -4,8 +4,7 @@ date: 2025-10-29
 author: "CHW"
 tags:
   - infra
-description: "使用 Cloudflare Workers + KV 產生可嵌入 GitHub Profile/README 的動態 SVG 訪客計數器。
-內含 6 位數前置自動補零、外觀參數計數器，以及透過 GitHub Actions 因應 GitHub Camo 圖片快取的作法。..."
+description: "使用 Cloudflare Workers + KV 建立 GitHub 訪客計數器的繁中安裝指南，包含 SVG 輸出、快取與部署流程。"
 ---
 
 # Github Visitor Counter 安裝指南 ｜Cloudflare Workers + KV

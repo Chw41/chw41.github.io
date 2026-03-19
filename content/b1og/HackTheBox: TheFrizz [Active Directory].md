@@ -4,7 +4,7 @@ date: 2025-08-30
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/TheFrizz Initial Enumeration ..."
+description: "Hack The Box TheFrizz Active Directory writeup covering domain enumeration, attack chain development, and escalation."
 ---
 
 HackTheBox: TheFrizz [Active Directory]

@@ -4,7 +4,7 @@ date: 2024-06-25
 author: "CHW"
 tags:
   - notes
-description: "Lab picoCTF: https://play.picoctf.org/practice/challenge/202?category=1&page=1&search=caas"
+description: "picoCTF caas writeup and patch notes covering the vulnerability, exploitation steps, and remediation approach."
 ---
 
 picoCTF: caas Writeup & Patch

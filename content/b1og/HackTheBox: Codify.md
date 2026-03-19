@@ -4,7 +4,7 @@ date: 2025-04-11
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Codify Initial Enumeration ..."
+description: "Hack The Box Codify writeup covering enumeration, initial access, exploitation, and privilege escalation steps."
 ---
 
 HackTheBox: Codify

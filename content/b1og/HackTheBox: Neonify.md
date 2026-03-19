@@ -4,7 +4,7 @@ date: 2024-04-24
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/challenges/Neonify Initial Enumeration ..."
+description: "Hack The Box Neonify challenge writeup covering reconnaissance, vulnerability analysis, and exploitation workflow."
 ---
 
 HackTheBox: Neonify

@@ -4,7 +4,7 @@ date: 2024-04-11
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Pilgrimage Initial Enumeration ..."
+description: "Hack The Box Pilgrimage writeup covering enumeration, foothold, file analysis, and privilege escalation notes."
 ---
 
 HackTheBox: Pilgrimage

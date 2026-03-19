@@ -4,7 +4,7 @@ date: 2024-06-18
 author: "CHW"
 tags:
   - notes
-description: "HackTheBox CTF https://ctf.hackthebox.com/event/details/cyber-apocalypse-2024-hacker-royale-1386"
+description: "Cyber Apocalypse 2024: Hacker Royale writeup，整理比賽過程中的關鍵題目與解題重點。"
 ---
 
 

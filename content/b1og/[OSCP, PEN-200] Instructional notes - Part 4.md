@@ -4,7 +4,7 @@ date: 2025-03-16
 author: "CHW"
 tags:
   - offsec
-description: "[OSCP, PEN-200] Instructional notes - Part 4 (Linux Privilege Escalation, Port Redirection, Tunneling, ..etc)"
+description: "OSCP PEN-200 筆記 Part 4，整理 Linux privilege escalation、port redirection 與 tunneling 技術。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 4

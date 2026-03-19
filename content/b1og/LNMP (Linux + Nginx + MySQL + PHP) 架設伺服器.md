@@ -4,8 +4,7 @@ date: 2024-01-26
 author: "CHW"
 tags:
   - infra
-description: "General Setup
-If you are a total beginner to this, start here!(Linux) Ubuntu 20.4.1..."
+description: "LNMP 伺服器架設筆記，整理 Linux、Nginx、MySQL 與 PHP 的安裝與基礎設定流程。"
 ---
 
 LNMP (Linux + Nginx + MySQL + PHP) 架設伺服器

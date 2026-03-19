@@ -4,7 +4,7 @@ date: 2024-04-19
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/challenges/jscalc Initial Enumeration ..."
+description: "Hack The Box jscalc challenge writeup covering code review, vulnerability discovery, and exploitation steps."
 ---
 
 HackTheBox: jscalc

@@ -4,7 +4,7 @@ date: 2025-11-19
 author: "CHW"
 tags:
   - techtalks
-description: "深入探討如何提升紅隊操作中的隱匿性，確保其行動的隱蔽性及有效性。從網路層面的 DoH、ECH 到 Domain Fronting 等網絡匿名化技術；再到 Payload 管理和 C2 Server 的選擇與配置，涵蓋了使用 Cobalt Strike 以及 Meterpreter 等商業及開源工具..."
+description: "CYBERSEC 2025 OPSEC 議程筆記，整理紅隊隱匿、C2 管理、網路匿名化與降低偵測風險的實戰重點。"
 ---
 
 CYBERSEC 2025 臺灣資安大會 「Operations Security (OPSEC) — 紅隊不被抓到的秘密！」 (Steven Meow)

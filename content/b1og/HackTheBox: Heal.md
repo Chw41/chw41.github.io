@@ -4,7 +4,7 @@ date: 2025-04-24
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Heal Initial Enumeration ..."
+description: "Hack The Box Heal writeup covering reconnaissance, application analysis, exploitation, foothold, and privilege escalation."
 ---
 
 HackTheBox: Heal

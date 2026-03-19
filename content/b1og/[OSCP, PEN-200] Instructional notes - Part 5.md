@@ -4,7 +4,7 @@ date: 2025-03-17
 author: "CHW"
 tags:
   - offsec
-description: "[OSCP, PEN-200] Instructional notes - Part 5 (SSH Tunneling, DNS & HTTP Tunneling, Metasploit Framework, ..etc)"
+description: "OSCP PEN-200 筆記 Part 5，整理 SSH tunneling、DNS/HTTP tunneling 與 Metasploit Framework 重點。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 5

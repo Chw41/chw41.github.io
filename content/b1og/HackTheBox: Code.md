@@ -4,7 +4,7 @@ date: 2025-04-19
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Code Initial Enumeration ..."
+description: "Hack The Box Code writeup covering enumeration, foothold, exploitation, and post-exploitation notes for the target machine."
 ---
 
 HackTheBox: Code

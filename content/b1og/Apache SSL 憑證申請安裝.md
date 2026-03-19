@@ -4,7 +4,7 @@ date: 2025-03-12
 author: "CHW"
 tags:
   - infra
-description: " Apache SSL 憑證申請安裝: 建立私鑰 RSA 2048 、 產生憑證請求檔(CSR)、完成申請安裝"
+description: "Apache SSL 憑證申請與安裝筆記，包含私鑰建立、CSR 產生、憑證部署與基本設定流程。"
 ---
 
 Apache SSL 憑證申請安裝

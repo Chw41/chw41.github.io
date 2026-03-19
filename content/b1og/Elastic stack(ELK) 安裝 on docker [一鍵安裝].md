@@ -4,11 +4,7 @@ date: 2025-01-30
 author: "CHW"
 tags:
   - infra
-description: "ELK 介紹
-Important: 資料來源 → Logstash → Elasticsearch → Kibana
-Logstash 收集並處理資料。
-將處理好的資料送入 Elasticsearch 進行儲存和索引。
-Kibana 從 Elasticsearch 獲取資料，進行可視化和分析。..."
+description: "Elastic Stack（ELK）Docker 一鍵安裝筆記，整理 Elasticsearch、Logstash、Kibana 的快速部署流程。"
 ---
 
 Elastic stack(ELK) 安裝 on docker [一鍵安裝]

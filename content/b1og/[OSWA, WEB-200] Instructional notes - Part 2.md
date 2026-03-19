@@ -4,7 +4,7 @@ date: 2026-02-05
 author: "CHW"
 tags:
   - offsec
-description: "[OSWA, WEB-200] Instructional notes - Part 2 (Server-side template injection, Command Injection, Server-Side Request Forgery, Insecure Direct Object Reference, ..etc)"
+description: "OSWA WEB-200 筆記 Part 2，整理 SSTI、command injection、SSRF、IDOR 與常見 Web 漏洞重點。"
 ---
 
 [OSWA, WEB-200] Instructional notes - Part 2

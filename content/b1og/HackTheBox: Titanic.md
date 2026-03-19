@@ -4,7 +4,7 @@ date: 2025-04-23
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Titanic Initial Enumeration ..."
+description: "Hack The Box Titanic writeup covering reconnaissance, web exploitation, foothold, and privilege escalation steps."
 ---
 
 HackTheBox: Titanic

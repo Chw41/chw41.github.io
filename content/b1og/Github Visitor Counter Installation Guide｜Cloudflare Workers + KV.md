@@ -4,8 +4,7 @@ date: 2025-10-21
 author: "CHW"
 tags:
   - infra
-description: "Generate a dynamic SVG visitor counter using Cloudflare Workers + KV, embeddable in your GitHub Profile/README.
-Includes 6-digit zero-padding, style params, and a GitHub Camo cache workaround via GitHub Actions..."
+description: "English setup guide for a GitHub visitor counter using Cloudflare Workers + KV, including SVG output, caching, and deployment notes."
 ---
 
 # Github Visitor Counter Installation Guide｜Cloudflare Workers + KV

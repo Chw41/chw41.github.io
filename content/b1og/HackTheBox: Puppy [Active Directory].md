@@ -4,7 +4,7 @@ date: 2025-08-30
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Puppy Initial Enumeration ..."
+description: "Hack The Box Puppy Active Directory writeup covering domain enumeration, credential abuse, privilege escalation, and compromise steps."
 ---
 
 HackTheBox: Puppy [Active Directory]

@@ -4,7 +4,7 @@ date: 2025-03-13
 author: "CHW"
 tags:
   - infra
-description: "Apache SSL 憑證申請安裝，向憑證頒發機構 (CA) 購買新的SSL憑證..."
+description: "Apache SSL 憑證更換教學，整理舊憑證替換、新憑證安裝、設定更新與服務重啟的實作流程。"
 ---
 
 Apache SSL 憑證更換

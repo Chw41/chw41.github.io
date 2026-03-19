@@ -4,7 +4,7 @@ date: 2024-04-11
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/challenges/198 Initial Enumeration ..."
+description: "Hack The Box LoveTok challenge writeup covering initial enumeration, vulnerability discovery, and exploitation steps."
 ---
 
 HackTheBox: LoveTok

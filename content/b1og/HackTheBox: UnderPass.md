@@ -4,7 +4,7 @@ date: 2025-04-11
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/UnderPass Initial Enumeration ..."
+description: "Hack The Box UnderPass writeup covering enumeration, foothold, exploitation path, and privilege escalation."
 ---
 
 HackTheBox: UnderPass

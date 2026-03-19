@@ -4,7 +4,7 @@ date: 2023-11-22
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Topology Initial Enumeration ..."
+description: "Hack The Box Topology writeup covering enumeration, exploitation, user access, and root privilege escalation."
 ---
 
 HackTheBox: Topology

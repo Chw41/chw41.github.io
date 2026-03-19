@@ -4,7 +4,7 @@ date: 2025-04-20
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Dog Initial Enumeration ..."
+description: "Hack The Box Dog writeup covering reconnaissance, exploitation path, foothold, and privilege escalation workflow."
 ---
 
 HackTheBox: Dog

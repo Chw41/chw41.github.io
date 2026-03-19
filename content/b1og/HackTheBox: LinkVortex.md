@@ -4,7 +4,7 @@ date: 2025-04-11
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/LinkVortex Initial Enumeration ..."
+description: "Hack The Box LinkVortex writeup covering enumeration, attack surface analysis, exploitation, and escalation steps."
 ---
 
 HackTheBox: LinkVortex

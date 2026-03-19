@@ -4,7 +4,7 @@ date: 2024-07-25
 author: "CHW"
 tags:
   - notes
-description: "AIS3 Pre-exam CTF 2024 writeup: Misc, Web, Crypto, Reverse, FINAL."
+description: "AIS3 Pre-exam CTF 2024 writeup covering misc, web, crypto, reverse, and final-stage challenge solutions with concise attack notes."
 ---
 
 AIS3 Pre-exam CTF 2024 writeup

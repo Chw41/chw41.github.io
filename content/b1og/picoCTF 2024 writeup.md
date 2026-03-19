@@ -4,7 +4,7 @@ date: 2024-03-27
 author: "CHW"
 tags:
   - notes
-description: "picoCTF 2024 writeup: General Skills, Web Exploitation, Cryptography, Forensics, Binary Exploitation."
+description: "picoCTF 2024 writeup covering general skills, web exploitation, cryptography, forensics, and binary exploitation challenges."
 ---
 
 picoCTF 2024 writeup

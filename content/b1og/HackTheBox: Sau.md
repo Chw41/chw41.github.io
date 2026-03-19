@@ -4,7 +4,7 @@ date: 2023-10-19
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/Sau Initial Enumeration ..."
+description: "Hack The Box Sau writeup covering service enumeration, exploitation path, foothold, and privilege escalation."
 ---
 
 HackTheBox: Sau

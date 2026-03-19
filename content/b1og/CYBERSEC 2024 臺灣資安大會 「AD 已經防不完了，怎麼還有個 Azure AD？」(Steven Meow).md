@@ -4,7 +4,7 @@ date: 2025-02-10
 author: "CHW"
 tags:
   - techtalks
-description: "將深入探討 Active Directory 和 Azure Active Directory (Entra ID) 的核心差異，揭示 Azure, Entra ID 內所含的資安威脅。我們將以從紅隊角度出發，分析 Entra ID 的潛在風險，並以實例方式展現如何使用特定工具來執行 Enumerate 及 Exploitation, Exfiltration 手法..."
+description: "CYBERSEC 2024 議程筆記，整理 Active Directory 與 Azure AD（Entra ID）的差異、攻擊面與紅隊觀點。"
 ---
 
 CYBERSEC 2024 臺灣資安大會 「AD 已經防不完了，怎麼還有個 Azure AD？」(Steven Meow)

@@ -4,7 +4,7 @@ date: 2025-08-30
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/machines/EscapeTwo Initial Enumeration ..."
+description: "Hack The Box EscapeTwo Active Directory writeup covering enumeration, credential abuse, lateral movement, and domain compromise."
 ---
 
 HackTheBox: EscapeTwo [Active Directory]

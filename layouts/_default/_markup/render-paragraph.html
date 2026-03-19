@@ -1,6 +1,6 @@
-{{- $t := .Text | plainify | strings.TrimSpace -}}
+{{- $t := .Text | plainify | strings.TrimSpace | lower -}}
 
-{{- if eq $t "[TOC]" -}}
+{{- if or (eq $t "[toc]") (eq $t "toc") -}}
   <div class="chw-toc">
     {{ .Page.TableOfContents }}
   </div>

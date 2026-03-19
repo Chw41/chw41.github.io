@@ -4,7 +4,7 @@ date: 2024-04-29
 author: "CHW"
 tags:
   - hackthebox
-description: "Lab HackTheBox: https://app.hackthebox.com/challenges/RenderQuest Initial Enumeration ..."
+description: "Hack The Box RenderQuest challenge writeup covering enumeration, web exploitation, and key attack steps."
 ---
 
 HackTheBox: RenderQuest

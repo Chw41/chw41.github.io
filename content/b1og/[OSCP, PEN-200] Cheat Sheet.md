@@ -4,7 +4,7 @@ date: 2025-12-22
 author: "CHW"
 tags:
   - offsec
-description: "[OSCP, PEN-200] Cheat Sheet - Recon, IP, Nmap, Rustscan, Path, Dirb, Dirsearch, Gobuster, ffuf, Subdomain, windows path traversal ..."
+description: "OSCP PEN-200 cheat sheet covering reconnaissance, scanning, web attacks, enumeration, and commonly used exam commands."
 ---
 
 [OSCP, PEN-200] Cheat Sheet

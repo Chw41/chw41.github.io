@@ -4,7 +4,7 @@ date: 2025-01-29
 author: "CHW"
 tags:
   - infra
-description: "Elastic Stack（ELK）安裝與教學筆記，整理元件用途、部署步驟與基本操作觀念。"
+description: "Elastic Stack（ELK）安裝與教學筆記，介紹元件用途、部署步驟與基本操作觀念。"
 ---
 
 Elastic stack(ELK) 安裝與教學

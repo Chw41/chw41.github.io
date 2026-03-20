@@ -4,7 +4,7 @@ date: 2025-11-19
 author: "CHW"
 tags:
   - techtalks
-description: "CYBERSEC 2025 OPSEC 議程筆記，整理紅隊隱匿、C2 管理、網路匿名化與降低偵測風險的實戰重點。"
+description: "CYBERSEC 2025 OPSEC 議程筆記，聚焦紅隊隱匿、C2 管理、網路匿名化與降低偵測風險的實戰重點。"
 ---
 
 CYBERSEC 2025 臺灣資安大會 「Operations Security (OPSEC) — 紅隊不被抓到的秘密！」 (Steven Meow)

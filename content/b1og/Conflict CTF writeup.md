@@ -4,7 +4,7 @@ date: 2024-04-10
 author: "CHW"
 tags:
   - notes
-description: "Conflict CTF writeup，整理比賽題目的解題流程、重點觀察與利用思路。"
+description: "Conflict CTF writeup，記錄比賽題目的解題流程、關鍵觀察與利用思路。"
 ---
 
 Conflict CTF writeup

@@ -4,7 +4,7 @@ date: 2025-03-20
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 8，整理 cloud infra attacks、Gitea、Jenkins 與模擬滲透測試流程。"
+description: "OSCP PEN-200 筆記 Part 8，涵蓋 cloud infrastructure attacks、Gitea、Jenkins 與模擬滲透測試流程。"
 ---
 
 

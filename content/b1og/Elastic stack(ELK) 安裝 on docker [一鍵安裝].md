@@ -4,7 +4,7 @@ date: 2025-01-30
 author: "CHW"
 tags:
   - infra
-description: "Elastic Stack（ELK）Docker 一鍵安裝筆記，整理 Elasticsearch、Logstash、Kibana 的快速部署流程。"
+description: "Elastic Stack（ELK）Docker 一鍵安裝筆記，說明 Elasticsearch、Logstash、Kibana 的快速部署流程。"
 ---
 
 Elastic stack(ELK) 安裝 on docker [一鍵安裝]

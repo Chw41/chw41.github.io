@@ -4,7 +4,7 @@ date: 2025-02-17
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 3，整理 Windows privilege escalation、credential attacks 與相關實作重點。"
+description: "OSCP PEN-200 筆記 Part 3，聚焦 Windows privilege escalation、credential attacks 與相關實作重點。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 3

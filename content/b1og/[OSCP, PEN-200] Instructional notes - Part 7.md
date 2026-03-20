@@ -4,7 +4,7 @@ date: 2025-03-19
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 7，整理 lateral movement、PtH/PtT/PtK、AD persistence 與 AWS recon。"
+description: "OSCP PEN-200 筆記 Part 7，涵蓋 lateral movement、PtH/PtT/PtK、AD persistence 與 AWS recon。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 7

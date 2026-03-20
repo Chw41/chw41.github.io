@@ -4,7 +4,7 @@ date: 2024-11-03
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 1，整理 recon、enumeration、vulnerability scanning、web attacks 與 client-side exploits。"
+description: "OSCP PEN-200 筆記 Part 1，涵蓋 recon、enumeration、vulnerability scanning、web attacks 與 client-side exploits。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 1

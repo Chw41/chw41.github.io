@@ -4,7 +4,7 @@ date: 2024-04-10
 author: "CHW"
 tags:
   - notes
-description: "Git 介紹與常用操作整理，涵蓋版本控制基礎、常見指令與日常協作流程。"
+description: "Git 介紹與常用操作指南，涵蓋版本控制基礎、常見指令與日常協作流程。"
 ---
 
 Git 介紹 & 常用操作

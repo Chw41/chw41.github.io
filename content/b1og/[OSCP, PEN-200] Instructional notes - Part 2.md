@@ -4,7 +4,7 @@ date: 2025-01-02
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 2，整理 exploit 開發、antivirus evasion、password attacks 與 NTLM 攻擊重點。"
+description: "OSCP PEN-200 筆記 Part 2，說明 exploit 開發、antivirus evasion、password attacks 與 NTLM 攻擊重點。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 2

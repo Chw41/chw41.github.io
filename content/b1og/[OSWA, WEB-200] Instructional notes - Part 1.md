@@ -4,7 +4,7 @@ date: 2026-01-29
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-200 筆記 Part 1，整理 web application recon、Burp Suite、XSS、CSRF、SQLi 與 XML 攻擊。"
+description: "OSWA WEB-200 筆記 Part 1，涵蓋 web application recon、Burp Suite、XSS、CSRF、SQLi 與 XML 攻擊。"
 ---
 
 [OSWA, WEB-200] Instructional notes - Part 1

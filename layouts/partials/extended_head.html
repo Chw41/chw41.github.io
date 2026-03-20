@@ -27,7 +27,21 @@
 {{- $siteName := .Site.Title -}}
 {{- $siteURL := .Site.BaseURL -}}
 {{- $authorName := (.Params.author | default "CHW") -}}
-{{- $desc := ((.Description | default .Summary) | plainify | htmlUnescape | truncate 200) -}}
+{{- $desc := "" -}}
+{{- if .IsHome -}}
+  {{- $desc = $.Site.Params.Subtitle -}}
+{{- else if .Description -}}
+  {{- $desc = .Description -}}
+{{- else if eq .Kind "term" -}}
+  {{- $desc = printf "%s related posts and notes from %s." .Title $.Site.Title -}}
+{{- else if eq .Kind "taxonomy" -}}
+  {{- $desc = printf "%s archive on %s." .Title $.Site.Title -}}
+{{- else if .Summary -}}
+  {{- $desc = .Summary -}}
+{{- else -}}
+  {{- $desc = $.Site.Params.Subtitle -}}
+{{- end -}}
+{{- $desc = ($desc | plainify | htmlUnescape | strings.TrimSpace | truncate 200) -}}
 {{- $keywords := "" -}}
 {{- with .Params.tags -}}{{- $keywords = (delimit . ", ") -}}{{- end -}}
 

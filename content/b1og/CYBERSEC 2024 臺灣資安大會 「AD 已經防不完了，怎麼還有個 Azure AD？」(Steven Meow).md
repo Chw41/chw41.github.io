@@ -4,7 +4,7 @@ date: 2025-02-10
 author: "CHW"
 tags:
   - techtalks
-description: "CYBERSEC 2024 議程筆記，整理 Active Directory 與 Azure AD（Entra ID）的差異、攻擊面與紅隊觀點。"
+description: "CYBERSEC 2024 議程筆記，分析 Active Directory 與 Azure AD（Entra ID）的差異、攻擊面與紅隊觀點。"
 ---
 
 CYBERSEC 2024 臺灣資安大會 「AD 已經防不完了，怎麼還有個 Azure AD？」(Steven Meow)

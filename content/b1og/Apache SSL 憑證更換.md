@@ -4,7 +4,7 @@ date: 2025-03-13
 author: "CHW"
 tags:
   - infra
-description: "Apache SSL 憑證更換教學，整理舊憑證替換、新憑證安裝、設定更新與服務重啟的實作流程。"
+description: "Apache SSL 憑證更換教學，說明舊憑證替換、新憑證安裝、設定更新與服務重啟的實作流程。"
 ---
 
 Apache SSL 憑證更換

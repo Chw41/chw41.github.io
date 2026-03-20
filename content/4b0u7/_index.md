@@ -1,5 +1,5 @@
 ---
 title: "About"
-description: "About author CHW (chw41): background, skills, projects, and contact links."
+description: "Profile of CHW (chw41), including cybersecurity background, technical focus, projects, and contact information."
 date: 2024-01-01
 ---

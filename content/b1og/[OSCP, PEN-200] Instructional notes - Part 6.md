@@ -4,7 +4,7 @@ date: 2025-03-18
 author: "CHW"
 tags:
   - offsec
-description: "OSCP PEN-200 筆記 Part 6，整理 AD enumeration、PowerView、object permissions 與 NTLM、Kerberos 攻擊。"
+description: "OSCP PEN-200 筆記 Part 6，涵蓋 AD enumeration、PowerView、object permissions 與 NTLM、Kerberos 攻擊。"
 ---
 
 [OSCP, PEN-200] Instructional notes - Part 6

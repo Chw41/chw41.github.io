@@ -4,7 +4,7 @@ date: 2025-11-17
 author: "CHW"
 tags:
   - techtalks
-description: "DEVCORE CONFERENCE 2024 議程筆記，整理 WAF 原理、繞過案例與紅隊實戰中的觀察重點。"
+description: "DEVCORE CONFERENCE 2024 議程筆記，探討 WAF 原理、繞過案例與紅隊實戰中的觀察重點。"
 ---
 
 DEVCORE CONFERENCE 2024 「牆の調查：致 WAF 前的你」 (Mico)

@@ -1,7 +1,7 @@
 ---
-title: "Penetration Testing Notes: Recon, Web, Privilege Escalation, AD, and Pivoting"
+title: "[AI] Penetration Testing Notes: Recon, Web, Privilege Escalation, AD, and Pivoting"
 slug: "penetration-testing-notes"
-date: 2026-03-20
+date: 2026-02-31
 author: "CHW"
 tags:
   - offsec

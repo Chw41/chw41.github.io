@@ -1,7 +1,7 @@
 ---
-title: "Red Team Notes: OPSEC, Lateral Movement, AD Persistence, and Operator Workflow"
+title: "[AI] Red Team Notes: OPSEC, Lateral Movement, AD Persistence, and Operator Workflow"
 slug: "red-team-notes"
-date: 2026-03-20
+date: 2026-02-30
 author: "CHW"
 tags:
   - offsec

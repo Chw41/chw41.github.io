@@ -66,7 +66,7 @@ Web 研究和利用可以從 [whitebox](https://en.wikipedia.org/wiki/White-box_
 - requests 指南（包括[官方文件](https://docs.python-requests.org/en/latest/)）
 
 透過 python3 requests library 發出 HTTP Request：
-```py=
+```python=
 #!/usr/bin/env python3
 # python3 script.py -u https://target:8443/ -p
 

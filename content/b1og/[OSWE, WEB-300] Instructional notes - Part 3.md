@@ -2235,7 +2235,6 @@ Successfully installed editorconfig-0.12.2 jsbeautifier-1.10.3
 > HackMD 筆記長度限制，接續 [[OSWE, WEB-300] Instructional notes - Part 4](https://chw41.github.io/b1og/oswe-web-300-instructional-notes---part-4/)
 
 # [Link to: "[OSWE, WEB-300] Instructional notes - Part 4"](https://chw41.github.io/b1og/oswe-web-300-instructional-notes---part-4/)    
-
 # [Link to: "[OSWE, WEB-300] Instructional notes - Part 5"](https://chw41.github.io/b1og/oswe-web-300-instructional-notes---part-5/)
-# [Link to: "[OSWE, WEB-300] Instructional notes - Part 6"](https://hackmd.io/@CHW/)
+# [Link to: "[OSWE, WEB-300] Instructional notes - Part 6"](https://chw41.github.io/b1og/oswe-web-300-instructional-notes---part-6/)
 

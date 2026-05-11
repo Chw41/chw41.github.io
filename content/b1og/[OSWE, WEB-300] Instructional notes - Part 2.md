@@ -4,7 +4,7 @@ date: 2026-04-10
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 2，涵蓋 XmlSerializer, DotNetNuke Cookie Deserialization RCE 弱點、SSTI攻擊、ERPNext 身份繞過、ERPNext Authentication Bypass and Server Side Template Injection 等等。"
+description: "OSWA WEB-300 筆記 Part 2，涵蓋 XmlSerializer、DotNetNuke Cookie Deserialization RCE 弱點、SSTI攻擊、ERPNext 身份繞過、ERPNext Authentication Bypass and Server Side Template Injection 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 2

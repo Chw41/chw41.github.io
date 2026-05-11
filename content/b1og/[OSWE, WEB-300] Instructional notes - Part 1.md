@@ -4,8 +4,7 @@ date: 2026-03-09
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 1，涵蓋 Managed .NET Code, Decompiling Java Classes 教學、ManageEngine AMUserResourceSyncServlet
-servlet SQLi 攻擊。"
+description: "OSWA WEB-300 筆記 Part 1，涵蓋 Managed .NET Code、 Decompiling Java Classes 教學、AMUserResourcesSyncServlet SQL Injection 攻擊、PostgreSQL Extensions 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 1

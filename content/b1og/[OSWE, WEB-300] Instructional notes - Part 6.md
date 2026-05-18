@@ -4,7 +4,7 @@ date: 2026-05-18
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 6，涵蓋 Dangerous Functions、Bypass Security Filter to Trigger Eval、Dolibarr Eval Filter Bypass RCE、PostgreSQL SQL injection、Bypass WAF、oraza WAF、RudderStack SQLi and Coraza WAF Bypass 等等。"
+description: "OSWA WEB-300 筆記 Part 6，涵蓋 Dangerous Functions、Bypass Security Filter to Trigger Eval、Dolibarr Eval Filter Bypass RCE、PostgreSQL injection、Bypass WAF、oraza WAF、RudderStack SQLi and Coraza WAF Bypass 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 6

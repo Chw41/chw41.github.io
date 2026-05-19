@@ -1,5 +1,6 @@
 baseURL = "https://chw41.github.io/"
 languageCode = "zh-tw"
+defaultContentLanguage = "zh-tw"
 title = "chw㉿world:~$"
 theme = "terminal"
 
@@ -9,7 +10,6 @@ enableRobotsTXT = true
   changefreq = "weekly"
   priority = 0.5
   filename = "sitemap.xml"
-
 
 [markup]
   [markup.goldmark]
@@ -30,7 +30,6 @@ enableRobotsTXT = true
       endLevel = 3
       ordered = false
 
-
 [pagination]
   pagerSize = 6
 
@@ -45,12 +44,11 @@ enableRobotsTXT = true
   Keywords = "CHW, chw41, Web Security, Penetration Testing, Red Team, CTF, HackTheBox, is1ab, BambooFox, imdownQQ"
 
 [languages]
-  [languages.zh]
+  [languages.zh-tw]
     languageName = "中文"
     title = "chw㉿world:~$"
 
 [menu]
-
   [[menu.main]]
     name = "Home"
     url = "/"

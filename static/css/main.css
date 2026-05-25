@@ -434,23 +434,21 @@ html, body {
 
   .cert-badges {
     display: grid;
-    gap: clamp(1.25rem, 3vw, 3rem);
-    align-items: center;
+    gap: clamp(1rem, 2.2vw, 2.2rem);
+    align-items: stretch;
   }
 
   .cert-badges--home {
-    --cert-size: clamp(104px, 10vw, 142px);
     max-width: 1100px;
-    margin: 1.6rem 0 3.4rem;
+    margin: 1.15rem 0 3.1rem;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .cert-badge {
     --cert-glow: rgba(0,255,156,0.28);
-    --cert-glow-soft: rgba(0,255,156,0.12);
     position: relative;
     margin: 0;
-    min-height: calc(var(--cert-size) + 18px);
+    aspect-ratio: 1 / 1;
     min-width: 0;
     overflow: visible;
     display: grid;
@@ -458,81 +456,45 @@ html, body {
     padding: clamp(0.45rem, 1vw, 0.85rem);
     background: transparent;
     border: 0;
-    isolation: isolate;
     transition: transform 0.18s ease, filter 0.18s ease;
   }
 
-  .cert-badge:nth-child(1) {
-    --cert-glow: rgba(0, 214, 203, 0.42);
-    --cert-glow-soft: rgba(0, 214, 203, 0.14);
-  }
-
-  .cert-badge:nth-child(2) {
-    --cert-glow: rgba(255, 70, 125, 0.42);
-    --cert-glow-soft: rgba(255, 70, 125, 0.14);
-  }
-
-  .cert-badge:nth-child(3) {
-    --cert-glow: rgba(255, 111, 0, 0.42);
-    --cert-glow-soft: rgba(255, 111, 0, 0.14);
-  }
-
-  .cert-badge:nth-child(4) {
-    --cert-glow: rgba(188, 94, 54, 0.38);
-    --cert-glow-soft: rgba(188, 94, 54, 0.12);
-  }
-
-  .cert-badge:nth-child(5) {
-    --cert-glow: rgba(96, 165, 250, 0.34);
-    --cert-glow-soft: rgba(96, 165, 250, 0.12);
-  }
-
-  .cert-badge:nth-child(6) {
-    --cert-glow: rgba(154, 255, 0, 0.36);
-    --cert-glow-soft: rgba(154, 255, 0, 0.13);
-  }
+  .cert-badge:nth-child(1) { --cert-glow: rgba(0, 214, 203, 0.28); }
+  .cert-badge:nth-child(2) { --cert-glow: rgba(255, 70, 125, 0.28); }
+  .cert-badge:nth-child(3) { --cert-glow: rgba(255, 111, 0, 0.28); }
+  .cert-badge:nth-child(4) { --cert-glow: rgba(188, 94, 54, 0.25); }
+  .cert-badge:nth-child(5) { --cert-glow: rgba(96, 165, 250, 0.23); }
+  .cert-badge:nth-child(6) { --cert-glow: rgba(154, 255, 0, 0.25); }
 
   .cert-badge::before {
     content: "";
     position: absolute;
-    width: calc(var(--cert-size) * 1.42);
-    height: calc(var(--cert-size) * 1.26);
-    left: 50%;
-    top: 50%;
+    inset: 24% 26% 24%;
     pointer-events: none;
     border-radius: 999px;
-    background:
-      radial-gradient(circle at 50% 36%, rgba(255,255,255,0.1), rgba(255,255,255,0) 26%),
-      radial-gradient(circle at 50% 52%, var(--cert-glow-soft), rgba(0,0,0,0) 58%),
-      radial-gradient(ellipse at 50% 72%, rgba(0,0,0,0.5), rgba(0,0,0,0) 70%);
-    filter: blur(15px);
-    opacity: 0.9;
-    transform: translate(-50%, -50%);
-    z-index: 0;
+    background: radial-gradient(circle, var(--cert-glow), rgba(0,0,0,0) 66%);
+    filter: blur(8px);
+    opacity: 0.62;
+    transform: translateY(2%);
   }
 
   .cert-badge::after {
     content: "";
     position: absolute;
-    width: calc(var(--cert-size) * 0.86);
-    height: calc(var(--cert-size) * 0.28);
-    left: 50%;
-    bottom: 3px;
+    inset: auto 30% 15% 30%;
+    height: 14%;
     pointer-events: none;
     border-radius: 999px;
-    background:
-      radial-gradient(ellipse, rgba(0,0,0,0.86), rgba(0,0,0,0.42) 44%, rgba(0,0,0,0) 76%);
-    filter: blur(12px);
+    background: radial-gradient(ellipse, rgba(0,0,0,0.72), rgba(0,0,0,0) 70%);
+    filter: blur(8px);
     opacity: 0.82;
-    transform: translateX(-50%);
-    z-index: 0;
   }
 
   .cert-badge img {
     position: relative;
     z-index: 1;
-    width: var(--cert-size);
-    height: var(--cert-size);
+    width: min(100%, 180px);
+    height: min(100%, 180px);
     object-fit: contain;
     display: block;
     max-width: none;
@@ -542,13 +504,12 @@ html, body {
     border-radius: 0 !important;
     background: transparent !important;
     filter:
-      drop-shadow(0 22px 16px rgba(0,0,0,0.78))
-      drop-shadow(0 10px 24px rgba(0,0,0,0.48))
+      drop-shadow(0 22px 18px rgba(0,0,0,0.78))
+      drop-shadow(0 9px 18px rgba(0,0,0,0.44))
       drop-shadow(0 -1px 1px rgba(255,255,255,0.14))
-      drop-shadow(0 0 13px var(--cert-glow))
-      drop-shadow(0 0 30px var(--cert-glow-soft))
-      saturate(1.08)
-      contrast(1.05);
+      drop-shadow(0 0 12px var(--cert-glow))
+      saturate(1.05)
+      contrast(1.04);
   }
 
   .cert-badge:hover {
@@ -557,13 +518,11 @@ html, body {
   }
 
   .cert-badge:hover::after {
-    opacity: 0.92;
-    filter: blur(14px);
+    opacity: 0.82;
   }
 
   .cert-badge:hover::before {
-    opacity: 1;
-    filter: blur(17px);
+    opacity: 0.62;
   }
   
   @media (max-width: 900px) {
@@ -572,10 +531,8 @@ html, body {
     }
 
     .cert-badges--home {
-      --cert-size: clamp(106px, 28vw, 136px);
       grid-template-columns: repeat(2, minmax(0, 1fr));
       max-width: 560px;
-      margin-left: auto;
       margin-right: auto;
     }
   }
@@ -816,7 +773,6 @@ html, body {
     }
 
     .cert-badges--home {
-      --cert-size: clamp(104px, 34vw, 128px);
       max-width: none;
       margin: 1rem 0 2.4rem;
     }

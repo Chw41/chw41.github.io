@@ -456,7 +456,9 @@ html, body {
     padding: clamp(0.45rem, 1vw, 0.85rem);
     background: transparent;
     border: 0;
-    transition: transform 0.18s ease, filter 0.18s ease;
+    transform: translateZ(0);
+    transition: transform 0.18s ease;
+    will-change: transform;
   }
 
   .cert-badge:nth-child(1) { --cert-glow: rgba(0, 214, 203, 0.28); }
@@ -476,6 +478,7 @@ html, body {
     filter: blur(8px);
     opacity: 0.62;
     transform: translateY(2%);
+    will-change: opacity;
   }
 
   .cert-badge::after {
@@ -488,6 +491,7 @@ html, body {
     background: radial-gradient(ellipse, rgba(0,0,0,0.72), rgba(0,0,0,0) 70%);
     filter: blur(8px);
     opacity: 0.82;
+    will-change: opacity;
   }
 
   .cert-badge img {
@@ -513,8 +517,7 @@ html, body {
   }
 
   .cert-badge:hover {
-    transform: translateY(-4px);
-    filter: brightness(1.08);
+    transform: translate3d(0, -4px, 0);
   }
 
   .cert-badge:hover::after {

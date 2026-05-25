@@ -109,6 +109,16 @@
   
     padding: 0;
   }
+
+  .about-cert-badges{
+    width: 100%;
+    max-width: 1200px;
+    margin: -2.2rem auto 4.6rem;
+  }
+
+  .cert-badges--about{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
   
   .about-work .work-exp{
     width: 100%;
@@ -289,6 +299,11 @@
   @media (max-width: 1100px){
     .about-page{ padding: 4rem 5vw 6rem; }
     .about-hero{ padding: 2.7rem 2.5rem; }
+
+    .cert-badges--about{
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 760px;
+    }
   }
   
   @media (max-width: 900px){
@@ -314,6 +329,10 @@
     .about-work .section-title,
     .exp-title{
       font-size: 2.4rem;
+    }
+
+    .about-cert-badges{
+      margin: -0.8rem auto 3.8rem;
     }
   
     .exp-card{ padding: 1.8rem 1.6rem 2rem; }
@@ -352,6 +371,15 @@
   Mobile
    ================================================== */
 @media (max-width: 768px) {
+
+  .cert-badges--about{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 460px;
+  }
+
+  .about-cert-badges{
+    margin: -1rem auto 3.2rem;
+  }
 
   .about-work .work-row{
     display: block; 

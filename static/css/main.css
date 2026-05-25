@@ -428,13 +428,82 @@ html, body {
     color: #e5e7eb;
   }
   
-  .intro .muted {
+.intro .muted {
     color: rgba(255, 255, 255, 0.65);
+  }
+
+  .cert-badges {
+    display: grid;
+    gap: clamp(1rem, 2.2vw, 2.2rem);
+    align-items: stretch;
+  }
+
+  .cert-badges--home {
+    max-width: 1100px;
+    margin: 1.15rem 0 3.1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cert-badge {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    overflow: visible;
+    display: grid;
+    place-items: center;
+    padding: clamp(0.45rem, 1vw, 0.85rem);
+    background: transparent;
+    border: 0;
+    transition: transform 0.18s ease, filter 0.18s ease;
+  }
+
+  .cert-badge::after {
+    content: "";
+    position: absolute;
+    inset: 18% 16% 12%;
+    pointer-events: none;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(0,255,156,0.18), rgba(0,255,156,0) 68%);
+    filter: blur(18px);
+    opacity: 0.58;
+    transform: translateY(10%);
+  }
+
+  .cert-badge img {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 180px);
+    height: min(100%, 180px);
+    object-fit: contain;
+    display: block;
+    max-width: none;
+    border: 0 !important;
+    outline: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    filter:
+      drop-shadow(0 18px 18px rgba(0,0,0,0.58))
+      drop-shadow(0 0 18px rgba(0,255,156,0.14))
+      saturate(1.04)
+      contrast(1.03);
+  }
+
+  .cert-badge:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.04);
   }
   
   @media (max-width: 900px) {
     .intro {
       font-size: 0.92rem;
+    }
+
+    .cert-badges--home {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 560px;
+      margin-right: auto;
     }
   }
   
@@ -503,7 +572,7 @@ html, body {
   }
 
    .github-snake {
-    margin: 3.5rem 0 4.5rem;
+    margin: 0 0 4.5rem;
     display: flex;
     justify-content: flex-start;
   }
@@ -667,6 +736,15 @@ html, body {
   
     .intro code {
       font-size: 0.85em;
+    }
+
+    .cert-badges {
+      gap: 0.85rem;
+    }
+
+    .cert-badges--home {
+      max-width: none;
+      margin: 1rem 0 2.4rem;
     }
   
     /* ---------- Blog Cards ---------- */

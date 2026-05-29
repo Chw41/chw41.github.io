@@ -4,7 +4,7 @@ date: 2026-05-14
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 5，涵蓋 Server-Side Request Forgery、SSRF Port Scanning、SSRF Subnet Scanning、Render API Auth Bypass、Prototype Pollution、EJS Prototype Pollution RCE Exploitation、Handlebars Prototype Pollution RCE Exploitation 等等。"
+description: "OSWE WEB-300 筆記 Part 5，涵蓋 Server-Side Request Forgery、SSRF Port Scanning、SSRF Subnet Scanning、Render API Auth Bypass、Prototype Pollution、EJS Prototype Pollution RCE Exploitation、Handlebars Prototype Pollution RCE Exploitation 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 5

@@ -7,9 +7,6 @@ tags:
 description: "OSWE / WEB-300 instructional notes covering source code review, exploit chain analysis, authentication bypass, deserialization, SSTI, XXE, XSS, CSRF, SSRF, prototype pollution, WAF bypass, and real-world web vulnerability research patterns."
 ---
 
-[OSWE, WEB-300] Instructional notes
-===
-
 This series summarizes my OSWE / WEB-300 learning notes, focusing on source code review, exploit chain analysis, authentication bypass, deserialization, server-side vulnerabilities, client-side security issues, and real-world vulnerability research patterns.
 
 - [Instructional Notes Part 1](https://chw41.github.io/b1og/oswe-web-300-instructional-notes---part-1/)  

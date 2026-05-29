@@ -4,7 +4,7 @@ date: 2026-05-11
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 4，涵蓋 Websocket client、Concord 身份繞過到 RCE、Same-Origin Policy (SOP)、Cross-Origin Resource Sharing (CORS)、SameSite、CORS+CSRF、DatabaseModule API Leak 等等。"
+description: "OSWE WEB-300 筆記 Part 4，涵蓋 Websocket client、Concord 身份繞過到 RCE、Same-Origin Policy (SOP)、Cross-Origin Resource Sharing (CORS)、SameSite、CORS+CSRF、DatabaseModule API Leak 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 4

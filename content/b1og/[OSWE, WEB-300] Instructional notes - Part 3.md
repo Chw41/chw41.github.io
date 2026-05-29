@@ -4,7 +4,7 @@ date: 2026-05-03
 author: "CHW"
 tags:
   - offsec
-description: "OSWA WEB-300 筆記 Part 3，涵蓋 Password Reset Vulnerability、XML Parsing、XXE Exploit、Web Shells、openCRX 身份繞過與 RCE、openITCOCKPIT XSS、DOM-based XSS 等等。"
+description: "OSWE WEB-300 筆記 Part 3，涵蓋 Password Reset Vulnerability、XML Parsing、XXE Exploit、Web Shells、openCRX 身份繞過與 RCE、openITCOCKPIT XSS、DOM-based XSS 等等。"
 ---
 
 [OSWE, WEB-300] Instructional notes - Part 3

@@ -2026,14 +2026,14 @@ explorer.exe
 # Phishing with Jscript
 
 >[!Caution]
-> HackMD 筆記長度限制，接續 [[OSEP, PEN-300] Instructional notes - Part 2](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-2/)
+> HackMD 筆記長度限制，接續 [[OSEP, PEN-300] Instructional notes - Part 2](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-2/)
  
-# [Link to: "[OSEP, PEN-300] Instructional notes - Part 2"](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-2/)
+# [Link to: "[OSEP, PEN-300] Instructional notes - Part 2"](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-2/)
 
-# [Link to: "[OSEP, PEN-300] Instructional notes - Part 3"](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-3/)
+# [Link to: "[OSEP, PEN-300] Instructional notes - Part 3"](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-3/)
 
-# [Link to: "[OSEP, PEN-300] Instructional notes - Part 4"](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-4/)
+# [Link to: "[OSEP, PEN-300] Instructional notes - Part 4"](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-4/)
 
-# [Link to: "[OSEP, PEN-300] Instructional notes - Part 5"](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-5/)
+# [Link to: "[OSEP, PEN-300] Instructional notes - Part 5"](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-5/)
 
-# [Link to: "[OSEP, PEN-300] Instructional notes - Part 6"](https://chw41.github.io/b1og/osep-web-300-instructional-notes---part-6/)
+# [Link to: "[OSEP, PEN-300] Instructional notes - Part 6"](https://chw41.github.io/b1og/osep-pen-300-instructional-notes---part-6/)

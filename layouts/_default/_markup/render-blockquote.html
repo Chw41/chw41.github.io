@@ -1,16 +1,25 @@
 {{- $raw := .Text | safeHTML -}}
-{{- $plain := .Text | plainify -}}
 
-{{- $m := findRE `(?m)^\[!(note|tip|warning|info)\]\s*` $plain 1 -}}
+{{- if eq .Type "alert" -}}
+  {{- $kind := .AlertType -}}
 
-{{- if gt (len $m) 0 -}}
-  {{- $kind := lower (replaceRE `(?m)^\[!([A-Za-z]+)\].*` "$1" (index $m 0)) -}}
-  {{- $body := replaceRE `(?m)^\[!(note|tip|warning|info)\]\s*` "" $raw -}}
+  {{- $label := title $kind -}}
+  {{- if eq $kind "tip" -}}
+    {{- $label = "💡 TIPS" -}}
+  {{- else if eq $kind "note" -}}
+    {{- $label = "📝 Note" -}}
+  {{- else if eq $kind "warning" -}}
+    {{- $label = "⚠️ Warning" -}}
+  {{- else if eq $kind "important" -}}
+    {{- $label = "‼️ Important" -}}
+  {{- else if eq $kind "caution" -}}
+    {{- $label = "📢 Caution" -}}
+  {{- end -}}
 
-  <div class="admonition {{ $kind }}">
-    <div class="admonition-title">{{ upper $kind }}</div>
+  <div class="admonition admonition-{{ $kind }}">
+    <div class="admonition-title">{{ with .AlertTitle }}{{ . }}{{ else }}{{ $label }}{{ end }}</div>
     <div class="admonition-body">
-      {{ $body }}
+      {{ $raw }}
     </div>
   </div>
 {{- else -}}

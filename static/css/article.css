@@ -124,6 +124,54 @@ body .article-header .article-meta {
   background-image: none !important;
 }
 
+.chw-article .admonition {
+  margin: 28px 0 !important;
+  padding: 16px 20px !important;
+  background: rgba(255, 255, 255, 0.123) !important;
+  border-left: 4px solid var(--adm-color, rgba(255,255,255,0.18)) !important;
+  border-radius: 12px !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  border-right: 0 !important;
+  box-shadow: none !important;
+}
+
+.chw-article .admonition-title {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.01em !important;
+  margin-bottom: 8px !important;
+  color: var(--adm-color) !important;
+}
+
+.chw-article .admonition-body {
+  color: rgba(245,245,247,0.80) !important;
+}
+
+.chw-article .admonition-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.chw-article .admonition-tip {
+  --adm-color: #3fb950;
+}
+
+.chw-article .admonition-note {
+  --adm-color: #58a6ff;
+}
+
+.chw-article .admonition-important {
+  --adm-color: #a371f7;
+}
+
+.chw-article .admonition-warning {
+  --adm-color: #d29922;
+}
+
+.chw-article .admonition-caution {
+  --adm-color: #f85149;
+}
+
 .chw-toc,
 body #TableOfContents,
 body nav.toc,
@@ -233,6 +281,18 @@ body .table-of-contents li::marker {
   color: #e6e6e6 !important;
   padding: 0.2em 0.4em !important;
   border-radius: 6px !important;
+}
+
+.chw-article .highlight {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.chw-article .highlight pre {
+  margin: 36px 0 !important;
 }
 
 .chw-article pre {
@@ -387,6 +447,18 @@ body .table-of-contents li::marker {
     /* ---------- Blockquote ---------- */
     .chw-article blockquote {
       padding: 14px 16px !important;
+      font-size: 14px !important;
+    }
+
+    .chw-article .admonition {
+      padding: 12px 16px !important;
+    }
+
+    .chw-article .admonition-title {
+      font-size: 13px !important;
+    }
+
+    .chw-article .admonition-body {
       font-size: 14px !important;
     }
   }

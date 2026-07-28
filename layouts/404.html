@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="notfound-wrap">
+  <div class="notfound-grain" aria-hidden="true"></div>
+  <div class="notfound-vignette" aria-hidden="true"></div>
+  <div class="notfound-scan" aria-hidden="true"></div>
+
+  <div class="notfound-tag notfound-tag--tl">SEC // 404</div>
+  <div class="notfound-tag notfound-tag--tr">STATUS: OFFLINE</div>
+  <div class="notfound-tag notfound-tag--bl">ERR_CODE: 0x194</div>
+  <div class="notfound-tag notfound-tag--br">ROUTE_NOT_RESOLVED</div>
+
+  <div class="notfound-tape notfound-tape--top" aria-hidden="true">
+    <div class="notfound-tape-stripes"></div>
+    <div class="notfound-tape-label">這頁揣袂著</div>
+  </div>
+
+  <div class="notfound-center">
+    <p class="notfound-kicker">&gt;&gt;&gt; TRACE_ROUTE_FAILED</p>
+
+    <div class="notfound-404" data-text="404">404</div>
+
+    <div class="notfound-divider" aria-hidden="true"></div>
+
+    <p class="notfound-sub">
+      Page Not Found<span class="notfound-caret"></span>
+    </p>
+
+    <a class="notfound-btn" href="{{ "/1ogin/" | absURL }}">
+      <span class="notfound-btn-prompt">$</span> Sign in
+    </a>
+  </div>
+
+  <div class="notfound-tape notfound-tape--bottom" aria-hidden="true">
+    <div class="notfound-tape-stripes"></div>
+    <div class="notfound-tape-label">tse ia̍h tshuē-bē-tio̍h</div>
+  </div>
+</div>
+{{ end }}

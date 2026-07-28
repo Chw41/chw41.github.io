@@ -21,6 +21,10 @@
 <link rel="stylesheet" href="/css/article.css">
 {{ end }}
 
+{{ if eq .Kind "404" }}
+<link rel="stylesheet" href="/css/404.css">
+{{ end }}
+
 <meta name="google-site-verification" content="pDIkMeVDXrU_s4uCvUlVlTaDeyW0g-I1d3sYfAyISoQ" />
 
 {{/* -------- JSON-LD structured data -------- */}}

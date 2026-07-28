@@ -407,6 +407,15 @@
     padding-right: 0;
     opacity: 0.7;
   }
+
+  .tl-row{
+    gap: 0.6rem;
+  }
+
+  .tl-date{
+    flex-basis: 56px;
+    font-size: 0.85rem;
+  }
 }
 
   

@@ -461,13 +461,6 @@ html, body {
     will-change: transform;
   }
 
-  .cert-badge:nth-child(1) { --cert-glow: rgba(0, 214, 203, 0.28); }
-  .cert-badge:nth-child(2) { --cert-glow: rgba(255, 70, 125, 0.28); }
-  .cert-badge:nth-child(3) { --cert-glow: rgba(255, 111, 0, 0.28); }
-  .cert-badge:nth-child(4) { --cert-glow: rgba(188, 94, 54, 0.25); }
-  .cert-badge:nth-child(5) { --cert-glow: rgba(96, 165, 250, 0.23); }
-  .cert-badge:nth-child(6) { --cert-glow: rgba(154, 255, 0, 0.25); }
-
   .cert-badge::before {
     content: "";
     position: absolute;

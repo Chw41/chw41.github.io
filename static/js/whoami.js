@@ -1,5 +1,4 @@
 (() => {
-  const ORIGIN = { lat: 25.0330, lon: 121.5654, label: "CHW // TPE" };
   const HOSTING_RE = /amazon|aws|google|microsoft|azure|digitalocean|linode|akamai|ovh|hetzner|vultr|choopa|oracle|alibaba|tencent|cloudflare|m247|datacamp|leaseweb|contabo|hostinger|scaleway|fastly|zscaler|nord|express ?vpn|proton|mullvad|surfshark|private internet/i;
 
   const $ = (id) => document.getElementById(id);
@@ -311,6 +310,16 @@
     return `${Math.abs(lat).toFixed(6)}° ${ns} · ${Math.abs(lon).toFixed(6)}° ${ew}`;
   };
 
+  const getDeviceLocation = () =>
+    new Promise((resolve) => {
+      if (!navigator.geolocation) return resolve(null);
+      navigator.geolocation.getCurrentPosition(
+        (p) => resolve({ lat: p.coords.latitude, lon: p.coords.longitude, accuracy_m: Math.round(p.coords.accuracy) }),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+      );
+    });
+
   /* ---------------- map ---------------- */
 
   let map = null;
@@ -362,27 +371,34 @@
       const c = map.getCenter();
       $("whCoord").textContent = fmtCoord(c.lat, c.lng);
     });
+  };
 
-    L.marker([ORIGIN.lat, ORIGIN.lon], {
+  let originLine = null;
+
+  const plotOrigin = (origin, geo) => {
+    if (!map || !origin || geo.lat == null || originLine) return;
+    L.marker([origin.lat, origin.lon], {
       icon: L.divIcon({ className: "", html: '<div class="wh-origin-dot"></div>', iconSize: [0, 0] }),
       interactive: false,
     }).addTo(map);
-  };
-
-  const lockOn = async (geo) => {
-    if (!map || geo.lat == null) return;
-    const target = [geo.lat, geo.lon];
-
-    const line = L.polyline([[ORIGIN.lat, ORIGIN.lon], target], {
+    originLine = L.polyline([[origin.lat, origin.lon], [geo.lat, geo.lon]], {
       color: "#30d158",
       weight: 1,
       opacity: 0.7,
       dashArray: "2 6",
       interactive: false,
     }).addTo(map);
+  };
 
-    if (haversine(ORIGIN, geo) > 300) {
-      map.flyToBounds(line.getBounds(), { padding: [90, 90], duration: 1.8 });
+  const lockOn = async (geo, pOrigin) => {
+    if (!map || geo.lat == null) return;
+    const target = [geo.lat, geo.lon];
+
+    const origin = await Promise.race([pOrigin, sleep(1500).then(() => null)]);
+    plotOrigin(origin, geo);
+
+    if (origin && haversine(origin, geo) > 300) {
+      map.flyToBounds(originLine.getBounds(), { padding: [90, 90], duration: 1.8 });
       await new Promise((r) => map.once("moveend", r));
       await sleep(300);
     }
@@ -420,6 +436,7 @@
     const pRTC = getWebRTC();
     const pRTT = measureRTT();
     const pClient = collectClient();
+    const pOrigin = getDeviceLocation();
 
     ["IPv4", "IPv6", "Reverse DNS", "ASN", "ISP", "Organization", "Type"].forEach((k) => setKV("whNet", k, "…", "is-pending"));
     ["Country", "Region", "City", "Postal code", "Coordinates", "Time zone", "Local time"].forEach((k) => setKV("whGeo", k, "…", "is-pending"));
@@ -471,13 +488,23 @@
     } else {
       setKV("whGeo", "Local time", null);
     }
-    if (geo.lat != null) {
-      const km = Math.round(haversine(ORIGIN, geo));
-      setText("stDist", `${km.toLocaleString("en-US")} km`);
-    }
     log(`geolocated ${locText} [${geo.lat}, ${geo.lon}]`, "ok");
 
-    const pLock = lockOn(geo);
+    const pLock = lockOn(geo, pOrigin);
+    pOrigin.then((origin) => {
+      report.device_location = origin;
+      if (!origin) {
+        setText("stDistSub", "location not shared");
+        log("device location unavailable or denied", "warn");
+        return;
+      }
+      plotOrigin(origin, geo);
+      if (geo.lat != null) {
+        const km = Math.round(haversine(origin, geo));
+        setText("stDist", `${km.toLocaleString("en-US")} km`);
+      }
+      log(`device location [${origin.lat.toFixed(4)}, ${origin.lon.toFixed(4)}] ±${origin.accuracy_m} m`, "ok");
+    });
 
     /* --- PTR --- */
     log("PTR lookup over DNS-over-HTTPS", "step");

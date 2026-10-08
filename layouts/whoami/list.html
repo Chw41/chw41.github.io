@@ -1,0 +1,129 @@
+{{ define "main" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ "css/whoami.css" | relURL }}">
+
+<div class="wh">
+  <div class="wh-bar">
+    <div class="wh-prompt"><span class="wh-prompt-sym">~</span> whoami</div>
+    <div class="wh-pill" id="whStatus" data-state="busy">
+      <span class="wh-pill-dot"></span><span class="wh-pill-text">Locating</span>
+    </div>
+  </div>
+
+  <header class="wh-hero">
+    <div class="wh-eyebrow">Your public IP address</div>
+    <div class="wh-ip"><span id="whIp">···.···.···.···</span><span class="wh-caret" aria-hidden="true"></span></div>
+    <div class="wh-meta">
+      <span id="whLoc">Resolving location</span>
+      <span class="wh-meta-sep" aria-hidden="true"></span>
+      <span class="wh-mono" id="whPtr">—</span>
+    </div>
+  </header>
+
+  <section class="wh-stats" aria-label="Summary">
+    <div class="wh-stat">
+      <div class="wh-stat-k">Provider</div>
+      <div class="wh-stat-v" id="stIsp">—</div>
+      <div class="wh-stat-s" id="stAsn">&nbsp;</div>
+    </div>
+    <div class="wh-stat">
+      <div class="wh-stat-k">Edge</div>
+      <div class="wh-stat-v" id="stEdge">—</div>
+      <div class="wh-stat-s" id="stEdgeSub">&nbsp;</div>
+    </div>
+    <div class="wh-stat">
+      <div class="wh-stat-k">Latency</div>
+      <div class="wh-stat-v" id="stRtt">—</div>
+      <div class="wh-stat-s">to 1.1.1.1</div>
+    </div>
+    <div class="wh-stat">
+      <div class="wh-stat-k">Distance</div>
+      <div class="wh-stat-v" id="stDist">—</div>
+      <div class="wh-stat-s">from Taipei</div>
+    </div>
+  </section>
+
+  <section class="wh-map-card">
+    <div class="wh-map" id="whMap"></div>
+    <div class="wh-map-vignette" aria-hidden="true"></div>
+
+    <div class="wh-chip wh-chip--tl" id="whLock">
+      <span class="wh-chip-dot"></span><span id="whLockText">Acquiring signal</span>
+    </div>
+
+    <div class="wh-seg" role="group" aria-label="Map style">
+      <button type="button" class="is-active" data-layer="map">Map</button>
+      <button type="button" data-layer="sat">Satellite</button>
+    </div>
+
+    <div class="wh-chip wh-chip--bl wh-mono" id="whCoord">0.000000° N · 0.000000° E</div>
+  </section>
+
+  <section class="wh-cards wh-cards--3">
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Network</div>
+        <div class="wh-card-tag" id="tagNet"></div>
+      </div>
+      <div class="wh-rows" id="whNet"></div>
+    </article>
+
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Location</div>
+        <div class="wh-card-tag" id="tagGeo"></div>
+      </div>
+      <div class="wh-rows" id="whGeo"></div>
+    </article>
+
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Connection</div>
+        <div class="wh-card-tag">cloudflare</div>
+      </div>
+      <div class="wh-rows" id="whConn"></div>
+    </article>
+  </section>
+
+  <section class="wh-cards wh-cards--3">
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Privacy</div>
+        <div class="wh-verdict" id="whVerdict" data-level="pending">Analyzing</div>
+      </div>
+      <div class="wh-rows" id="whRisk"></div>
+      <p class="wh-card-note" id="whVerdictNote"></p>
+    </article>
+
+    <article class="wh-card wh-card--wide">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Device</div>
+        <div class="wh-card-tag wh-mono" id="tagFp"></div>
+      </div>
+      <div class="wh-rows wh-rows--2" id="whClient"></div>
+    </article>
+  </section>
+
+  <section class="wh-card wh-console">
+    <div class="wh-card-head">
+      <div class="wh-card-title">Trace</div>
+      <div class="wh-console-actions">
+        <button class="wh-btn" id="whCopy" type="button">Copy JSON</button>
+        <button class="wh-btn" id="whRetrace" type="button">Retrace</button>
+      </div>
+    </div>
+    <div class="wh-log" id="whLog"></div>
+  </section>
+
+  <p class="wh-foot">
+    Everything runs in your browser — ipwho.is, Cloudflare trace &amp; DNS-over-HTTPS, ipify, Google STUN.
+    Nothing is logged or stored. IP geolocation is approximate.
+  </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
+<script src="{{ "js/whoami.js" | relURL }}"></script>
+{{ end }}

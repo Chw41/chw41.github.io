@@ -1,0 +1,23 @@
+{{ define "main" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="{{ "css/time.css" | relURL }}">
+
+<div class="tm">
+  <div class="tm-bar">
+    <div class="tm-prompt"><span class="tm-prompt-sym">~</span> date</div>
+    <div class="tm-pill">
+      <span class="tm-pill-dot"></span><span id="tmZone">Syncing</span>
+    </div>
+  </div>
+
+  <main class="tm-hero">
+    <div class="tm-date" id="tmDate">····/··/·· ·········</div>
+    <div class="tm-clock"><span id="tmClock">··:··:··</span><span class="tm-caret" aria-hidden="true"></span></div>
+    <div class="tm-tick" aria-hidden="true"><span id="tmTick"></span></div>
+  </main>
+</div>
+
+<script src="{{ "js/time.js" | relURL }}"></script>
+{{ end }}

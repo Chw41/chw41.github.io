@@ -312,10 +312,21 @@
 
   const getDeviceLocation = () =>
     new Promise((resolve) => {
-      if (!navigator.geolocation) return resolve(null);
+      if (!window.isSecureContext) {
+        log("device location requires HTTPS (or localhost)", "warn");
+        return resolve(null);
+      }
+      if (!navigator.geolocation) {
+        log("device location not supported by this browser", "warn");
+        return resolve(null);
+      }
       navigator.geolocation.getCurrentPosition(
         (p) => resolve({ lat: p.coords.latitude, lon: p.coords.longitude, accuracy_m: Math.round(p.coords.accuracy) }),
-        () => resolve(null),
+        (e) => {
+          const reason = { 1: "permission denied", 2: "position unavailable", 3: "timed out" }[e.code] || "error";
+          log(`device location ${reason}${e.message ? `: ${e.message}` : ""}`, "warn");
+          resolve(null);
+        },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
       );
     });
@@ -456,7 +467,7 @@
     report.geo = geo;
     log(`public address ${geo.ip} (${geo.type}) via ${geo.source}`, "ok");
     setStatus("Resolving");
-    decode($("whIp"), geo.ip);
+    (geo.ip.includes(":") ? pV4 : Promise.resolve(geo.ip)).then((ip) => decode($("whIp"), ip || geo.ip));
 
     const locText = [geo.city, geo.region, geo.country].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(", ");
     $("whLoc").textContent = `${geo.flag ? geo.flag + "  " : ""}${locText}`;
@@ -495,7 +506,6 @@
       report.device_location = origin;
       if (!origin) {
         setText("stDistSub", "location not shared");
-        log("device location unavailable or denied", "warn");
         return;
       }
       plotOrigin(origin, geo);

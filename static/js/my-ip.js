@@ -484,7 +484,13 @@
       const eb = document.querySelector(".wh-eyebrow");
       if (eb) eb.textContent = "IP address lookup";
       const pr = document.querySelector(".wh-prompt");
-      if (pr) pr.innerHTML = '<span class="wh-prompt-sym">~</span> whois ' + lookup;
+      if (pr) {
+        pr.textContent = '';
+        const sym = document.createElement('span');
+        sym.className = 'wh-prompt-sym';
+        sym.textContent = '~';
+        pr.append(sym, ' whois ' + lookup);
+      }
       // viewer edge/latency and the duplicate provider tile don't apply to a looked-up IP,
       // but Distance (your location → target) does, so keep it.
       ["stIsp", "stEdge", "stRtt"].forEach((id) => { const el = $(id); if (el) hide(el.closest(".wh-stat")); });

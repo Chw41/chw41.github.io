@@ -7,4 +7,12 @@ aliases:
   - "/date"
   - "/times/"
   - "/times"
+  - "/day/"
+  - "/day"
+  - "/days/"
+  - "/day"
+  - "/month/"
+  - "/month"
+  - "/year/"
+  - "/year"
 ---

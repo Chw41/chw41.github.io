@@ -485,7 +485,9 @@
       if (eb) eb.textContent = "IP address lookup";
       const pr = document.querySelector(".wh-prompt");
       if (pr) pr.innerHTML = '<span class="wh-prompt-sym">~</span> whois ' + lookup;
-      hide(".wh-stats");                                       // viewer-only: edge/latency/distance (+ provider dup)
+      // viewer edge/latency and the duplicate provider tile don't apply to a looked-up IP,
+      // but Distance (your location → target) does, so keep it.
+      ["stIsp", "stEdge", "stRtt"].forEach((id) => { const el = $(id); if (el) hide(el.closest(".wh-stat")); });
       hideCard("whConn");                                      // viewer edge / TLS
       hide($("whRisk") && $("whRisk").closest(".wh-cards"));   // viewer privacy + device
       log(`ip lookup — resolving ${lookup}`, "step");
@@ -502,7 +504,7 @@
     const pRTC = lookup ? null : getWebRTC();
     const pRTT = lookup ? null : measureRTT();
     const pClient = lookup ? null : collectClient();
-    const pOrigin = lookup ? Promise.resolve(null) : getDeviceLocation();
+    const pOrigin = getDeviceLocation();
 
     ["IPv4", "IPv6", "Reverse DNS", "ASN", "ISP", "Organization", "Type"].forEach((k) => setKV("whNet", k, "…", "is-pending"));
     ["Country", "Region", "City", "Postal code", "Coordinates", "Time zone", "Local time"].forEach((k) => setKV("whGeo", k, "…", "is-pending"));

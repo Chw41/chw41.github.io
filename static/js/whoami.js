@@ -171,6 +171,33 @@
     return ans ? ans.data.replace(/\.$/, "") : null;
   };
 
+  const getRDAP = async (ip) => {
+    const d = await fetchJSON(`https://rdap.org/ip/${encodeURIComponent(ip)}`, {}, 8000);
+    const cidr = (d.cidr0_cidrs || []).map((c) => `${c.v4prefix || c.v6prefix}/${c.length}`).join(", ");
+    const ev = (a) => {
+      const e = (d.events || []).find((x) => x.eventAction === a);
+      return e && e.eventDate ? e.eventDate.slice(0, 10) : null;
+    };
+    const org = (d.entities || []).find((e) => (e.roles || []).some((r) => /registrant|administrative|technical/.test(r)));
+    const orgName = (() => {
+      const v = org && org.vcardArray && org.vcardArray[1];
+      const fn = v && v.find((f) => f[0] === "fn");
+      return (fn && fn[3]) || (org && org.handle) || null;
+    })();
+    return {
+      netname: d.name || null,
+      handle: d.handle || null,
+      range: d.startAddress && d.endAddress ? `${d.startAddress} – ${d.endAddress}` : null,
+      cidr: cidr || null,
+      allocation: Array.isArray(d.type) ? d.type.join(", ") : d.type || null,
+      status: (d.status || []).join(", ") || null,
+      org: orgName,
+      registered: ev("registration"),
+      updated: ev("last changed"),
+      country: d.country || null,
+    };
+  };
+
   const measureRTT = async () => {
     const samples = [];
     for (let i = 0; i < 3; i++) {
@@ -450,16 +477,17 @@
 
     if (lookup) {
       report.target_ip = lookup;
-      const hideCard = (rowsId) => { const el = $(rowsId); const c = el && el.closest(".wh-card"); if (c) c.style.display = "none"; };
-      const hideStat = (id) => { const el = $(id); const s = el && el.closest(".wh-stat"); if (s) s.style.display = "none"; };
+      const hide = (sel) => { const el = typeof sel === "string" ? document.querySelector(sel) : sel; if (el) el.style.display = "none"; };
+      const hideCard = (rowsId) => { const el = $(rowsId); hide(el && el.closest(".wh-card")); };
+      const root = document.querySelector(".wh");
+      if (root) root.classList.add("wh-lookup");
       const eb = document.querySelector(".wh-eyebrow");
       if (eb) eb.textContent = "IP address lookup";
       const pr = document.querySelector(".wh-prompt");
       if (pr) pr.innerHTML = '<span class="wh-prompt-sym">~</span> whois ' + lookup;
-      ["stEdge", "stRtt", "stDist"].forEach(hideStat);
-      hideCard("whConn");
-      const dev = $("whRisk") && $("whRisk").closest(".wh-cards");
-      if (dev) dev.style.display = "none";
+      hide(".wh-stats");                                       // viewer-only: edge/latency/distance (+ provider dup)
+      hideCard("whConn");                                      // viewer edge / TLS
+      hide($("whRisk") && $("whRisk").closest(".wh-cards"));   // viewer privacy + device
       log(`ip lookup — resolving ${lookup}`, "step");
     } else {
       if (queryIP) log(`ignoring invalid ip parameter: ${queryIP}`, "warn");
@@ -537,6 +565,30 @@
       setKV("whGeo", "Local time", null);
     }
     log(`geolocated ${locText} [${geo.lat}, ${geo.lon}]`, "ok");
+
+    /* --- lookup enrichment: RDAP (whois) + extra geo --- */
+    if (lookup) {
+      if (geo.continent) setKV("whGeo", "Continent", geo.continent);
+      if (geo.calling_code) setKV("whGeo", "Calling code", `+${geo.calling_code}`);
+
+      ["Netname", "CIDR", "IP range", "Allocation", "Registered"].forEach((k) => setKV("whNet", k, "…", "is-pending"));
+      log("RDAP allocation lookup (whois)", "step");
+      getRDAP(geo.ip)
+        .then((r) => {
+          report.rdap = r;
+          setKV("whNet", "Netname", r.netname || "—");
+          setKV("whNet", "CIDR", r.cidr || "—");
+          setKV("whNet", "IP range", r.range || "—");
+          setKV("whNet", "Allocation", [r.allocation, r.status].filter(Boolean).join(" · ") || "—");
+          setKV("whNet", "Registered", [r.registered, r.updated && `upd ${r.updated}`].filter(Boolean).join(" · ") || "—");
+          if (r.org && !geo.org) setKV("whNet", "Organization", r.org);
+          log(`rdap ${r.netname || "?"} ${r.cidr || ""}`.trim(), "ok");
+        })
+        .catch((e) => {
+          ["Netname", "CIDR", "IP range", "Allocation", "Registered"].forEach((k) => setKV("whNet", k, "unavailable", "is-pending"));
+          log(`rdap unavailable (${e.message})`, "warn");
+        });
+    }
 
     const pLock = lockOn(geo, pOrigin);
     pOrigin.then((origin) => {

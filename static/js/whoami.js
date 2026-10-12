@@ -5,6 +5,16 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const report = { generated_at: new Date().toISOString() };
 
+  /* ---------------- lookup mode (?chw=<ip>) ---------------- */
+  const qp = new URLSearchParams(location.search);
+  const queryIP = (qp.get("chw") || "").trim();
+  const isValidIP = (s) => {
+    if (!s) return false;
+    if (/^\d{1,3}(\.\d{1,3}){3}$/.test(s)) return s.split(".").every((o) => +o >= 0 && +o <= 255);
+    return s.includes(":") && /^[0-9a-f:]+$/i.test(s) && (s.match(/:/g) || []).length <= 7;
+  };
+  const lookup = isValidIP(queryIP) ? queryIP : null;
+
   /* ---------------- UI helpers ---------------- */
 
   const logEl = $("whLog");
@@ -79,9 +89,10 @@
     return res.json();
   };
 
-  const getGeo = async () => {
+  const getGeo = async (ip) => {
+    const q = ip ? encodeURIComponent(ip) : "";
     try {
-      const d = await fetchJSON("https://ipwho.is/");
+      const d = await fetchJSON(`https://ipwho.is/${q}`);
       if (!d.success) throw new Error(d.message || "ipwho.is failed");
       return {
         source: "ipwho.is",
@@ -106,7 +117,7 @@
       };
     } catch (e) {
       log(`ipwho.is unavailable (${e.message}), falling back to ipapi.is`, "warn");
-      const d = await fetchJSON("https://api.ipapi.is/");
+      const d = await fetchJSON(`https://api.ipapi.is/${ip ? `?q=${q}` : ""}`);
       const asn = /^AS(\d+)\s*(.*)$/.exec(d.asn || "");
       return {
         source: "ipapi.is",
@@ -437,21 +448,37 @@
   const run = async () => {
     initMap();
 
-    log("whoami — passive client-side trace", "step");
-    log("spawning probes: geo, edge, dual-stack, webrtc, fingerprint", "step");
+    if (lookup) {
+      report.target_ip = lookup;
+      const hideCard = (rowsId) => { const el = $(rowsId); const c = el && el.closest(".wh-card"); if (c) c.style.display = "none"; };
+      const hideStat = (id) => { const el = $(id); const s = el && el.closest(".wh-stat"); if (s) s.style.display = "none"; };
+      const eb = document.querySelector(".wh-eyebrow");
+      if (eb) eb.textContent = "IP address lookup";
+      const pr = document.querySelector(".wh-prompt");
+      if (pr) pr.innerHTML = '<span class="wh-prompt-sym">~</span> whois ' + lookup;
+      ["stEdge", "stRtt", "stDist"].forEach(hideStat);
+      hideCard("whConn");
+      const dev = $("whRisk") && $("whRisk").closest(".wh-cards");
+      if (dev) dev.style.display = "none";
+      log(`ip lookup — resolving ${lookup}`, "step");
+    } else {
+      if (queryIP) log(`ignoring invalid ip parameter: ${queryIP}`, "warn");
+      log("whoami — passive client-side trace", "step");
+      log("spawning probes: geo, edge, dual-stack, webrtc, fingerprint", "step");
+    }
 
-    const pGeo = getGeo();
-    const pTrace = getTrace().catch(() => null);
-    const pV4 = getStackIP("api4");
-    const pV6 = getStackIP("api6");
-    const pRTC = getWebRTC();
-    const pRTT = measureRTT();
-    const pClient = collectClient();
-    const pOrigin = getDeviceLocation();
+    const pGeo = getGeo(lookup);
+    const pTrace = lookup ? null : getTrace().catch(() => null);
+    const pV4 = lookup ? null : getStackIP("api4");
+    const pV6 = lookup ? null : getStackIP("api6");
+    const pRTC = lookup ? null : getWebRTC();
+    const pRTT = lookup ? null : measureRTT();
+    const pClient = lookup ? null : collectClient();
+    const pOrigin = lookup ? Promise.resolve(null) : getDeviceLocation();
 
     ["IPv4", "IPv6", "Reverse DNS", "ASN", "ISP", "Organization", "Type"].forEach((k) => setKV("whNet", k, "…", "is-pending"));
     ["Country", "Region", "City", "Postal code", "Coordinates", "Time zone", "Local time"].forEach((k) => setKV("whGeo", k, "…", "is-pending"));
-    ["Edge", "Protocol", "TLS", "Key exchange", "WARP", "Latency"].forEach((k) => setKV("whConn", k, "…", "is-pending"));
+    if (!lookup) ["Edge", "Protocol", "TLS", "Key exchange", "WARP", "Latency"].forEach((k) => setKV("whConn", k, "…", "is-pending"));
 
     /* --- geo --- */
     let geo;
@@ -467,7 +494,11 @@
     report.geo = geo;
     log(`public address ${geo.ip} (${geo.type}) via ${geo.source}`, "ok");
     setStatus("Resolving");
-    (geo.ip.includes(":") ? pV4 : Promise.resolve(geo.ip)).then((ip) => decode($("whIp"), ip || geo.ip));
+    if (lookup) {
+      decode($("whIp"), geo.ip);
+    } else {
+      (geo.ip.includes(":") ? pV4 : Promise.resolve(geo.ip)).then((ip) => decode($("whIp"), ip || geo.ip));
+    }
 
     const locText = [geo.city, geo.region, geo.country].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(", ");
     $("whLoc").textContent = `${geo.flag ? geo.flag + "  " : ""}${locText}`;
@@ -480,6 +511,12 @@
     setText("tagNet", geo.domain || (geo.asn ? `AS${geo.asn}` : ""));
     setText("stIsp", (geo.isp || geo.org || "").replace(/[,\s]+(co\.?,?\s*ltd\.?|inc\.?|llc|corp(oration)?\.?|limited|gmbh|s\.?a\.?)$/i, ""));
     setText("stAsn", geo.asn ? `AS${geo.asn}` : "");
+
+    if (lookup) {
+      const v6 = geo.ip.includes(":");
+      setKV("whNet", "IPv4", v6 ? "—" : geo.ip, v6 ? "is-pending" : "");
+      setKV("whNet", "IPv6", v6 ? geo.ip : "—", v6 ? "" : "is-pending");
+    }
 
     setKV("whGeo", "Country", `${geo.flag || ""} ${geo.country || "—"}`.trim());
     setKV("whGeo", "Region", geo.region);
@@ -530,6 +567,7 @@
         setKV("whNet", "Reverse DNS", "lookup failed", "is-warn");
       });
 
+    if (!lookup) {
     /* --- dual stack --- */
     const [v4, v6] = await Promise.all([pV4, pV6]);
     report.ipv4 = v4;
@@ -630,10 +668,11 @@
     $("whVerdictNote").textContent = note;
     report.assessment = { findings, verdict: label };
     log(`assessment: ${label.toLowerCase()}`, level === "bad" ? "err" : "warn");
+    }
 
     await pLock;
     setStatus("Located", "done");
-    log("trace complete", "ok");
+    log(lookup ? `lookup complete — ${lookup}` : "trace complete", "ok");
   };
 
   $("whCopy").addEventListener("click", async () => {

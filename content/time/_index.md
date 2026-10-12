@@ -3,6 +3,10 @@ title: "time"
 description: "Local date and time, synced to the second."
 date: 2026-10-08
 aliases:
+  - "/d/"
+  - "/d"
+  - "/t/"
+  - "/t"
   - "/date/"
   - "/date"
   - "/times/"

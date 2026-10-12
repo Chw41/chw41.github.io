@@ -65,6 +65,6 @@ enableRobotsTXT = true
     weight = 3
 
   [[menu.main]]
-    name = "Individual CTF"
+    name = "CTF"
     url = "/1nd1v1du4l-c7f/"
     weight = 4

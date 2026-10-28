@@ -4,7 +4,7 @@ date: 2026-10-28
 author: "CHW"
 tags:
   - offsec
-description: "OSED EXP-301 筆記 Part 2，整理 SEH Overflow 利用、Structured Exception Handling 機制、TEB 與 _EXCEPTION_REGISTRATION_RECORD、SafeSEH 與 SEHOP、KiUserExceptionDispatcher 與 RtlDispatchException、以 narly 定位未啟用 SafeSEH 的模組、POP POP RET 與 NSEH/SEH 覆寫、short jump 與 Island-Hopping、add sp 與 jmp esp 重導執行流程、msfvenom Meterpreter payload 取得 SYSTEM shell，以及 IDA Pro 反組譯介面、Graph/Text/Proximity view、Search 與 Cross-Reference、與 WinDbg 的 Static-Dynamic 同步（Rebase program）、追蹤 Notepad 的 CreateFileW 與 ReadFile 等等。"
+description: "OSED EXP-301 筆記 Part 2，整理 SEH Overflow 利用、Structured Exception Handling 機制、TEB、SafeSEH & SEHOP、KiUserExceptionDispatcher & RtlDispatchException、以 narly 定位未啟用 SafeSEH 的模組、POP POP RET & NSEH/SEH 覆寫、short jump & Island-Hopping，以及 IDA Pro 反組譯介面、Graph/Text/Proximity view、Search 與 Cross-Reference、IDA 與 WinDbg 的 Static-Dynamic 同步（Rebase program）、追蹤 Notepad 的 CreateFileW 與 ReadFile 等等。"
 ---
 
 [OSED, EXP-301] Instructional notes - Part 2

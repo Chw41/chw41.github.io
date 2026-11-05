@@ -1,0 +1,217 @@
+{{ define "main" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="{{ "css/upload.css" | relURL }}?v={{ now.Unix }}">
+
+<div class="ins" id="ins">
+  <div class="ins-grain" aria-hidden="true"></div>
+  <div class="ins-aurora" aria-hidden="true"></div>
+
+  <!-- intro loader -->
+  <div class="ins-loader" id="upLoader" aria-hidden="true">
+    <div class="ins-loader-inner">
+      <div class="ins-loader-word">DISSECT</div>
+      <div class="ins-loader-meta">
+        <span class="ins-loader-sub">forensic file inspector</span>
+        <span class="ins-loader-pct"><span id="upLoaderPct">000</span>%</span>
+      </div>
+      <div class="ins-loader-track"><i id="upLoaderBar"></i></div>
+    </div>
+  </div>
+
+  <!-- fixed chrome -->
+  <header class="ins-top">
+    <a class="ins-wordmark" href="/" data-cursor="home">DISSECT<span class="ins-wordmark-mk">▦</span></a>
+    <div class="ins-status" id="upStatus" data-state="idle">
+      <span class="ins-status-led"></span><span class="wh-pill-text ins-status-text">Awaiting evidence</span>
+    </div>
+  </header>
+
+  <!-- chapter rail -->
+  <nav class="ins-rail" id="upRail" hidden aria-label="Report sections">
+    <a class="ins-rail-item is-active" data-go="ch-00" data-ch="00"><span class="n">00</span><span class="t">Verdict</span></a>
+    <a class="ins-rail-item" data-go="ch-01" data-ch="01"><span class="n">01</span><span class="t">Identity</span></a>
+    <a class="ins-rail-item" data-go="ch-02" data-ch="02"><span class="n">02</span><span class="t">Integrity</span></a>
+    <a class="ins-rail-item" data-go="ch-03" data-ch="03"><span class="n">03</span><span class="t">Structure</span></a>
+    <a class="ins-rail-item" data-go="ch-04" data-ch="04"><span class="n">04</span><span class="t">Entropy</span></a>
+    <a class="ins-rail-item" data-go="ch-05" data-ch="05"><span class="n">05</span><span class="t">Content</span></a>
+    <a class="ins-rail-item" data-go="ch-06" data-ch="06"><span class="n">06</span><span class="t">Log</span></a>
+  </nav>
+
+  <!-- HERO / intake -->
+  <section class="ins-hero" id="upHero">
+    <div class="ins-hero-eyebrow" data-reveal>client-side · zero-upload · evidence stays local</div>
+    <h1 class="ins-title" id="upTitle" data-reveal>Every file<br>tells on <em>itself.</em></h1>
+    <p class="ins-lead" data-reveal>Drop any file and it is dissected entirely in your browser: true type, cryptographic digests, entropy, a 3-D byte cloud, strings, hex, metadata and tamper indicators. Nothing is uploaded.</p>
+
+    <label class="ins-drop up-drop" id="upDrop" for="upInput" tabindex="0" data-reveal data-cursor="drop evidence">
+      <input type="file" id="upInput" hidden>
+      <span class="ins-corner tl" aria-hidden="true"></span>
+      <span class="ins-corner tr" aria-hidden="true"></span>
+      <span class="ins-corner bl" aria-hidden="true"></span>
+      <span class="ins-corner br" aria-hidden="true"></span>
+      <div class="ins-drop-body">
+        <svg class="ins-drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 15V3"></path><path d="m7 8 5-5 5 5"></path>
+          <path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5"></path>
+        </svg>
+        <div class="ins-drop-head">Drop evidence to begin</div>
+        <div class="ins-drop-sub">or <span>browse</span> · any file, analysed locally</div>
+      </div>
+    </label>
+
+    <div class="ins-ticker" data-reveal aria-hidden="true">
+      <div class="ins-ticker-row">
+        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>strings</span><span>exif / gps</span><span>polyglot carving</span><span>hex</span><span>archive manifest</span>
+        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>strings</span><span>exif / gps</span><span>polyglot carving</span><span>hex</span><span>archive manifest</span>
+      </div>
+    </div>
+    <div class="ins-scrollcue" data-reveal aria-hidden="true"><span>scroll</span><i></i></div>
+  </section>
+
+  <!-- SCAN takeover -->
+  <div class="ins-scan" id="upScan" hidden aria-hidden="true">
+    <div class="ins-scan-grid" aria-hidden="true"></div>
+    <div class="ins-scan-line" aria-hidden="true"></div>
+    <div class="ins-scan-inner">
+      <div class="ins-scan-k">analysing evidence</div>
+      <div class="ins-scan-name" id="upScanName">·</div>
+      <div class="ins-scan-phase"><span id="upScanPhase">requisition</span><span class="ins-scan-pct"><span id="upScanPct">000</span>%</span></div>
+      <div class="ins-scan-track"><i id="upScanBar"></i></div>
+    </div>
+  </div>
+
+  <!-- DOSSIER -->
+  <div class="ins-dossier" id="upResults" hidden>
+
+    <section class="chapter" id="ch-00" data-ch="00">
+      <div class="ch-head"><span class="ch-num">00</span><span class="ch-label">Verdict</span></div>
+      <div class="ch-body">
+        <div class="ins-vtop" data-reveal>
+          <div class="ins-fileicon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+          </div>
+          <div class="ins-vtop-info">
+            <div class="ins-filename" id="upFileName">·</div>
+            <div class="ins-filemeta" id="upFileMeta"></div>
+            <div class="ins-typebadge" id="upTypeBadge"></div>
+          </div>
+        </div>
+        <div class="ins-verdict" id="upTypeVerdict" data-level="pending" data-reveal>Analysing</div>
+        <p class="ins-note" id="upTypeNote" data-reveal></p>
+        <div class="ins-findings-bar" data-reveal>
+          <span class="ins-label">Findings</span>
+          <span class="ins-badge" id="upFindingsVerdict" data-level="pending">·</span>
+        </div>
+        <div class="ins-findings" id="upFindings" data-reveal></div>
+        <p class="ins-disclaimer" data-reveal>Structural inspection only. This is not a malware scan: it reads how the file is built, not what it does, and cannot confirm a file is safe or malicious. Treat every executable as dangerous until verified elsewhere.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="ch-01" data-ch="01">
+      <div class="ch-head"><span class="ch-num">01</span><span class="ch-label">Identity</span></div>
+      <div class="ch-body"><div class="ins-rows ins-rows--big" id="upIdentity" data-reveal></div></div>
+    </section>
+
+    <section class="chapter" id="ch-02" data-ch="02">
+      <div class="ch-head"><span class="ch-num">02</span><span class="ch-label">Integrity</span></div>
+      <div class="ch-body">
+        <div class="ins-rows ins-rows--hash" id="upHashes" data-reveal></div>
+        <button class="ins-btn" id="upCopyHashes" type="button" data-reveal data-cursor="copy">Copy digests</button>
+      </div>
+    </section>
+
+    <section class="chapter chapter--wide" id="ch-03" data-ch="03">
+      <div class="ch-head"><span class="ch-num">03</span><span class="ch-label">Structure</span></div>
+      <div class="ch-body">
+        <div class="ins-cloud" id="upCloud" data-lenis-prevent data-cursor="drag · zoom" data-reveal></div>
+        <div class="ins-struct-map">
+          <div class="ins-card-head"><span class="ins-label">byte map</span><div class="up-legend ins-legend" id="upByteLegend" aria-hidden="true"></div></div>
+          <div class="up-canvas-wrap ins-frame ins-frame--map" data-reveal><canvas id="upByteCanvas" class="ins-canvas"></canvas></div>
+          <p class="ins-foot">Each pixel is one byte (sampled for large files). Colour encodes the byte's class, exposing structure, padding and high-entropy regions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="ch-04" data-ch="04">
+      <div class="ch-head"><span class="ch-num">04</span><span class="ch-label">Entropy</span></div>
+      <div class="ch-body">
+        <div class="ins-entbig" id="upEntropyAvg" data-reveal>·</div>
+        <div class="up-entropy ins-frame ins-frame--ent" data-reveal>
+          <div class="ins-ent-grid" aria-hidden="true"></div>
+          <svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="upEntGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#30d158" stop-opacity="0.34"></stop>
+                <stop offset="100%" stop-color="#30d158" stop-opacity="0"></stop>
+              </linearGradient>
+            </defs>
+            <path id="upEntArea" class="up-ent-area" d=""></path>
+            <path id="upEntLine" class="up-ent-line" d=""></path>
+          </svg>
+          <span class="ins-ent-scale ins-ent-scale--hi">8 bits</span>
+          <span class="ins-ent-scale ins-ent-scale--lo">0</span>
+        </div>
+        <div class="ins-histwrap" data-reveal>
+          <div class="ins-card-head"><span class="ins-label">byte distribution</span><span class="ins-tag">0x00–0xFF</span></div>
+          <div class="up-canvas-wrap ins-frame ins-frame--hist"><canvas id="upHistCanvas" class="ins-canvas"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="ch-05" data-ch="05">
+      <div class="ch-head"><span class="ch-num">05</span><span class="ch-label">Content</span></div>
+      <div class="ch-body">
+        <div class="ins-two">
+          <div class="ins-panel" data-reveal>
+            <div class="ins-card-head"><span class="ins-label">strings</span><span class="ins-tag" id="upStringsTag">·</span></div>
+            <div class="up-strings ins-stream" id="upStrings"></div>
+          </div>
+          <div class="ins-panel" data-reveal>
+            <div class="ins-card-head"><span class="ins-label">hex dump</span>
+              <div class="ins-actions"><button class="ins-btn ins-btn--sm" id="upHexMore" type="button" data-cursor="more">Show more</button></div>
+            </div>
+            <div class="up-hex ins-stream" id="upHex"></div>
+          </div>
+        </div>
+
+        <div class="ins-two ins-image-cards" id="upImageCards" hidden>
+          <div class="ins-panel">
+            <div class="ins-card-head"><span class="ins-label">preview</span><span class="ins-tag" id="upImgDims"></span></div>
+            <div class="ins-preview" id="upPreview"></div>
+          </div>
+          <div class="ins-panel">
+            <div class="ins-card-head"><span class="ins-label">image metadata</span><span class="ins-badge ins-badge--sm" id="upExifVerdict" data-level="pending">·</span></div>
+            <div class="ins-rows" id="upExif"></div>
+            <p class="ins-foot" id="upExifNote"></p>
+          </div>
+        </div>
+
+        <div class="ins-panel ins-archive-card" id="upArchiveCard" hidden>
+          <div class="ins-card-head"><span class="ins-label">archive manifest</span><span class="ins-tag" id="upArchiveTag"></span></div>
+          <div class="ins-table-wrap"><table class="ins-table" id="upArchive"></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="ch-06" data-ch="06">
+      <div class="ch-head"><span class="ch-num">06</span><span class="ch-label">Log</span></div>
+      <div class="ch-body">
+        <div class="up-log ins-log" id="upLog" data-reveal></div>
+        <button class="ins-btn ins-btn--primary" id="upReset" type="button" data-reveal data-cursor="new case">Open new case</button>
+      </div>
+    </section>
+  </div>
+
+  <footer class="ins-colophon">
+    Everything runs in your browser. No upload, no server, no tracking. Oversized files are sampled for the visualisations; digests cover the whole file.
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" crossorigin="anonymous"></script>
+<script src="{{ "js/upload.js" | relURL }}?v={{ now.Unix }}"></script>
+{{ end }}

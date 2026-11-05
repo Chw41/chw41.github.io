@@ -617,37 +617,22 @@
 
   /* ---------------- EXIF (JPEG) ---------------- */
 
-  const parseJpegExif = (bytes) => {
+  // shared EXIF/TIFF reader (used by JPEG and HEIC); `tiff` = offset of the TIFF header (II/MM)
+  const parseTiff = (bytes, tiff) => {
     try {
-      if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
-      let p = 2, app1 = -1, app1end = -1;
-      while (p + 4 < bytes.length) {
-        if (bytes[p] !== 0xff) break;
-        const marker = bytes[p + 1];
-        if (marker === 0xda || marker === 0xd9) break; // SOS / EOI
-        const len = (bytes[p + 2] << 8) | bytes[p + 3];
-        if (len < 2) break;
-        if (marker === 0xe1 &&
-          bytes[p + 4] === 0x45 && bytes[p + 5] === 0x78 && bytes[p + 6] === 0x69 && bytes[p + 7] === 0x66) {
-          app1 = p + 10; app1end = p + 2 + len; break;
-        }
-        p += 2 + len;
-      }
-      if (app1 < 0) return null;
-
-      const tiff = app1;
+      if (tiff < 0 || tiff + 8 > bytes.length) return null;
       const le = bytes[tiff] === 0x49;
+      if (!le && bytes[tiff] !== 0x4d) return null;
       const u16 = (o) => le ? bytes[o] | (bytes[o + 1] << 8) : (bytes[o] << 8) | bytes[o + 1];
       const u32 = (o) => le
         ? (bytes[o] | (bytes[o + 1] << 8) | (bytes[o + 2] << 16) | (bytes[o + 3] << 24)) >>> 0
         : ((bytes[o] << 24) | (bytes[o + 1] << 16) | (bytes[o + 2] << 8) | bytes[o + 3]) >>> 0;
-
       const TSIZE = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 7: 1, 9: 4, 10: 8 };
 
       const readVal = (type, count, valOff) => {
         const size = (TSIZE[type] || 1) * count;
         const base = size <= 4 ? valOff : tiff + u32(valOff);
-        if (type === 2) { // ASCII
+        if (type === 2) {
           let s = "";
           for (let i = 0; i < count && base + i < bytes.length; i++) {
             const c = bytes[base + i];
@@ -658,7 +643,7 @@
         }
         if (type === 3) return u16(base);
         if (type === 4 || type === 9) return u32(base);
-        if (type === 5 || type === 10) { // RATIONAL(s)
+        if (type === 5 || type === 10) {
           const arr = [];
           for (let i = 0; i < count; i++) {
             const num = u32(base + i * 8), den = u32(base + i * 8 + 4) || 1;
@@ -705,11 +690,109 @@
         };
         const lat = dms(g[0x0002], g[0x0001]);
         const lon = dms(g[0x0004], g[0x0003]);
-        if (lat != null && lon != null) {
-          out.gps = { lat, lon, alt: g[0x0006] };
-        }
+        if (lat != null && lon != null) out.gps = { lat, lon, alt: g[0x0006] };
       }
       return out;
+    } catch (_) {
+      return null;
+    }
+  };
+
+  const parseJpegExif = (bytes) => {
+    try {
+      if (bytes[0] !== 0xff || bytes[1] !== 0xd8) return null;
+      let p = 2, app1 = -1;
+      while (p + 4 < bytes.length) {
+        if (bytes[p] !== 0xff) break;
+        const marker = bytes[p + 1];
+        if (marker === 0xda || marker === 0xd9) break; // SOS / EOI
+        const len = (bytes[p + 2] << 8) | bytes[p + 3];
+        if (len < 2) break;
+        if (marker === 0xe1 &&
+          bytes[p + 4] === 0x45 && bytes[p + 5] === 0x78 && bytes[p + 6] === 0x69 && bytes[p + 7] === 0x66) {
+          app1 = p + 10; break;
+        }
+        p += 2 + len;
+      }
+      return app1 < 0 ? null : parseTiff(bytes, app1);
+    } catch (_) {
+      return null;
+    }
+  };
+
+  // HEIC / HEIF (ISO-BMFF): locate the "Exif" item via meta>iinf/iloc, then read its TIFF block
+  const parseHeicExif = (bytes) => {
+    try {
+      const u16 = (o) => (bytes[o] << 8) | bytes[o + 1];
+      const u32 = (o) => ((bytes[o] << 24) | (bytes[o + 1] << 16) | (bytes[o + 2] << 8) | bytes[o + 3]) >>> 0;
+      const typeAt = (o) => String.fromCharCode(bytes[o], bytes[o + 1], bytes[o + 2], bytes[o + 3]);
+      const findBox = (start, end, type) => {
+        let p = start;
+        while (p + 8 <= end) {
+          let size = u32(p), hdr = 8;
+          if (size === 1) { size = u32(p + 8) * 4294967296 + u32(p + 12); hdr = 16; }
+          else if (size === 0) size = end - p;
+          if (size < 8) break;
+          if (typeAt(p + 4) === type) return { body: p + hdr, end: p + size };
+          p += size;
+        }
+        return null;
+      };
+      const meta = findBox(0, bytes.length, "meta");
+      if (!meta) return null;
+      const metaStart = meta.body + 4; // meta is a FullBox
+      const iinf = findBox(metaStart, meta.end, "iinf");
+      const iloc = findBox(metaStart, meta.end, "iloc");
+      if (!iinf || !iloc) return null;
+
+      // iinf: find the item whose type is "Exif"
+      let p = iinf.body; const iinfVer = bytes[p]; p += 4;
+      let cnt = iinfVer === 0 ? u16(p) : u32(p); p += iinfVer === 0 ? 2 : 4;
+      let exifId = -1, q = p;
+      for (let i = 0; i < cnt && q + 8 <= iinf.end; i++) {
+        const bs = u32(q);
+        if (typeAt(q + 4) === "infe") {
+          const iv = bytes[q + 8]; let r = q + 12;
+          if (iv >= 2) {
+            let id;
+            if (iv === 2) { id = u16(r); r += 2; } else { id = u32(r); r += 4; }
+            r += 2; // protection index
+            if (typeAt(r) === "Exif") exifId = id;
+          }
+        }
+        if (bs < 8) break;
+        q += bs;
+      }
+      if (exifId < 0) return null;
+
+      // iloc: resolve the item's first extent to a file offset + length
+      p = iloc.body; const lver = bytes[p]; p += 4;
+      const sz1 = bytes[p], sz2 = bytes[p + 1]; p += 2;
+      const offSize = sz1 >> 4, lenSize = sz1 & 0xf, baseSize = sz2 >> 4, idxSize = sz2 & 0xf;
+      let items = lver < 2 ? u16(p) : u32(p); p += lver < 2 ? 2 : 4;
+      const readN = (o, n) => { let v = 0; for (let i = 0; i < n; i++) v = v * 256 + bytes[o + i]; return v; };
+      let eOff = -1;
+      for (let i = 0; i < items; i++) {
+        const id = lver < 2 ? u16(p) : u32(p); p += lver < 2 ? 2 : 4;
+        if (lver === 1 || lver === 2) p += 2; // construction_method
+        p += 2; // data_reference_index
+        const base = readN(p, baseSize); p += baseSize;
+        const ec = u16(p); p += 2;
+        let o0 = -1;
+        for (let e = 0; e < ec; e++) {
+          if (idxSize > 0) p += idxSize;
+          const eo = readN(p, offSize); p += offSize;
+          p += lenSize; // extent length (unused)
+          if (e === 0) o0 = base + eo;
+        }
+        if (id === exifId) { eOff = o0; break; }
+      }
+      if (eOff < 0 || eOff + 4 > bytes.length) return null;
+
+      // Exif payload: [4-byte BE offset to TIFF][optional "Exif\0\0"][TIFF]
+      let tiff = eOff + 4 + u32(eOff);
+      if (bytes[tiff] === 0x45 && bytes[tiff + 1] === 0x78 && bytes[tiff + 2] === 0x69 && bytes[tiff + 3] === 0x66) tiff += 6;
+      return parseTiff(bytes, tiff);
     } catch (_) {
       return null;
     }
@@ -781,6 +864,23 @@
   };
 
   let hexState = { bytes: null, shown: 0 };
+
+  const renderHex = (toNew) => {
+    if (!hexState.bytes) return;
+    const el = $("upHex");
+    const prevH = el.scrollHeight;
+    el.innerHTML = hexDump(hexState.bytes, hexState.shown);
+    const cap = Math.min(hexState.bytes.length, HEX_CAP);
+    const btn = $("upHexMore");
+    btn.disabled = hexState.shown >= cap;
+    btn.textContent = btn.disabled ? "End of view" : "Show more";
+    const tag = $("upHexTag");
+    if (tag) {
+      const f = (n) => fmtBytes(n).replace(/ \(.*\)/, "");
+      tag.textContent = `${f(hexState.shown)} of ${f(hexState.bytes.length)}${hexState.bytes.length > HEX_CAP ? " · cap 64 KB" : ""}`;
+    }
+    if (toNew) el.scrollTop = prevH;
+  };
 
   /* ---------------- byte-map legend ---------------- */
 
@@ -924,11 +1024,10 @@
 
       /* hex */
       hexState = { bytes: buf, shown: Math.min(HEX_START, buf.length) };
-      $("upHex").innerHTML = hexDump(buf, hexState.shown);
-      $("upHexMore").disabled = hexState.shown >= Math.min(buf.length, HEX_CAP);
+      renderHex(false);
 
       /* image preview + exif */
-      const imgExt = { png: 1, jpg: 1, gif: 1, webp: 1, bmp: 1, ico: 1, svg: 1, avif: 1 };
+      const imgExt = { png: 1, jpg: 1, gif: 1, webp: 1, bmp: 1, ico: 1, svg: 1, avif: 1, heic: 1 };
       if (sig && imgExt[sig.ext]) {
         $("upImageCards").hidden = false;
         reveal($("upImageCards"));
@@ -940,7 +1039,7 @@
         im.src = url;
         $("upPreview").append(im);
 
-        const exif = sig.ext === "jpg" ? parseJpegExif(buf) : null;
+        const exif = sig.ext === "jpg" ? parseJpegExif(buf) : (sig.ext === "heic" ? parseHeicExif(buf) : null);
         renderExif(exif);
         if (exif && exif.gps) gpsFound = true;
       }
@@ -1060,8 +1159,7 @@
     if (!hexState.bytes) return;
     const cap = Math.min(hexState.bytes.length, HEX_CAP);
     hexState.shown = Math.min(cap, hexState.shown + HEX_STEP);
-    $("upHex").innerHTML = hexDump(hexState.bytes, hexState.shown);
-    $("upHexMore").disabled = hexState.shown >= cap;
+    renderHex(true);
   });
 
   /* ---------------- copy hashes ---------------- */

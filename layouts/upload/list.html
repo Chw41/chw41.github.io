@@ -163,17 +163,15 @@
     <section class="chapter" id="ch-05" data-ch="05">
       <div class="ch-head"><span class="ch-num">05</span><span class="ch-label">Content</span></div>
       <div class="ch-body">
-        <div class="ins-two">
-          <div class="ins-panel" data-reveal>
-            <div class="ins-card-head"><span class="ins-label">strings</span><span class="ins-tag" id="upStringsTag">·</span></div>
-            <div class="up-strings ins-stream" id="upStrings"></div>
+        <div class="ins-panel" data-reveal>
+          <div class="ins-card-head"><span class="ins-label">strings</span><span class="ins-tag" id="upStringsTag">·</span></div>
+          <div class="up-strings ins-stream" id="upStrings" data-lenis-prevent></div>
+        </div>
+        <div class="ins-panel" data-reveal>
+          <div class="ins-card-head"><span class="ins-label">hex dump</span>
+            <div class="ins-actions"><span class="ins-tag" id="upHexTag"></span><button class="ins-btn ins-btn--sm" id="upHexMore" type="button" data-cursor="more">Show more</button></div>
           </div>
-          <div class="ins-panel" data-reveal>
-            <div class="ins-card-head"><span class="ins-label">hex dump</span>
-              <div class="ins-actions"><button class="ins-btn ins-btn--sm" id="upHexMore" type="button" data-cursor="more">Show more</button></div>
-            </div>
-            <div class="up-hex ins-stream" id="upHex"></div>
-          </div>
+          <div class="up-hex ins-stream" id="upHex" data-lenis-prevent></div>
         </div>
 
         <div class="ins-two ins-image-cards" id="upImageCards" hidden>
@@ -190,7 +188,7 @@
 
         <div class="ins-panel ins-archive-card" id="upArchiveCard" hidden>
           <div class="ins-card-head"><span class="ins-label">archive manifest</span><span class="ins-tag" id="upArchiveTag"></span></div>
-          <div class="ins-table-wrap"><table class="ins-table" id="upArchive"></table></div>
+          <div class="ins-table-wrap" data-lenis-prevent><table class="ins-table" id="upArchive"></table></div>
         </div>
       </div>
     </section>
@@ -198,7 +196,7 @@
     <section class="chapter" id="ch-06" data-ch="06">
       <div class="ch-head"><span class="ch-num">06</span><span class="ch-label">Log</span></div>
       <div class="ch-body">
-        <div class="up-log ins-log" id="upLog" data-reveal></div>
+        <div class="up-log ins-log" id="upLog" data-reveal data-lenis-prevent></div>
         <button class="ins-btn ins-btn--primary" id="upReset" type="button" data-reveal data-cursor="new case">Open new case</button>
       </div>
     </section>

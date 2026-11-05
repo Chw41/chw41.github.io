@@ -406,13 +406,13 @@
     };
     let current = layers.map.addTo(map);
 
-    document.querySelectorAll(".wh-seg button").forEach((btn) => {
+    document.querySelectorAll(".wh-map-card .wh-seg button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const next = layers[btn.dataset.layer];
         if (next === current) return;
         map.removeLayer(current);
         current = next.addTo(map);
-        document.querySelectorAll(".wh-seg button").forEach((b) => b.classList.toggle("is-active", b === btn));
+        document.querySelectorAll(".wh-map-card .wh-seg button").forEach((b) => b.classList.toggle("is-active", b === btn));
       });
     });
 

@@ -470,10 +470,298 @@
     $("whCoord").textContent = fmtCoord(geo.lat, geo.lon);
   };
 
+  /* ---------------- diagnostics: live latency ---------------- */
+
+  const initLatency = () => {
+    const valEl = $("whPingVal");
+    const dot = $("whPingDot");
+    const area = $("whSparkArea");
+    const avg = $("whSparkAvg");
+    const line = $("whSparkLine");
+    const head = $("whSparkHead");
+    const W = 300, H = 90, WIN = 48;
+    const colorFor = (v) => (v < 80 ? "var(--green)" : v < 180 ? "var(--amber)" : "var(--red)");
+
+    const targets = {
+      cf: { url: () => `https://1.1.1.1/cdn-cgi/trace?${Date.now()}`, mode: "cors" },
+      google: { url: () => `https://www.gstatic.com/generate_204?${Date.now()}`, mode: "no-cors" },
+    };
+    let current = "cf";
+    let samples = [];
+    let timer = null;
+
+    const ping = async () => {
+      const t = targets[current];
+      const t0 = performance.now();
+      try {
+        await fetchWithTimeout(t.url(), { mode: t.mode }, 4000);
+        return Math.round(performance.now() - t0);
+      } catch (_) {
+        return null;
+      }
+    };
+
+    const draw = () => {
+      const vals = samples.filter((v) => v != null);
+      if (!vals.length) {
+        area.setAttribute("d", "");
+        avg.setAttribute("d", "");
+        line.setAttribute("d", "");
+        head.style.opacity = "0";
+        return;
+      }
+      const hi = Math.max(...vals), lo = Math.min(...vals);
+      const pad = (hi - lo) * 0.25 || 4;
+      const top = hi + pad, bot = Math.max(0, lo - pad);
+      const span = top - bot || 1;
+      const n = samples.length;
+      const RX = W - 8; // right inset so the line tip + live probe stay fully visible
+      const xAt = (i) => (n === 1 ? RX : (i / (n - 1)) * RX);
+      const yAt = (v) => H - ((v - bot) / span) * H;
+
+      let d = "", lastI = -1;
+      samples.forEach((v, i) => {
+        if (v == null) return;
+        d += `${d ? "L" : "M"}${xAt(i).toFixed(1)} ${yAt(v).toFixed(1)}`;
+        lastI = i;
+      });
+      line.setAttribute("d", d);
+      area.setAttribute("d", d ? `${d}L${xAt(lastI).toFixed(1)} ${H}L0 ${H}Z` : "");
+
+      // average baseline
+      const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+      const ymean = yAt(mean).toFixed(1);
+      avg.setAttribute("d", `M0 ${ymean}L${W} ${ymean}`);
+
+      // live leading probe — rides the newest sample, coloured by latency
+      if (lastI >= 0) {
+        const v = samples[lastI];
+        head.style.left = `${(xAt(lastI) / W) * 100}%`;
+        head.style.top = `${(yAt(v) / H) * 100}%`;
+        head.style.background = colorFor(v);
+        head.style.color = colorFor(v);
+        head.style.opacity = "1";
+      }
+    };
+
+    const stats = () => {
+      const vals = samples.filter((v) => v != null);
+      const set = (id, v) => { $(id).textContent = v; };
+      if (!vals.length) {
+        ["whPingMin", "whPingAvg", "whPingMax", "whPingJit"].forEach((id) => set(id, "—"));
+        return;
+      }
+      const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+      let jit = 0;
+      for (let i = 1; i < vals.length; i++) jit += Math.abs(vals[i] - vals[i - 1]);
+      jit = vals.length > 1 ? jit / (vals.length - 1) : 0;
+      set("whPingMin", `${Math.min(...vals)} ms`);
+      set("whPingAvg", `${Math.round(avg)} ms`);
+      set("whPingMax", `${Math.max(...vals)} ms`);
+      set("whPingJit", `${Math.round(jit)} ms`);
+    };
+
+    const tick = async () => {
+      const rtt = await ping();
+      samples.push(rtt);
+      if (samples.length > WIN) samples.shift();
+      if (rtt == null) {
+        valEl.textContent = "—";
+        dot.style.background = "var(--red)";
+      } else {
+        valEl.textContent = rtt;
+        dot.style.background = colorFor(rtt);
+      }
+      draw();
+      stats();
+    };
+
+    let running = false;
+    const loop = async () => {
+      if (running || document.hidden) return; // single in-flight; pause in background
+      running = true;
+      try { await tick(); } finally { running = false; }
+      if (!document.hidden) {
+        clearTimeout(timer);
+        timer = setTimeout(loop, 1200);
+      }
+    };
+
+    document.querySelectorAll('.wh-seg--inline button').forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.ping === current) return;
+        current = btn.dataset.ping;
+        samples = [];
+        valEl.textContent = "—";
+        draw();
+        stats();
+        document.querySelectorAll('.wh-seg--inline button').forEach((b) => b.classList.toggle("is-active", b === btn));
+      });
+    });
+
+    // pause pinging when the tab is hidden, resume when it returns to the foreground
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) loop();
+    });
+
+    log("live latency monitor started", "step");
+    loop();
+  };
+
+  /* ---------------- diagnostics: speed test ---------------- */
+
+  const initSpeedtest = () => {
+    const btn = $("whSpeedBtn");
+    const dlEl = $("whDl");
+    const ulEl = $("whUl");
+    const bar = $("whSpeedBar");
+    const phase = $("whSpeedPhase");
+    const WARMUP = 1 * 1024 * 1024;
+    const DOWN = 25 * 1024 * 1024;
+    const UP = 10 * 1024 * 1024;
+    let running = false;
+
+    const measureDown = async () => {
+      const res = await fetchWithTimeout(`https://speed.cloudflare.com/__down?bytes=${DOWN}`, {}, 30000);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.body) {
+        const t0 = performance.now();
+        const buf = await res.arrayBuffer();
+        return (buf.byteLength * 8) / ((performance.now() - t0) / 1000) / 1e6;
+      }
+      const reader = res.body.getReader();
+      let received = 0, started = 0, mbps = 0;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (!started) { started = performance.now(); continue; } // skip 1st chunk (TTFB)
+        received += value.length;
+        const sec = (performance.now() - started) / 1000;
+        if (sec > 0.15) {
+          mbps = (received * 8) / sec / 1e6;
+          dlEl.textContent = mbps.toFixed(1);
+          bar.style.width = `${Math.min(100, (received / DOWN) * 100)}%`;
+        }
+      }
+      return mbps;
+    };
+
+    const measureUp = async () => {
+      const body = new Uint8Array(UP);
+      const t0 = performance.now();
+      const res = await fetchWithTimeout("https://speed.cloudflare.com/__up", { method: "POST", body }, 30000);
+      if (!res.ok && res.type !== "opaque") throw new Error(`HTTP ${res.status}`);
+      return (UP * 8) / ((performance.now() - t0) / 1000) / 1e6;
+    };
+
+    const run = async () => {
+      if (running) return;
+      running = true;
+      btn.disabled = true;
+      btn.textContent = "Testing…";
+      dlEl.textContent = "0.0";
+      ulEl.textContent = "—";
+      bar.classList.remove("is-busy");
+      bar.style.width = "0%";
+      try {
+        phase.textContent = "Priming connection…";
+        await fetchWithTimeout(`https://speed.cloudflare.com/__down?bytes=${WARMUP}`, {}, 15000).then((r) => r.arrayBuffer());
+
+        phase.textContent = "Measuring download…";
+        const dl = await measureDown();
+        dlEl.textContent = dl.toFixed(1);
+        bar.style.width = "100%";
+        log(`speedtest download ${dl.toFixed(1)} Mbps`, "ok");
+
+        phase.textContent = "Measuring upload…";
+        ulEl.textContent = "0.0";
+        bar.classList.add("is-busy");
+        const ul = await measureUp();
+        bar.classList.remove("is-busy");
+        bar.style.width = "100%";
+        ulEl.textContent = ul.toFixed(1);
+        log(`speedtest upload ${ul.toFixed(1)} Mbps`, "ok");
+
+        phase.textContent = `Done · ↓${dl.toFixed(1)} ↑${ul.toFixed(1)} Mbps`;
+      } catch (e) {
+        bar.classList.remove("is-busy");
+        phase.textContent = `Failed — ${e.message}`;
+        log(`speedtest failed: ${e.message}`, "err");
+      } finally {
+        running = false;
+        btn.disabled = false;
+        btn.textContent = "Run again";
+      }
+    };
+
+    btn.addEventListener("click", run);
+  };
+
+  /* ---------------- diagnostics: search (IP / domain lookup) ---------------- */
+
+  const initSearch = () => {
+    const form = $("whSearch");
+    const input = $("whSearchInput");
+    const hint = $("whSearchHint");
+    const btn = $("whSearchBtn");
+    if (!form || !input) return;
+
+    if (lookup) input.value = lookup; // prefill on a lookup page
+
+    const setHint = (msg, err = false) => {
+      hint.textContent = msg || "";
+      hint.classList.toggle("is-err", !!err);
+    };
+
+    const go = (ip) => { location.search = "?chw=" + encodeURIComponent(ip); };
+
+    const resolveHost = async (host) => {
+      for (const [type, code] of [["A", 1], ["AAAA", 28]]) {
+        try {
+          const d = await fetchJSON(
+            `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=${type}`,
+            { headers: { accept: "application/dns-json" } },
+            6000
+          );
+          const ans = (d.Answer || []).find((a) => a.type === code);
+          if (ans) return ans.data;
+        } catch (_) {}
+      }
+      return null;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) { location.href = location.pathname; return; } // back to my own IP
+      if (isValidIP(q)) { go(q); return; }
+
+      const host = q.replace(/^[a-z]+:\/\//i, "").replace(/[/?#].*$/, "").replace(/:\d+$/, "");
+      if (!/^(?=.{1,253}$)([a-z0-9](-?[a-z0-9]+)*\.)+[a-z]{2,}$/i.test(host)) {
+        setHint("Enter a valid IP address or domain name", true);
+        return;
+      }
+
+      setHint(`Resolving ${host}…`);
+      btn.disabled = true;
+      const ip = await resolveHost(host);
+      btn.disabled = false;
+      if (!ip) { setHint(`Could not resolve ${host}`, true); return; }
+      setHint(`${host} → ${ip}`);
+      go(ip);
+    });
+  };
+
+  const initDiagnostics = () => {
+    try { initLatency(); } catch (e) { log(`latency monitor error: ${e.message}`, "warn"); }
+    try { initSpeedtest(); } catch (e) { log(`speed test error: ${e.message}`, "warn"); }
+  };
+
   /* ---------------- main ---------------- */
 
   const run = async () => {
     initMap();
+    initSearch();
 
     if (lookup) {
       report.target_ip = lookup;
@@ -496,11 +784,13 @@
       ["stIsp", "stEdge", "stRtt"].forEach((id) => { const el = $(id); if (el) hide(el.closest(".wh-stat")); });
       hideCard("whConn");                                      // viewer edge / TLS
       hide($("whRisk") && $("whRisk").closest(".wh-cards"));   // viewer privacy + device
+      hide($("whDiag"));                                        // latency/speed: viewer-only
       log(`ip lookup — resolving ${lookup}`, "step");
     } else {
       if (queryIP) log(`ignoring invalid ip parameter: ${queryIP}`, "warn");
       log("whoami — passive client-side trace", "step");
       log("spawning probes: geo, edge, dual-stack, webrtc, fingerprint", "step");
+      initDiagnostics();
     }
 
     const pGeo = getGeo(lookup);

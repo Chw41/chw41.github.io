@@ -23,6 +23,18 @@
     </div>
   </header>
 
+  <div class="wh-search-wrap">
+    <form class="wh-search" id="whSearch" role="search" autocomplete="off">
+      <svg class="wh-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input class="wh-search-input" id="whSearchInput" type="text" inputmode="url" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Look up any IP address or domain…" aria-label="Look up any IP address or domain">
+      <button class="wh-search-btn" id="whSearchBtn" type="submit">Trace</button>
+    </form>
+    <div class="wh-search-hint" id="whSearchHint" role="status" aria-live="polite"></div>
+  </div>
+
   <section class="wh-stats" aria-label="Summary">
     <div class="wh-stat">
       <div class="wh-stat-k">Provider</div>
@@ -60,6 +72,74 @@
     </div>
 
     <div class="wh-chip wh-chip--bl wh-mono" id="whCoord">0.000000° N · 0.000000° E</div>
+  </section>
+
+  <section class="wh-cards wh-diag" id="whDiag">
+    <article class="wh-card wh-diag-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Latency</div>
+        <div class="wh-seg wh-seg--inline" role="group" aria-label="Ping target">
+          <button type="button" class="is-active" data-ping="cf">Cloudflare</button>
+          <button type="button" data-ping="google">Google</button>
+        </div>
+      </div>
+
+      <div class="wh-ping-now">
+        <span class="wh-dot" id="whPingDot" aria-hidden="true"></span>
+        <span class="wh-ping-val" id="whPingVal">—</span>
+        <span class="wh-ping-unit">ms</span>
+        <span class="wh-ping-tag wh-mono">HTTP RTT</span>
+      </div>
+
+      <div class="wh-spark">
+        <div class="wh-spark-grid" aria-hidden="true"></div>
+        <svg viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="whSparkGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#30d158" stop-opacity="0.32"></stop>
+              <stop offset="100%" stop-color="#30d158" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <path id="whSparkArea" class="wh-spark-area" d=""></path>
+          <path id="whSparkAvg" class="wh-spark-avg" d=""></path>
+          <path id="whSparkLine" class="wh-spark-line" d=""></path>
+        </svg>
+        <div class="wh-spark-head" id="whSparkHead" aria-hidden="true"></div>
+      </div>
+
+      <div class="wh-ping-stats">
+        <div><span class="wh-ps-k">min</span><span class="wh-ps-v" id="whPingMin">—</span></div>
+        <div><span class="wh-ps-k">avg</span><span class="wh-ps-v" id="whPingAvg">—</span></div>
+        <div><span class="wh-ps-k">max</span><span class="wh-ps-v" id="whPingMax">—</span></div>
+        <div><span class="wh-ps-k">jitter</span><span class="wh-ps-v" id="whPingJit">—</span></div>
+      </div>
+    </article>
+
+    <article class="wh-card wh-diag-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Bandwidth</div>
+        <div class="wh-card-tag">speed.cloudflare.com</div>
+      </div>
+
+      <div class="wh-speed-readouts">
+        <div class="wh-speed-read">
+          <div class="wh-speed-k">↓ Download</div>
+          <div class="wh-speed-v"><span id="whDl">—</span><span class="wh-speed-u">Mbps</span></div>
+        </div>
+        <div class="wh-speed-read">
+          <div class="wh-speed-k">↑ Upload</div>
+          <div class="wh-speed-v"><span id="whUl">—</span><span class="wh-speed-u">Mbps</span></div>
+        </div>
+      </div>
+
+      <div class="wh-speed-bar"><div class="wh-speed-bar-fill" id="whSpeedBar"></div></div>
+      <div class="wh-speed-phase wh-mono" id="whSpeedPhase">Idle · tap to start</div>
+
+      <div class="wh-speed-foot">
+        <button class="wh-btn wh-speed-btn" id="whSpeedBtn" type="button">Run speed test</button>
+        <p class="wh-card-note">Streams from Cloudflare to measure throughput.</p>
+      </div>
+    </article>
   </section>
 
   <section class="wh-cards wh-cards--3">

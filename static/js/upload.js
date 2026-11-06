@@ -2170,32 +2170,9 @@
     it.addEventListener("click", (e) => { e.preventDefault(); goTo(it.dataset.go); });
   });
 
-  /* ---- custom cursor + spotlight + magnetic + tilt ---- */
+  /* ---- magnetic buttons + drop-zone tilt (native mouse cursor kept) ---- */
   if (!prefersReduce && matchMedia("(pointer: fine)").matches) {
     try {
-      const spot = document.createElement("div"); spot.className = "ins-spot";
-      const dot = document.createElement("div"); dot.className = "ins-cursor";
-      const ring = document.createElement("div"); ring.className = "ins-cursor-ring";
-      const label = document.createElement("span"); label.className = "ins-cursor-label"; ring.appendChild(label);
-      document.body.append(spot, dot, ring);
-      document.documentElement.classList.add("ins-has-cursor");
-      let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my, sx = mx, sy = my, on = false;
-      window.addEventListener("pointermove", (e) => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
-        if (!on) { spot.style.opacity = "1"; on = true; }
-        const hot = e.target.closest && e.target.closest("a,button,label,.ins-cloud,[data-cursor]");
-        if (hot) { ring.classList.add("is-hot"); label.textContent = hot.getAttribute("data-cursor") || ""; }
-        else { ring.classList.remove("is-hot"); label.textContent = ""; }
-      }, { passive: true });
-      const tk = () => {
-        rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
-        ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
-        sx += (mx - sx) * 0.08; sy += (my - sy) * 0.08;
-        spot.style.transform = `translate(${sx}px,${sy}px) translate(-50%,-50%)`;
-        requestAnimationFrame(tk);
-      };
-      requestAnimationFrame(tk);
       document.addEventListener("pointermove", (e) => {
         const b = e.target.closest && e.target.closest(".ins-btn");
         document.querySelectorAll(".ins-btn").forEach((x) => { if (x !== b) x.style.transform = ""; });
@@ -2206,6 +2183,6 @@
         dz.addEventListener("pointermove", (e) => { const r = dz.getBoundingClientRect(); const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2); const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2); dzb.style.transform = `rotateY(${nx * 5}deg) rotateX(${-ny * 5}deg) translateZ(12px)`; });
         dz.addEventListener("pointerleave", () => { dzb.style.transform = ""; });
       }
-    } catch (_) { document.documentElement.classList.remove("ins-has-cursor"); }
+    } catch (_) {}
   }
 })();

@@ -361,16 +361,6 @@ body { background: #000 !important; }
 
 .ins-colophon { max-width: 640px; margin: 0 auto; padding: 0 var(--gutter) 60px; text-align: center; font-size: 12px; line-height: 1.6; color: var(--ink-3); }
 
-/* ---------- custom cursor + spotlight ---------- */
-
-.ins-has-cursor, .ins-has-cursor * { cursor: none !important; }
-.ins-cursor, .ins-cursor-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; mix-blend-mode: difference; }
-.ins-cursor { width: 7px; height: 7px; background: #fff; }
-.ins-cursor-ring { width: 40px; height: 40px; border: 1.5px solid rgba(255, 255, 255, 0.6); transition: width 0.28s cubic-bezier(0.2, 0.7, 0.2, 1), height 0.28s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.28s ease, background 0.28s ease; }
-.ins-cursor-ring.is-hot { width: 76px; height: 76px; border-color: transparent; background: rgba(48, 209, 88, 0.22); }
-.ins-cursor-label { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #04140a; opacity: 0; mix-blend-mode: normal; transition: opacity 0.2s ease; text-align: center; padding: 0 6px; }
-.ins-cursor-ring.is-hot .ins-cursor-label { opacity: 1; }
-.ins-spot { position: fixed; top: 0; left: 0; width: 560px; height: 560px; z-index: -1; pointer-events: none; border-radius: 50%; background: radial-gradient(circle, rgba(48, 209, 88, 0.1), transparent 62%); opacity: 0; transition: opacity 0.5s ease; }
 
 /* ---------- reveal (GSAP sets initial state at runtime; visible without JS) ---------- */
 .up-canvas-wrap.is-reveal .ins-canvas, .up-entropy.is-reveal svg { animation: ins-wipe 0.9s cubic-bezier(0.2, 0.6, 0.2, 1) both; }

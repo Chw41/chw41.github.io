@@ -9,4 +9,10 @@ aliases:
   - "/analyze"
   - "/file/"
   - "/file"
+  - "/upl0ad/"
+  - "/upl0ad"
+  - "/up1oad/"
+  - "/up1oad"
+  - "/up10ad/"
+  - "/up10ad"
 ---

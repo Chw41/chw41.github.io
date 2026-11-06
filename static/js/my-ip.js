@@ -279,12 +279,32 @@
   const parseUA = () => {
     const ua = navigator.userAgent;
     let browser = "Unknown";
-    const m =
-      /(Edg|OPR|SamsungBrowser|Firefox|FxiOS|CriOS|Chrome)\/([\d.]+)/.exec(ua) ||
-      (/Version\/([\d.]+).*Safari/.test(ua) && ["", "Safari", /Version\/([\d.]+)/.exec(ua)[1]]);
-    if (m) {
-      const names = { Edg: "Edge", OPR: "Opera", FxiOS: "Firefox", CriOS: "Chrome" };
-      browser = `${names[m[1]] || m[1]} ${m[2].split(".")[0]}`;
+    const inApp = [
+      [/MessengerForiOS|FBAN\/Messenger/i, "Messenger", 0],
+      [/Instagram[\s/]([\d.]+)/i, "Instagram", 1],
+      [/\bLine\/([\d.]+)/i, "LINE", 1],
+      [/FBAV\/([\d.]+)/i, "Facebook", 1],
+      [/FBAN|FB_IAB|FB4A|FBIOS/i, "Facebook", 0],
+      [/MicroMessenger\/([\d.]+)/i, "WeChat", 1],
+      [/KAKAOTALK\/?([\d.]*)/i, "KakaoTalk", 1],
+      [/(?:musical_ly|BytedanceWebview|TikTok)[\s/]?([\d.]+)?/i, "TikTok", 1],
+      [/GSA\/([\d.]+)/i, "Google app", 1],
+      [/Twitter/i, "Twitter / X", 0],
+      [/Snapchat/i, "Snapchat", 0],
+      [/Telegram/i, "Telegram", 0],
+    ];
+    for (const [re, name, g] of inApp) {
+      const r = re.exec(ua);
+      if (r) { const v = g && r[g] ? " " + r[g].split(".")[0] : ""; browser = `${name}${v} (in-app)`; break; }
+    }
+    if (browser === "Unknown") {
+      const m = /(Edg|OPR|SamsungBrowser|Firefox|FxiOS|CriOS|Chrome)\/([\d.]+)/.exec(ua) ||
+        (/Version\/([\d.]+).*Safari/.test(ua) && ["", "Safari", (/Version\/([\d.]+)/.exec(ua) || [, ""])[1]]);
+      if (m) {
+        const names = { Edg: "Edge", OPR: "Opera", FxiOS: "Firefox", CriOS: "Chrome", SamsungBrowser: "Samsung Internet" };
+        browser = `${names[m[1]] || m[1]} ${String(m[2] || "").split(".")[0]}`.trim();
+      } else if (/AppleWebKit/.test(ua) && /Mobile/.test(ua)) browser = "iOS WebView";
+      else if (/; wv\)/.test(ua) || /\bwv\b/.test(ua)) browser = "Android WebView";
     }
     let os = "Unknown";
     if (/Windows NT 10/.test(ua)) os = "Windows 10/11";

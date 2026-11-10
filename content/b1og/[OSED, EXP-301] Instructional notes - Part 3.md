@@ -5,8 +5,10 @@ author: "CHW"
 tags:
   - offsec
 description: "OSED EXP-301 筆記 Part 3，聚焦空間受限環境下的 Egghunter 漏洞利用，以 Savant Web Server 3.1（CVE-2002-1120）為例，涵蓋 crash 分析與 Bad Characters 偵測、Partial EIP Overwrite、以 POP EAX; RET 與 Conditional Jump 將執行流程導回並改寫 HTTP Method、Windows Heap Memory Manager 與第二階段 Buffer 配置、使用 Keystone Engine 組譯 Egghunter、透過 NtAccessCheckAndAuditAlarm System Call 掃描記憶體並修正 Windows 10 System Call Number 與 Null Byte 問題、msfvenom Meterpreter payload 取得 Shell，以及改用 SEH-based Egghunter 提升跨版本可攜性等等。"
-===
+---
 
+[OSED, EXP-301] Instructional notes - Part 3
+===
 
 # Table of Contents
 [TOC]

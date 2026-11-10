@@ -33,6 +33,11 @@
   border-radius: 0 !important;
 }
 
+/* Hide the language bar injected by the theme's code.js; article-enhance provides its own */
+.chw-article .highlight > .code-title {
+  display: none !important;
+}
+
 /* Reset theme syntax.css */
 .chw-article .chroma span {
   color: inherit;

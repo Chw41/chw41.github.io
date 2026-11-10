@@ -5,7 +5,7 @@
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const report = { generated_at: new Date().toISOString() };
 
-  /* ---------------- lookup mode (?chw=<ip>) ---------------- */
+  /* ---------------- lookup mode ---------------- */
   const qp = new URLSearchParams(location.search);
   const queryIP = (qp.get("chw") || "").trim();
   const isValidIP = (s) => {
@@ -535,7 +535,7 @@
       const top = hi + pad, bot = Math.max(0, lo - pad);
       const span = top - bot || 1;
       const n = samples.length;
-      const RX = W - 8; // right inset so the line tip + live probe stay fully visible
+      const RX = W - 8; 
       const xAt = (i) => (n === 1 ? RX : (i / (n - 1)) * RX);
       const yAt = (v) => H - ((v - bot) / span) * H;
 
@@ -548,12 +548,10 @@
       line.setAttribute("d", d);
       area.setAttribute("d", d ? `${d}L${xAt(lastI).toFixed(1)} ${H}L0 ${H}Z` : "");
 
-      // average baseline
       const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
       const ymean = yAt(mean).toFixed(1);
       avg.setAttribute("d", `M0 ${ymean}L${W} ${ymean}`);
 
-      // live leading probe — rides the newest sample, coloured by latency
       if (lastI >= 0) {
         const v = samples[lastI];
         head.style.left = `${(xAt(lastI) / W) * 100}%`;
@@ -598,7 +596,7 @@
 
     let running = false;
     const loop = async () => {
-      if (running || document.hidden) return; // single in-flight; pause in background
+      if (running || document.hidden) return; 
       running = true;
       try { await tick(); } finally { running = false; }
       if (!document.hidden) {
@@ -619,7 +617,6 @@
       });
     });
 
-    // pause pinging when the tab is hidden, resume when it returns to the foreground
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) loop();
     });
@@ -654,7 +651,7 @@
       for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
-        if (!started) { started = performance.now(); continue; } // skip 1st chunk (TTFB)
+        if (!started) { started = performance.now(); continue; }
         received += value.length;
         const sec = (performance.now() - started) / 1000;
         if (sec > 0.15) {
@@ -753,7 +750,7 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const q = input.value.trim();
-      if (!q) { location.href = location.pathname; return; } // back to my own IP
+      if (!q) { location.href = location.pathname; return; } 
       if (isValidIP(q)) { go(q); return; }
 
       const host = q.replace(/^[a-z]+:\/\//i, "").replace(/[/?#].*$/, "").replace(/:\d+$/, "");
@@ -799,12 +796,11 @@
         sym.textContent = '~';
         pr.append(sym, ' whois ' + lookup);
       }
-      // viewer edge/latency and the duplicate provider tile don't apply to a looked-up IP,
-      // but Distance (your location → target) does, so keep it.
+
       ["stIsp", "stEdge", "stRtt"].forEach((id) => { const el = $(id); if (el) hide(el.closest(".wh-stat")); });
-      hideCard("whConn");                                      // viewer edge / TLS
-      hide($("whRisk") && $("whRisk").closest(".wh-cards"));   // viewer privacy + device
-      hide($("whDiag"));                                        // latency/speed: viewer-only
+      hideCard("whConn");                                      
+      hide($("whRisk") && $("whRisk").closest(".wh-cards"));   
+      hide($("whDiag"));                                     
       log(`ip lookup — resolving ${lookup}`, "step");
     } else {
       if (queryIP) log(`ignoring invalid ip parameter: ${queryIP}`, "warn");

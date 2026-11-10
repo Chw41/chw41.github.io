@@ -51,7 +51,8 @@ html, body {
     left: 0;
     height: 2px;
     width: 0;
-    background: linear-gradient(90deg, #ff5555, #ff9f43, #00ff9c);
+    background: linear-gradient(90deg, rgba(200,198,194,0.2), #c8c6c2);
+    transition: width 80ms linear;
     z-index: 20000;
   }
 

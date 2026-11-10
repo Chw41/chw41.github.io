@@ -1,3 +1,4 @@
+<script src="/js/code-highlight.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
 
@@ -37,6 +38,8 @@
     
         pre.appendChild(copyBtn);
     
+        if (code.dataset.hl) return;
+
         const lines = code.innerHTML.split("\n").map(line => {
           if (line.startsWith("$ ")) {
             return `<span class="chw-prompt">$</span> ${line.slice(2)}`;

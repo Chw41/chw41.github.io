@@ -1666,7 +1666,7 @@ JScript
 wscript.exe
 ```
 Frida 分析：
-```powershell
+```text
          /* TID 0x690 */
   7667 ms  AmsiScanString()
   7667 ms     | [*] AmsiScanBuffer()

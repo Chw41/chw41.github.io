@@ -1118,7 +1118,7 @@ $Assemblies |
 
 接著需要找出是哪個 assembly 提供這些 method:\
 搜尋「GetModuleHandle」會發現 18 個結果，其中一個位於 Microsoft.Win32.UnsafeNativeMethods class
-```powershell
+```text
 ...
  TypeName: Microsoft.Win32.UnsafeNativeMethods
 

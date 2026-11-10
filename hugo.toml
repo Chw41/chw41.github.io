@@ -25,6 +25,9 @@ enableRobotsTXT = true
       taskList = true
       typographer = false
 
+    [markup.highlight]
+      noClasses = false
+
     [markup.tableOfContents]
       startLevel = 1
       endLevel = 3

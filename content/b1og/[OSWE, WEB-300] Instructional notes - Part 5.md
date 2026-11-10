@@ -3095,7 +3095,7 @@ hello({"foo": "student"})
 > 👉🏻 haxhaxhaxhello student
 
 建構 HTTP Payload
-```json
+```javascript
 connection.settings.__proto__
 ```
 Request:

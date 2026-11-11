@@ -8,7 +8,6 @@
   /* ---------------- limits ---------------- */
 
   const READ_CAP = 350 * 1024 * 1024; // bytes read into memory
-  const MD5_CAP = 100 * 1024 * 1024;  // MD5 is pure-JS → cap it
   const SCAN_MAX = 2000000;           // samples used for entropy / histogram / byte map
   const STRINGS_SCAN = 16 * 1024 * 1024;
   const STRINGS_MAX = 400;
@@ -51,6 +50,7 @@
     v.textContent = value == null || value === "" ? "·" : String(value);
     row.append(k, v);
     list.append(row);
+    return v;
   };
 
   const fmtBytes = (n) => {
@@ -73,55 +73,85 @@
     const K = new Int32Array(64);
     for (let i = 0; i < 64; i++) K[i] = (Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296)) | 0;
     const rol = (x, c) => (x << c) | (x >>> (32 - c));
+    const M = new Int32Array(16);
 
-    return (bytes) => {
+    // Process one 64-byte block at `off` in `buf`, mutating state h = [a0,b0,c0,d0].
+    const block = (buf, off, h) => {
+      for (let i = 0; i < 16; i++) {
+        const j = off + i * 4;
+        M[i] = buf[j] | (buf[j + 1] << 8) | (buf[j + 2] << 16) | (buf[j + 3] << 24);
+      }
+      let A = h[0], B = h[1], C = h[2], D = h[3];
+      for (let i = 0; i < 64; i++) {
+        let F, g;
+        if (i < 16) { F = (B & C) | (~B & D); g = i; }
+        else if (i < 32) { F = (D & B) | (~D & C); g = (5 * i + 1) & 15; }
+        else if (i < 48) { F = B ^ C ^ D; g = (3 * i + 5) & 15; }
+        else { F = C ^ (B | ~D); g = (7 * i) & 15; }
+        F = (F + A + K[i] + M[g]) | 0;
+        A = D; D = C; C = B;
+        B = (B + rol(F, s[i])) | 0;
+      }
+      h[0] = (h[0] + A) | 0; h[1] = (h[1] + B) | 0; h[2] = (h[2] + C) | 0; h[3] = (h[3] + D) | 0;
+    };
+
+    // Build + process the final (padding) block(s) from the trailing bytes.
+    const tail = (bytes, fullBlocks, h) => {
       const origLen = bytes.length;
+      const rem = origLen - fullBlocks * 64;
+      const tailLen = rem < 56 ? 64 : 128;
+      const buf = new Uint8Array(tailLen);
+      buf.set(bytes.subarray(fullBlocks * 64));
+      buf[rem] = 0x80;
       const bitLen = origLen * 8;
-      const padLen = ((origLen + 8) >> 6 << 6) + 64; // multiple of 64, room for 1 + length
-      const buf = new Uint8Array(padLen);
-      buf.set(bytes);
-      buf[origLen] = 0x80;
-      // 64-bit little-endian length (low 32 bits enough for our sizes, but write both)
       const lenLo = bitLen >>> 0;
       const lenHi = Math.floor(bitLen / 4294967296) >>> 0;
-      buf[padLen - 8] = lenLo & 0xff;
-      buf[padLen - 7] = (lenLo >>> 8) & 0xff;
-      buf[padLen - 6] = (lenLo >>> 16) & 0xff;
-      buf[padLen - 5] = (lenLo >>> 24) & 0xff;
-      buf[padLen - 4] = lenHi & 0xff;
-      buf[padLen - 3] = (lenHi >>> 8) & 0xff;
-      buf[padLen - 2] = (lenHi >>> 16) & 0xff;
-      buf[padLen - 1] = (lenHi >>> 24) & 0xff;
-
-      let a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
-      const M = new Int32Array(16);
-
-      for (let off = 0; off < padLen; off += 64) {
-        for (let i = 0; i < 16; i++) {
-          const j = off + i * 4;
-          M[i] = buf[j] | (buf[j + 1] << 8) | (buf[j + 2] << 16) | (buf[j + 3] << 24);
-        }
-        let A = a0, B = b0, C = c0, D = d0;
-        for (let i = 0; i < 64; i++) {
-          let F, g;
-          if (i < 16) { F = (B & C) | (~B & D); g = i; }
-          else if (i < 32) { F = (D & B) | (~D & C); g = (5 * i + 1) & 15; }
-          else if (i < 48) { F = B ^ C ^ D; g = (3 * i + 5) & 15; }
-          else { F = C ^ (B | ~D); g = (7 * i) & 15; }
-          F = (F + A + K[i] + M[g]) | 0;
-          A = D; D = C; C = B;
-          B = (B + rol(F, s[i])) | 0;
-        }
-        a0 = (a0 + A) | 0; b0 = (b0 + B) | 0; c0 = (c0 + C) | 0; d0 = (d0 + D) | 0;
-      }
-
-      const out = (x) => {
-        let h = "";
-        for (let i = 0; i < 4; i++) h += ((x >>> (i * 8)) & 0xff).toString(16).padStart(2, "0");
-        return h;
-      };
-      return out(a0) + out(b0) + out(c0) + out(d0);
+      buf[tailLen - 8] = lenLo & 0xff;
+      buf[tailLen - 7] = (lenLo >>> 8) & 0xff;
+      buf[tailLen - 6] = (lenLo >>> 16) & 0xff;
+      buf[tailLen - 5] = (lenLo >>> 24) & 0xff;
+      buf[tailLen - 4] = lenHi & 0xff;
+      buf[tailLen - 3] = (lenHi >>> 8) & 0xff;
+      buf[tailLen - 2] = (lenHi >>> 16) & 0xff;
+      buf[tailLen - 1] = (lenHi >>> 24) & 0xff;
+      for (let off = 0; off < tailLen; off += 64) block(buf, off, h);
     };
+
+    const out = (x) => {
+      let h = "";
+      for (let i = 0; i < 4; i++) h += ((x >>> (i * 8)) & 0xff).toString(16).padStart(2, "0");
+      return h;
+    };
+    const finalize = (h) => out(h[0]) + out(h[1]) + out(h[2]) + out(h[3]);
+
+    // Synchronous one-shot (fine for small buffers).
+    const md5 = (bytes) => {
+      const h = new Int32Array([0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]);
+      const fullBlocks = Math.floor(bytes.length / 64);
+      for (let i = 0; i < fullBlocks; i++) block(bytes, i * 64, h);
+      tail(bytes, fullBlocks, h);
+      return finalize(h);
+    };
+
+    // Chunked, non-blocking variant: yields to the event loop between ~4 MB
+    // chunks and reports fractional progress (0..1) via onProgress.
+    md5.async = async (bytes, onProgress) => {
+      const CHUNK_BLOCKS = 65536; // 64 B * 65536 = 4 MB per slice
+      const h = new Int32Array([0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]);
+      const fullBlocks = Math.floor(bytes.length / 64);
+      let i = 0;
+      while (i < fullBlocks) {
+        const end = Math.min(i + CHUNK_BLOCKS, fullBlocks);
+        for (; i < end; i++) block(bytes, i * 64, h);
+        if (onProgress) onProgress(bytes.length ? (i * 64) / bytes.length : 1);
+        await nextFrame();
+      }
+      tail(bytes, fullBlocks, h);
+      if (onProgress) onProgress(1);
+      return finalize(h);
+    };
+
+    return md5;
   })();
 
   const digestHex = async (algo, bytes) => {
@@ -1727,12 +1757,18 @@
       let sha256, sha1, md5hex;
       try { sha256 = await digestHex("SHA-256", hashTarget); } catch (_) { sha256 = "unavailable"; }
       try { sha1 = await digestHex("SHA-1", hashTarget); } catch (_) { sha1 = "unavailable"; }
-      md5hex = buf.length <= MD5_CAP ? md5(buf) : `skipped (> ${fmtBytes(MD5_CAP)})`;
+      // Render the native-crypto digests immediately, then stream MD5 (pure JS)
+      // in ~4 MB slices so the UI stays responsive and shows live progress.
       $("upHashes").textContent = "";
       addRow("upHashes", "SHA-256", sha256);
       addRow("upHashes", "SHA-1", sha1);
-      addRow("upHashes", "MD5", md5hex);
+      const md5Row = addRow("upHashes", "MD5", "computing… 0%", "is-pending");
       if (truncated) addRow("upHashes", "Note", "digests cover analysed region only", "is-warn");
+      try {
+        md5hex = await md5.async(buf, (p) => { md5Row.textContent = `computing… ${Math.round(p * 100)}%`; });
+      } catch (_) { md5hex = "unavailable"; }
+      md5Row.textContent = md5hex;
+      md5Row.className = "wh-row-v";
       log(`sha256 ${sha256.slice(0, 32)}…`, "ok");
 
       /* sampled scan for visuals */

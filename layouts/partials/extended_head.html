@@ -22,6 +22,16 @@
 <link rel="stylesheet" href="/css/code-theme.css">
 {{ end }}
 
+{{/* /upload handles local files: lock the page down so nothing can leave the browser.
+     connect-src 'none' blocks fetch/XHR/WebSocket/beacon and img-src keeps images local; scripts
+     are limited to same-origin plus SRI-pinned CDN files. 'unsafe-eval' is only there because the
+     site-wide navbar.js is JSFuck-encoded and needs the Function constructor; the page's own code
+     never evaluates strings, and eval cannot open a connection that connect-src forbids. */}}
+{{ if eq .Section "upload" }}
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; worker-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' blob: data:; media-src blob:; connect-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+{{ end }}
+
 {{ if eq .Kind "404" }}
 <link rel="stylesheet" href="/css/404.css">
 {{ end }}

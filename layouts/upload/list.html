@@ -43,7 +43,7 @@
   <section class="ins-hero" id="upHero">
     <div class="ins-hero-eyebrow" data-reveal>client-side · zero-upload · evidence stays local</div>
     <h1 class="ins-title" id="upTitle" data-reveal>Every file<br>tells on <em>itself.</em></h1>
-    <p class="ins-lead" data-reveal>Drop any file and it is dissected entirely in your browser: true type, cryptographic digests, entropy, a 3-D byte cloud, strings, hex, metadata and tamper indicators. Nothing is uploaded.</p>
+    <p class="ins-lead" data-reveal>Drop any file and it is dissected entirely in your browser: true type, cryptographic digests, entropy, a 3-D byte cloud, strings and indicators, hex, metadata, binary hardening and tamper signs. Nothing is uploaded.</p>
 
     <label class="ins-drop up-drop" id="upDrop" for="upInput" tabindex="0" data-reveal data-cursor="drop evidence">
       <input type="file" id="upInput" hidden>
@@ -57,14 +57,14 @@
           <path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5"></path>
         </svg>
         <div class="ins-drop-head">Drop evidence to begin</div>
-        <div class="ins-drop-sub">or <span>browse</span> · any file, analysed locally</div>
+        <div class="ins-drop-sub">or <span>browse</span> · paste · any file, analysed locally</div>
       </div>
     </label>
 
     <div class="ins-ticker" data-reveal aria-hidden="true">
       <div class="ins-ticker-row">
-        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>strings</span><span>exif / gps</span><span>polyglot carving</span><span>hex</span><span>archive manifest</span>
-        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>strings</span><span>exif / gps</span><span>polyglot carving</span><span>hex</span><span>archive manifest</span>
+        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>iocs &amp; secrets</span><span>exif / gps</span><span>polyglot carving</span><span>checksec</span><span>imphash</span><span>hex</span><span>clean copy</span>
+        <span>true type</span><span>sha-256</span><span>entropy</span><span>byte cloud</span><span>iocs &amp; secrets</span><span>exif / gps</span><span>polyglot carving</span><span>checksec</span><span>imphash</span><span>hex</span><span>clean copy</span>
       </div>
     </div>
     <div class="ins-scrollcue" data-reveal aria-hidden="true"><span>scroll</span><i></i></div>
@@ -118,7 +118,18 @@
       <div class="ch-head"><span class="ch-num">02</span><span class="ch-label">Integrity</span></div>
       <div class="ch-body">
         <div class="ins-rows ins-rows--hash" id="upHashes" data-reveal></div>
-        <button class="ins-btn" id="upCopyHashes" type="button" data-reveal data-cursor="copy">Copy digests</button>
+        <div class="ins-verify" data-reveal>
+          <input class="ins-field" id="upVerify" type="text" inputmode="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste an expected checksum to verify it" aria-label="Expected checksum">
+          <span class="ins-verify-state" id="upVerifyState" data-state="idle" role="status" aria-live="polite"></span>
+        </div>
+        <div class="ins-hash-actions" data-reveal>
+          <button class="ins-btn" id="upCopyHashes" type="button" data-cursor="copy">Copy digests</button>
+          <span class="ins-rep" id="upRep" hidden>
+            <a class="ins-btn ins-btn--ghost" id="upVt" href="#" target="_blank" rel="noopener noreferrer">VirusTotal ↗</a>
+            <a class="ins-btn ins-btn--ghost" id="upMb" href="#" target="_blank" rel="noopener noreferrer">MalwareBazaar ↗</a>
+          </span>
+        </div>
+        <p class="ins-foot" data-reveal>Digests cover every byte and run in a background worker. The reputation links send only the SHA-256 value; the file never leaves this tab.</p>
       </div>
     </section>
 
@@ -129,7 +140,7 @@
         <div class="ins-struct-map">
           <div class="ins-card-head"><span class="ins-label">byte map</span><div class="up-legend ins-legend" id="upByteLegend" aria-hidden="true"></div></div>
           <div class="up-canvas-wrap ins-frame ins-frame--map" data-reveal><canvas id="upByteCanvas" class="ins-canvas"></canvas></div>
-          <p class="ins-foot">Each pixel is one byte (sampled for large files). Colour encodes the byte's class, exposing structure, padding and high-entropy regions.</p>
+          <p class="ins-foot">Each pixel is one byte (sampled for large files). Colour encodes the byte's class, exposing structure, padding and high-entropy regions. Click anywhere on the map to open that spot in the hex view.</p>
         </div>
       </div>
     </section>
@@ -138,7 +149,7 @@
       <div class="ch-head"><span class="ch-num">04</span><span class="ch-label">Entropy</span></div>
       <div class="ch-body">
         <div class="ins-entbig" id="upEntropyAvg" data-reveal>·</div>
-        <div class="up-entropy ins-frame ins-frame--ent" data-reveal>
+        <div class="up-entropy ins-frame ins-frame--ent" data-reveal title="Click to see these bytes in the hex view">
           <div class="ins-ent-grid" aria-hidden="true"></div>
           <svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
             <defs>
@@ -163,15 +174,30 @@
     <section class="chapter" id="ch-05" data-ch="05">
       <div class="ch-head"><span class="ch-num">05</span><span class="ch-label">Content</span></div>
       <div class="ch-body">
-        <div class="ins-panel" data-reveal>
-          <div class="ins-card-head"><span class="ins-label">strings</span><span class="ins-tag" id="upStringsTag">·</span></div>
-          <div class="up-strings ins-stream" id="upStrings" data-lenis-prevent></div>
+        <div class="ins-panel" id="upIocCard" hidden>
+          <div class="ins-card-head"><span class="ins-label">indicators</span>
+            <div class="ins-actions"><span class="ins-tag" id="upIocTag"></span><button class="ins-btn ins-btn--sm" id="upIocCopy" type="button" data-cursor="copy">Copy defanged</button></div>
+          </div>
+          <div class="ins-rows" id="upIoc"></div>
+          <p class="ins-foot">Pulled from the extracted strings. Click a value to see it in the hex view. Secrets stay masked on screen, in the copy and in exported reports.</p>
         </div>
         <div class="ins-panel" data-reveal>
-          <div class="ins-card-head"><span class="ins-label">hex dump</span>
-            <div class="ins-actions"><span class="ins-tag" id="upHexTag"></span><button class="ins-btn ins-btn--sm" id="upHexMore" type="button" data-cursor="more">Show more</button></div>
+          <div class="ins-card-head"><span class="ins-label">strings</span><span class="ins-tag" id="upStringsTag">·</span></div>
+          <div class="ins-toolbar">
+            <input class="ins-field" id="upStrQ" type="search" spellcheck="false" autocomplete="off" placeholder="Filter strings" aria-label="Filter strings">
+            <div class="ins-seg" id="upStrSeg" role="group" aria-label="String set">
+              <button type="button" class="is-active" data-f="all">All</button><button type="button" data-f="u">UTF-16</button><button type="button" data-f="hl">Flagged</button>
+            </div>
           </div>
-          <div class="up-hex ins-stream" id="upHex" data-lenis-prevent></div>
+          <div class="up-strings ins-stream" id="upStrings" data-lenis-prevent></div>
+        </div>
+        <div class="ins-panel" id="upHexPanel" data-reveal>
+          <div class="ins-card-head"><span class="ins-label">hex</span><span class="ins-tag" id="upHexTag"></span></div>
+          <div class="ins-toolbar">
+            <input class="ins-field ins-field--offset" id="upHexJump" type="text" spellcheck="false" autocomplete="off" placeholder="Go to offset · 0x1f40 or 8000" aria-label="Go to offset">
+            <span class="ins-inspect" id="upHexInspect">Click a byte to inspect it</span>
+          </div>
+          <div class="up-hex ins-stream ins-hexview" id="upHex" data-lenis-prevent><div class="ins-hex-sizer" id="upHexSizer"><div class="ins-hex-rows" id="upHexRows"></div></div></div>
         </div>
 
         <div class="ins-two ins-image-cards" id="upImageCards" hidden>
@@ -183,6 +209,10 @@
             <div class="ins-card-head"><span class="ins-label">image metadata</span><span class="ins-badge ins-badge--sm" id="upExifVerdict" data-level="pending">·</span></div>
             <div class="ins-rows" id="upExif"></div>
             <p class="ins-foot" id="upExifNote"></p>
+            <div class="ins-clean" id="upClean" hidden>
+              <button class="ins-btn ins-btn--primary ins-btn--sm" id="upCleanBtn" type="button" data-cursor="save">Download clean copy</button>
+              <span class="ins-tag ins-tag--wrap" id="upCleanTag"></span>
+            </div>
           </div>
         </div>
 
@@ -195,6 +225,17 @@
           <div class="ins-card-head"><span class="ins-label" id="upMetaLabel">metadata</span><span class="ins-badge ins-badge--sm" id="upMetaVerdict" data-level="pending">·</span></div>
           <div class="ins-rows" id="upMeta"></div>
         </div>
+
+        <div class="ins-panel ins-bin-card" id="upBinCard" hidden>
+          <div id="upSectWrap">
+            <div class="ins-card-head"><span class="ins-label">sections</span><span class="ins-tag" id="upSectTag"></span></div>
+            <div class="ins-table-wrap" data-lenis-prevent><table class="ins-table" id="upSect"></table></div>
+          </div>
+          <div id="upImpWrap" hidden>
+            <div class="ins-card-head ins-card-head--sub"><span class="ins-label">imports</span><span class="ins-tag" id="upImpTag"></span></div>
+            <div class="ins-table-wrap" data-lenis-prevent><table class="ins-table" id="upImp"></table></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -202,19 +243,23 @@
       <div class="ch-head"><span class="ch-num">06</span><span class="ch-label">Log</span></div>
       <div class="ch-body">
         <div class="up-log ins-log" id="upLog" data-reveal data-lenis-prevent></div>
-        <button class="ins-btn ins-btn--primary" id="upReset" type="button" data-reveal data-cursor="new case">Open new case</button>
+        <div class="ins-endbar" data-reveal>
+          <button class="ins-btn" id="upExportJson" type="button" data-cursor="export">Export JSON</button>
+          <button class="ins-btn" id="upExportMd" type="button" data-cursor="export">Export Markdown</button>
+          <button class="ins-btn ins-btn--primary" id="upReset" type="button" data-cursor="new case">Open new case</button>
+        </div>
       </div>
     </section>
   </div>
 
   <footer class="ins-colophon">
-    Everything runs in your browser. No upload, no server, no tracking. Oversized files are sampled for the visualisations; digests cover the whole file.
+    Everything runs in your browser. No upload, no server, no tracking.
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" integrity="sha384-O55L/6rhHr9CFvrxqv5luxOCcmVaBmETbZbJDP+Do8T0pztTACsFBD/IXCNkj7DV" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ "js/upload.js" | relURL }}?v={{ now.Unix }}"></script>
 {{ end }}

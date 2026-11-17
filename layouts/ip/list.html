@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha384-c6Rcwz4e4CITMbu/NBmnNS8yN2sC3cUElMEMfP3vqqKFp7GOYaaBBCqmaWBjmkjb" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="{{ "css/whoami.css" | relURL }}">
 
 <div class="wh">
@@ -14,12 +14,22 @@
   </div>
 
   <header class="wh-hero">
-    <div class="wh-eyebrow">Your public IP address</div>
-    <div class="wh-ip"><span id="whIp">···.···.···.···</span><span class="wh-caret" aria-hidden="true"></span></div>
+    <div class="wh-eyebrow" id="whEyebrow">Your public IP address</div>
+    <div class="wh-ip" id="whIpWrap" role="button" tabindex="0" title="Click to copy" aria-label="Copy IP address"><span id="whIp">···.···.···.···</span><span class="wh-caret" aria-hidden="true"></span></div>
     <div class="wh-meta">
       <span id="whLoc">Resolving location</span>
       <span class="wh-meta-sep" aria-hidden="true"></span>
       <span class="wh-mono" id="whPtr">—</span>
+    </div>
+    <div class="wh-tools">
+      <div class="wh-seg wh-seg--inline" id="whFam" role="group" aria-label="Address family" hidden>
+        <button type="button" data-fam="v4">IPv4</button>
+        <button type="button" data-fam="v6">IPv6</button>
+      </div>
+      <button class="wh-btn wh-btn--icon" id="whCopyIp" type="button" aria-label="Copy IP address">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"></rect><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"></path></svg>
+        <span id="whCopyIpText">Copy</span>
+      </button>
     </div>
   </header>
 
@@ -29,7 +39,7 @@
         <circle cx="11" cy="11" r="7"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
-      <input class="wh-search-input" id="whSearchInput" type="text" inputmode="url" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Look up any IP address or domain…" aria-label="Look up any IP address or domain">
+      <input class="wh-search-input" id="whSearchInput" type="text" inputmode="url" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Look up any IP address or domain…" maxlength="253" aria-label="Look up any IP address or domain">
       <button class="wh-search-btn" id="whSearchBtn" type="submit">Trace</button>
     </form>
     <div class="wh-search-hint" id="whSearchHint" role="status" aria-live="polite"></div>
@@ -42,19 +52,19 @@
       <div class="wh-stat-s" id="stAsn">&nbsp;</div>
     </div>
     <div class="wh-stat">
-      <div class="wh-stat-k">Edge</div>
+      <div class="wh-stat-k" id="stEdgeK">Edge</div>
       <div class="wh-stat-v" id="stEdge">—</div>
       <div class="wh-stat-s" id="stEdgeSub">&nbsp;</div>
     </div>
     <div class="wh-stat">
-      <div class="wh-stat-k">Latency</div>
+      <div class="wh-stat-k" id="stRttK">Latency</div>
       <div class="wh-stat-v" id="stRtt">—</div>
-      <div class="wh-stat-s">to 1.1.1.1</div>
+      <div class="wh-stat-s" id="stRttSub">to 1.1.1.1</div>
     </div>
     <div class="wh-stat">
       <div class="wh-stat-k">Distance</div>
       <div class="wh-stat-v" id="stDist">—</div>
-      <div class="wh-stat-s" id="stDistSub">from here.</div>
+      <div class="wh-stat-s" id="stDistSub"><button type="button" class="wh-link" id="whLocate">Compare with my location</button></div>
     </div>
   </section>
 
@@ -74,6 +84,25 @@
     <div class="wh-chip wh-chip--bl wh-mono" id="whCoord">0.000000° N · 0.000000° E</div>
   </section>
 
+  <section class="wh-cards wh-cards--dns" id="whDnsSec" hidden>
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">DNS records</div>
+        <div class="wh-card-tag" id="tagDns"></div>
+      </div>
+      <div class="wh-rows wh-rows--dns" id="whDns"></div>
+    </article>
+
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Domain posture</div>
+        <div class="wh-verdict" id="whDnsVerdict" data-level="pending">Checking</div>
+      </div>
+      <div class="wh-rows" id="whDnsTrust"></div>
+      <p class="wh-card-note" id="whDnsNote"></p>
+    </article>
+  </section>
+
   <section class="wh-cards wh-diag" id="whDiag">
     <article class="wh-card wh-diag-card">
       <div class="wh-card-head">
@@ -88,7 +117,7 @@
         <span class="wh-dot" id="whPingDot" aria-hidden="true"></span>
         <span class="wh-ping-val" id="whPingVal">—</span>
         <span class="wh-ping-unit">ms</span>
-        <span class="wh-ping-tag wh-mono">HTTP RTT</span>
+        <button type="button" class="wh-ping-tag wh-mono" id="whPingTag" title="Pause / resume">HTTP RTT</button>
       </div>
 
       <div class="wh-spark">
@@ -112,6 +141,7 @@
         <div><span class="wh-ps-k">avg</span><span class="wh-ps-v" id="whPingAvg">—</span></div>
         <div><span class="wh-ps-k">max</span><span class="wh-ps-v" id="whPingMax">—</span></div>
         <div><span class="wh-ps-k">jitter</span><span class="wh-ps-v" id="whPingJit">—</span></div>
+        <div><span class="wh-ps-k">loss</span><span class="wh-ps-v" id="whPingLoss">—</span></div>
       </div>
     </article>
 
@@ -135,9 +165,15 @@
       <div class="wh-speed-bar"><div class="wh-speed-bar-fill" id="whSpeedBar"></div></div>
       <div class="wh-speed-phase wh-mono" id="whSpeedPhase">Idle · tap to start</div>
 
+      <div class="wh-ping-stats wh-speed-stats">
+        <div><span class="wh-ps-k">idle latency</span><span class="wh-ps-v" id="whBbIdle">—</span></div>
+        <div><span class="wh-ps-k">under load</span><span class="wh-ps-v" id="whBbLoad">—</span></div>
+        <div><span class="wh-ps-k">bufferbloat</span><span class="wh-ps-v" id="whBbGrade">—</span></div>
+      </div>
+
       <div class="wh-speed-foot">
         <button class="wh-btn wh-speed-btn" id="whSpeedBtn" type="button">Run speed test</button>
-        <p class="wh-card-note">Streams from Cloudflare to measure throughput.</p>
+        <p class="wh-card-note" id="whSpeedNote">Adaptive test, about 15 seconds. Transfers real data to and from Cloudflare.</p>
       </div>
     </article>
   </section>
@@ -187,6 +223,25 @@
     </article>
   </section>
 
+  <section class="wh-cards wh-cards--intel" id="whIntel">
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Exposure</div>
+        <div class="wh-verdict" id="whExpVerdict" data-level="pending">Checking</div>
+      </div>
+      <div class="wh-rows" id="whExp"></div>
+      <p class="wh-card-note" id="whExpNote">Passive records from Shodan InternetDB. Nothing is scanned from this page.</p>
+    </article>
+
+    <article class="wh-card">
+      <div class="wh-card-head">
+        <div class="wh-card-title">Routing</div>
+        <div class="wh-card-tag" id="tagRoute">bgp</div>
+      </div>
+      <div class="wh-rows wh-rows--2" id="whRoute"></div>
+    </article>
+  </section>
+
   <section class="wh-card wh-console">
     <div class="wh-card-head">
       <div class="wh-card-title">Trace</div>
@@ -199,11 +254,11 @@
   </section>
 
   <p class="wh-foot">
-    Everything runs in your browser: ipwho.is, Cloudflare trace &amp; DNS-over-HTTPS, ipify, Google STUN.
-    IP geolocation is approximate.
+    Everything runs in your browser: ipwho.is, Cloudflare trace &amp; DNS-over-HTTPS, ipify, Google STUN, Shodan InternetDB, RIPEstat.
+    IP geolocation is approximate. Your device location is only read when you ask for it.
   </p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha384-NElt3Op+9NBMCYaef5HxeJmU4Xeard/Lku8ek6hoPTvYkQPh3zLIrJP7KiRocsxO" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{ "js/my-ip.js" | relURL }}"></script>
 {{ end }}

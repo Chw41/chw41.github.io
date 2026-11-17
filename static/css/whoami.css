@@ -43,6 +43,9 @@
 
 .wh-mono { font-family: var(--mono); }
 
+/* display rules below would otherwise defeat the hidden attribute */
+.wh [hidden] { display: none !important; }
+
 /* ---------- top bar ---------- */
 
 .wh-bar {
@@ -152,6 +155,59 @@
   border-radius: 50%;
   background: var(--text-3);
 }
+
+/* hero tools: address family + copy */
+
+.wh-ip { cursor: pointer; outline: none; }
+.wh-ip:focus-visible #whIp { background: linear-gradient(180deg, #ffffff 30%, #6ee787 120%); -webkit-background-clip: text; background-clip: text; }
+
+.wh-tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.wh-btn--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-2) !important;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.wh-btn--icon svg { width: 13px; height: 13px; flex: none; }
+.wh-btn--icon:hover { color: var(--text) !important; }
+
+.wh-btn--icon.is-done {
+  color: var(--green) !important;
+  border-color: rgba(48, 209, 88, 0.32) !important;
+  background: var(--green-soft) !important;
+}
+
+/* quiet text action (used where a full button would be too loud) */
+.wh-link {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0;
+  background: none !important;
+  box-shadow: none !important;
+  color: var(--green) !important;
+  font-family: var(--mono) !important;
+  font-size: 11.5px;
+  font-weight: 500 !important;
+  line-height: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(48, 209, 88, 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+
+.wh-link:hover:not(:disabled) { text-decoration-color: currentColor; }
+.wh-link:disabled { color: var(--text-3) !important; text-decoration: none; cursor: default; }
 
 /* ---------- search ---------- */
 
@@ -534,6 +590,69 @@
 .wh-row-v.is-warn    { color: var(--amber); }
 .wh-row-v.is-bad     { color: var(--red); }
 
+/* tag lists inside a row (ports, CVEs, hostnames…) */
+
+.wh-row-v--tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.wh-tag {
+  display: inline-block;
+  max-width: 100%;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  border: 1px solid var(--line-hi);
+  background: var(--surface-hi);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 20px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+}
+
+.wh-tag.is-bad  { color: var(--red); background: var(--red-soft); border-color: rgba(255, 69, 58, 0.3); }
+.wh-tag.is-warn { color: var(--amber); background: var(--amber-soft); border-color: rgba(255, 159, 10, 0.3); }
+.wh-tag--more   { color: var(--text-3); background: transparent; }
+
+.wh-row-v--multi { white-space: pre-line; word-break: break-all; line-height: 1.7; }
+
+/* one record per line; long values are cut with an ellipsis (full text in the title) */
+.wh-row-v--lines { flex: 1 1 auto; text-align: left; line-height: 1.75; }
+
+.wh-rec {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wh-rec--more { color: var(--text-3); }
+
+/* DNS records: the record type reads as a label */
+
+.wh-cards--dns { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+
+/* exposure (narrow) beside routing (wide, two columns of rows): mirrors privacy + device */
+.wh-cards--intel { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+
+.wh-rows--dns .wh-row { align-items: flex-start; justify-content: flex-start; gap: 18px; }
+
+.wh-rows--dns .wh-row-k {
+  min-width: 52px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  color: var(--green);
+}
+
 .wh-verdict {
   height: 26px;
   display: inline-flex;
@@ -614,11 +733,27 @@
 
 .wh-ping-unit { font-size: 15px; color: var(--text-2); }
 
-.wh-ping-tag { margin-left: auto; font-size: 11px; color: var(--text-3); }
+.wh-ping-tag {
+  margin-left: auto;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  font-size: 11px;
+  font-weight: 400 !important;
+  color: var(--text-3) !important;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.wh-ping-tag:hover { color: var(--text-2) !important; }
+.wh-ping-tag.is-paused { color: var(--amber) !important; }
 
 .wh-spark {
   position: relative;
+  flex: 1 1 auto;
   height: 92px;
+  min-height: 92px;
   margin: 16px 0 16px;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -696,9 +831,16 @@
 
 .wh-ping-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   gap: 10px;
   margin-top: auto;
+}
+
+.wh-speed-stats {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
 
 .wh-ping-stats > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
@@ -784,6 +926,12 @@
 
 .wh-speed-btn:disabled { opacity: 0.5; cursor: default; }
 
+.wh-speed-btn.is-running {
+  background: var(--surface-hi) !important;
+  border-color: var(--line-hi) !important;
+  color: var(--text) !important;
+}
+
 .wh-speed-foot .wh-card-note { margin-bottom: 0; }
 
 /* ---------- console ---------- */
@@ -849,6 +997,7 @@
   .wh-stat:nth-child(n + 3) { border-top: 1px solid var(--line); }
   .wh-map-card { height: 440px; }
   .wh-diag { grid-template-columns: minmax(0, 1fr); }
+  .wh-cards--2, .wh-cards--dns, .wh-cards--intel { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 560px) {
@@ -866,9 +1015,11 @@
   /* diagnostics — phone proportions */
   .wh-card-head { flex-wrap: wrap; }
   .wh-ping-val { font-size: 34px; }
-  .wh-spark { height: 76px; }
+  .wh-spark { height: 76px; min-height: 76px; }
   .wh-ping-stats { gap: 8px; }
   .wh-ps-v { font-size: 13px; }
+  .wh-ps-k { font-size: 10.5px; }
+  .wh-row-v--tags { justify-content: flex-start; }
   .wh-speed-v { font-size: 25px; }
   .wh-speed-btn { width: 100%; text-align: center; }
   .wh-search { padding-left: 14px; }

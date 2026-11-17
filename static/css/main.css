@@ -463,29 +463,46 @@ html, body {
     will-change: transform;
   }
 
+  /* cert-glow.js samples each badge's colour (stored at alpha 0.26); the light is layered from it:
+     a bright core fading into a wide ambient halo, a two-step rim on the artwork, and a pool on the floor */
+  /* lightness and chroma get a floor, so a near-black sample (OSCP+) still glows in its own hue */
+  @supports (color: oklch(from red clamp(0.6, l, 0.9) max(c, 0.1) h / 0.5)) {
+    .cert-badge {
+      --cert-core: oklch(from var(--cert-glow) clamp(0.62, l, 0.9) max(c, 0.11) h / 0.5);
+      --cert-halo: oklch(from var(--cert-glow) clamp(0.62, l, 0.9) max(c, 0.11) h / 0.2);
+      --cert-rim: oklch(from var(--cert-glow) clamp(0.66, l, 0.92) max(c, 0.11) h / 0.42);
+      --cert-rim-far: oklch(from var(--cert-glow) clamp(0.62, l, 0.9) max(c, 0.11) h / 0.16);
+      --cert-floor: oklch(from var(--cert-glow) clamp(0.6, l, 0.9) max(c, 0.11) h / 0.36);
+    }
+  }
+
   .cert-badge::before {
     content: "";
     position: absolute;
-    inset: 24% 26% 24%;
+    inset: -4% -4% 0;
     pointer-events: none;
     border-radius: 999px;
-    background: radial-gradient(circle, var(--cert-glow), rgba(0,0,0,0) 66%);
-    filter: blur(8px);
-    opacity: 0.62;
-    transform: translateY(2%);
-    will-change: opacity;
+    background: radial-gradient(closest-side, var(--cert-core, var(--cert-glow)) 0%, var(--cert-halo, rgba(0,0,0,0)) 52%, rgba(0,0,0,0) 100%);
+    filter: blur(24px);
+    opacity: 0.72;
+    transform: translateY(3%) scale(0.94);
+    transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    will-change: opacity, transform;
   }
 
   .cert-badge::after {
     content: "";
     position: absolute;
-    inset: auto 30% 15% 30%;
-    height: 14%;
+    inset: auto 16% 6% 16%;
+    height: 16%;
     pointer-events: none;
     border-radius: 999px;
-    background: radial-gradient(ellipse, rgba(0,0,0,0.72), rgba(0,0,0,0) 70%);
-    filter: blur(8px);
+    background:
+      radial-gradient(ellipse 42% 38% at 50% 50%, rgba(0,0,0,0.72), rgba(0,0,0,0) 100%),
+      radial-gradient(ellipse 50% 50% at 50% 50%, var(--cert-floor, rgba(0,0,0,0)), rgba(0,0,0,0) 100%);
+    filter: blur(9px);
     opacity: 0.82;
+    transition: opacity 0.5s ease;
     will-change: opacity;
   }
 
@@ -506,7 +523,8 @@ html, body {
       drop-shadow(0 22px 18px rgba(0,0,0,0.78))
       drop-shadow(0 9px 18px rgba(0,0,0,0.44))
       drop-shadow(0 -1px 1px rgba(255,255,255,0.14))
-      drop-shadow(0 0 12px var(--cert-glow))
+      drop-shadow(0 0 6px var(--cert-rim, var(--cert-glow)))
+      drop-shadow(0 0 22px var(--cert-rim-far, rgba(0,0,0,0)))
       saturate(1.05)
       contrast(1.04);
   }
@@ -516,11 +534,12 @@ html, body {
   }
 
   .cert-badge:hover::after {
-    opacity: 0.82;
+    opacity: 1;
   }
 
   .cert-badge:hover::before {
-    opacity: 0.62;
+    opacity: 1;
+    transform: translateY(2%) scale(1.02);
   }
   
   @media (max-width: 900px) {

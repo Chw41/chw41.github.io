@@ -1,0 +1,9 @@
+{
+  "name": "chw41-js-tools",
+  "private": true,
+  "description": "Build tooling that compiles _js-src/ into JSFuck bundles under static/js/",
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "jsfuck": "0.4.0"
+  }
+}

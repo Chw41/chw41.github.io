@@ -7,3 +7,5 @@ __MACOSX/
 
 # readable sources of the JSFuck-encoded files in static/js (kept local, never published)
 _js-src/
+
+tools/node_modules/

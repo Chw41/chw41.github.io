@@ -31,6 +31,9 @@ jobs:
           hugo-version: "latest"
           extended: true
 
+      - name: Balance JSFuck for iOS / Safari
+        run: node tools/jsfuck-balance.js static/js/*.js
+
       - name: Build (use hugo.toml)
         run: |
           hugo --config hugo.toml --minify --cleanDestinationDir

@@ -1,0 +1,32 @@
+html,
+body,
+body * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+img,
+svg,
+picture,
+video,
+canvas {
+  -webkit-user-drag: none !important;
+}
+
+input,
+textarea,
+select,
+[contenteditable="true"],
+[contenteditable=""] {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+
+@media print {
+  html,
+  body {
+    display: none !important;
+  }
+}

@@ -1,2 +1,5 @@
 <script src="/js/navbar.js"></script>
 <script src="/js/cert-glow.js" defer></script>
+{{ if not (in (slice "ip" "upload") .Section) }}
+<script src="/js/protect.js"></script>
+{{ end }}

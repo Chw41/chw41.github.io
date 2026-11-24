@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="{{ "css/main.css" | relURL }}"/>
 <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
 
+{{ if not (in (slice "ip" "upload") .Section) }}
+<link rel="stylesheet" href="{{ "css/protect.css" | relURL }}">
+{{ end }}
+
 {{ if eq .Section "4b0u7" }}
 <link rel="stylesheet" href="/css/about.css">
 {{ end }}

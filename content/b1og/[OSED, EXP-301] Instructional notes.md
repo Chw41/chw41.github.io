@@ -26,3 +26,5 @@ This series summarizes my OSED / EXP-301 learning notes, focusing on Windows use
 - [Instructional Notes Part 4](https://chw41.github.io/b1og/osed-exp-301-instructional-notes---part-4/)\
   **Porting the SEH Egghunter to Windows 10 and Creating Custom Shellcode**\
   Identifying the SEH-Based Egghunter Issue, Porting the SEH Egghunter to Windows 10 (TEB StackBase), Calling Conventions on x86, The System Call Problem, Finding kernel32.dll (PEB Method), Export Directory Table, Working with the Export Names Array, Computing Function Name Hashes, Fetching the VMA of a Function, NULL-Free Position-Independent Shellcode (PIC), Reverse Shell (LoadLibraryA, WSAStartup, WSASocketA, WSAConnect, CreateProcessA), etc.
+
+![image](https://hackmd.io/_uploads/rJY3viMyXx.png)

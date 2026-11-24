@@ -1,8 +1,6 @@
 html,
 body,
 body * {
-  -webkit-user-select: none !important;
-  user-select: none !important;
   -webkit-touch-callout: none !important;
 }
 
@@ -14,13 +12,15 @@ canvas {
   -webkit-user-drag: none !important;
 }
 
+img:not(a img) {
+  pointer-events: none !important;
+}
+
 input,
 textarea,
 select,
 [contenteditable="true"],
 [contenteditable=""] {
-  -webkit-user-select: text !important;
-  user-select: text !important;
   -webkit-touch-callout: default !important;
 }
 

@@ -25,7 +25,7 @@ description: "OSCE³ 心得：OSWE、OSEP、OSED 與 OSWA 準備時程、考試�
 ![image](https://hackmd.io/_uploads/BJS8ZAzy7l.png)
 
 - OffSec 所有證照參考: [Courses & Certifications](https://www.offsec.com/courses/)
-- 課程代號原廠文件：[What is your course code system?](https://help.offsec.com/hc/en-us/articles/360050682771-What-is-your-course-code-system#h_01H0DB7E8HV6FNH6XWF3Z3MP3X)
+- 課程代號原廠文件：[What is your course code system?](https://help.offsec.com/hc/en-us/articles/360050682771-What-is-your-course-code-system)
     - OSWE:\
     "Learn advanced web application attacks and exploits, including advanced SSRF, persistent XSS and blind SQLi to .NET deserialization, source code analysis, session hijacking, fuzzing, and authentication bypass"
     - OSEP:\

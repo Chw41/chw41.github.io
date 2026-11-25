@@ -1,5 +1,5 @@
 ---
-title: "【關於不是大佬考完OSCE³】"
+title: "【關於不是大佬考完 OSCE³】"
 date: 2026-11-25
 author: "CHW"
 tags:

@@ -19,7 +19,8 @@ description: "OSCE³ 心得：OSWE、OSEP、OSED 與 OSWA 準備時程、考試�
 >id 或頭貼與水果、動物(特別是貓和水上生物)、銀河系、兩個英文字母、疊字、👁️、咖波、動漫相關的，通常都是大佬 🛐
 >> 總之…我不是
 
-[OSCE³](https://www.offsec.com/certificates/osce3/) 是 OffSec 頒發的資安專業認證，想要拿到這張證照必須蒐集三大秘寶：[OSWE](https://www.offsec.com/courses/web-300/)、[OSEP](https://www.offsec.com/courses/pen-300/) 和 [OSED](https://www.offsec.com/courses/exp-301/)！
+[OSCE³](https://www.offsec.com/certificates/osce3/) 是 OffSec 頒發的資安專業認證，想要拿到這張證照必須蒐集三大秘寶：\
+[OSWE](https://www.offsec.com/courses/web-300/)、[OSEP](https://www.offsec.com/courses/pen-300/) 和 [OSED](https://www.offsec.com/courses/exp-301/)！
 
 ![image](https://hackmd.io/_uploads/BJS8ZAzy7l.png)
 

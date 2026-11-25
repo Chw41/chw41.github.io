@@ -72,7 +72,7 @@ OSCE³ 過程比較像是一場馬拉松在累積自己的實力，目前階段�
 >For 還是學生：\
 如果也想收集 OffSec Badge，在學生時期就勇敢按下去。學校課表可以自己安排。進入職場後，客戶的需求是不可控的🤣 下班後才是自己坐下看證照的時間
 
-最大的遺憾是 Learn Unlimited 沒有包含 [OSAI+](https://www.offsec.com/courses/ai-300/)
+最大的遺憾是 Learn Unlimited 沒有包含 [OSAI+](https://www.offsec.com/courses/ai-300/)\
 雖然技術能力明顯提升，也把觀念重新整理了一遍，但也確實感受到 Lab 環境的漏洞、防毒版本和 x86 架構，放到現代環境的實用性有限
 
 還剩 2 個多月時間，再考個比 OSCE3 還稀有的 KLCP 吧
